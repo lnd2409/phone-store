@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\TrangChu\ClientController;
+use App\Http\Controllers\TrangChu\SanPhamController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/admin', function () {
+    return view('admin.template.master');
 });
+
+
+//client
+// Route::get('/', function () {
+//     return view('client.template.master');
+// });
+
+Route::get('/', [ClientController::class, 'index'])->name('client.index');
+Route::get('/{idCate}',[SanPhamController::class, 'getProductByCategory'])->name('client.get-product-by-cat');
+Route::get('san-pham/{id}',[SanPhamController::class, 'productDetail'])->name('client.product-detail');

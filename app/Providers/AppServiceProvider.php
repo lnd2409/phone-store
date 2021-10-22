@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use App\Models\TheLoai;
+use Illuminate\Support\Facades\View;
+use DB;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -13,7 +15,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $theLoaiView = DB::table('theloai')->get();
+        View::share('theLoaiView',$theLoaiView);
     }
 
     /**
