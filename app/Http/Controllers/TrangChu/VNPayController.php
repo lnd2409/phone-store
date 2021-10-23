@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 use Cart;
+use Session;
+use Auth;
 class VNPayController extends Controller
 {
     /**
@@ -22,7 +24,6 @@ class VNPayController extends Controller
 
     public function payCart(Request $request)
     {
-        // dd((int) Cart::priceTotal(0,0,0));
       $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
       $vnp_Returnurl = route('client.returnvnpay');
       $vnp_TmnCode = "X8MMVM5K";//Mã website tại VNPAY
@@ -41,46 +42,16 @@ class VNPayController extends Controller
       // Tên chủ thẻ NGUYEN VAN A
       // Ngày phát hành 07/15
       // Mật khẩu OTP 123456
-      //Add Params of 2.0.1 Version
-      // $vnp_ExpireDate = $_POST['txtexpire'];
-      //Billing
-      // $vnp_Bill_Mobile = $_POST['txt_billing_mobile'];
-      // $vnp_Bill_Email = $_POST['txt_billing_email'];
-      // $fullName = trim($_POST['txt_billing_fullname']);
-      // if (isset($fullName) && trim($fullName) != '') {
-      // $name = explode(' ', $fullName);
-      // $vnp_Bill_FirstName = array_shift($name);
-      // $vnp_Bill_LastName = array_pop($name);
-      // }
-      // $vnp_Bill_Address=$_POST['txt_inv_addr1'];
-      // $vnp_Bill_City=$_POST['txt_bill_city'];
-      // $vnp_Bill_Country=$_POST['txt_bill_country'];
-      // $vnp_Bill_State=$_POST['txt_bill_state'];
-      // Invoice
-      // $vnp_Inv_Phone=$_POST['txt_inv_mobile'];
-      // $vnp_Inv_Email=$_POST['txt_inv_email'];
-      // $vnp_Inv_Customer=$_POST['txt_inv_customer'];
-      // $vnp_Inv_Address=$_POST['txt_inv_addr1'];
-      // $vnp_Inv_Company=$_POST['txt_inv_company'];
-      // $vnp_Inv_Taxcode=$_POST['txt_inv_taxcode'];
-      // $vnp_Inv_Type=$_POST['cbo_inv_type'];
-    //   $tenKhachHang = $request->tenKhachHang;
-    //   $diaChi = $request->diaChi;
-      // dd($diaChi)
-    //   $soDienThoai = $request->soDienThoai;
-      // // dd($tenKhachHang);
-      // try {
-      // //code...
-      // $user = Auth::guard('khachhang')->user();
-      // DB::table('hoadon')->insertGetId(
-      // [
-      // 'hd_ma' => rand(1000,9999),
-      // 'hd_tongtien' => Car
-      // ]
-      // );
-      // } catch (\Throwable $th) {
-      // //throw $th;
-      // }
+     
+      //Lấy thông tin người nhận
+      $khachhang=[
+          'dh_tenguoinhan'=>$request->kh_ten,
+          'dh_sdtnguoinhan'=>$request->kh_sdt,
+        // 'dh_email'=>$request->kh_email, //nếu cần hãy add thêm col vào data
+          'dh_diachinguoinhan'=>$request->kh_diachinhan,
+        // 'dh_ghichu'=>$request->kh_ghichu //nếu cần hãy add thêm col vào data
+      ];
+       Session::flash("billInfo", $khachhang);
 
 
       $inputData = array(
@@ -95,24 +66,7 @@ class VNPayController extends Controller
       "vnp_OrderInfo" => $vnp_OrderInfo,
       "vnp_OrderType" => $vnp_OrderType,
       "vnp_ReturnUrl" => $vnp_Returnurl,
-      "vnp_TxnRef" => $vnp_TxnRef,
-      // "diaChi" => $diaChi,
-      // "soDienThoai" => $soDienThoai,
-      // "vnp_ExpireDate"=>$vnp_ExpireDate,
-      // "vnp_Bill_Mobile"=>$vnp_Bill_Mobile,
-      // "vnp_Bill_Email"=>$vnp_Bill_Email,
-      // "vnp_Bill_FirstName"=>$vnp_Bill_FirstName,
-      // "vnp_Bill_LastName"=>$vnp_Bill_LastName,
-      // "vnp_Bill_Address"=>$vnp_Bill_Address,
-      // "vnp_Bill_City"=>$vnp_Bill_City,
-      // "vnp_Bill_Country"=>$vnp_Bill_Country,
-      // "vnp_Inv_Phone"=>$vnp_Inv_Phone,
-      // "vnp_Inv_Email"=>$vnp_Inv_Email,
-      // "vnp_Inv_Customer"=>$vnp_Inv_Customer,
-      // "vnp_Inv_Address"=>$vnp_Inv_Address,
-      // "vnp_Inv_Company"=>$vnp_Inv_Company,
-      // "vnp_Inv_Taxcode"=>$vnp_Inv_Taxcode,
-      // "vnp_Inv_Type"=>$vnp_Inv_Type
+      "vnp_TxnRef" => $vnp_TxnRef
       );
 
       if (isset($vnp_BankCode) && $vnp_BankCode != "") {
@@ -141,7 +95,7 @@ class VNPayController extends Controller
         $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret);//
         $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
       }
-      return redirect($vnp_Url);
+     return redirect($vnp_Url);
     }
 
     /**
@@ -152,11 +106,33 @@ class VNPayController extends Controller
      */
     public function storePayCart(Request $request)
     {
+        $nguoinhan = Session::get('billInfo');
+        
         if ($request->vnp_ResponseCode == '00') {
-         dd('Thanh Toán thành công');
+
+            // Thêm dữ liệu vào đơn hàng
+            $nguoinhan['kh_id']=Auth::guard('khachhang')->user()->kh_id;
+            $donhang_id = DB::table('donhang')->insertGetId($nguoinhan);
+
+            // Thêm dữ liệu vào chi tiết đơn hàng
+            foreach (Cart::content() as $key => $value) {
+               DB::table('chitietdonhang')->insert([
+                   'ctdh_soluong'=>$value->qty,
+                   'ctdh_giamgia'=>0,
+                   'ctdh_gia'=>$value->price,
+                   'sp_id'=>$value->id,
+                   'dh_id'=>$donhang_id,
+               ]);
+            }
+           
+            Session::forget('billInfo');
+            Cart::destroy();
+            Session::flash("payMess","Thanh toán thành công!");
+            return redirect()->route('client.index');
         }
         else {
-            dd('Thanh Toán thất bại');
+            Session::flash("payMessErr","Lỗi thanh toán!");
+            return redirect()->route('client.index');
          }
     }
 
