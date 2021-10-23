@@ -41,7 +41,7 @@ class TheLoai extends Model
     /**
      * @var array
      */
-    protected $fillable = ['tl_ten', 'tl_tenkhongdau', 'tl_trangthai', 'created_at', 'updated_at'];
+    protected $fillable = ['tl_id','tl_ten', 'tl_tenkhongdau', 'tl_trangthai', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
