@@ -69,7 +69,9 @@
                 </div>
             </div>
             <div class="col-md-7 mb-md-6 mb-lg-0">
-                <div class="mb-2">
+                <form action="{{ route('client.addtocart', ['id'=>$sanPham->sp_id]) }}" method="post">
+                    @csrf
+                    <div class="mb-2">
                     <div class="border-bottom mb-3 pb-md-1 pb-3">
                         <a href="#" class="font-size-12 text-gray-5 mb-2 d-inline-block">{{ $sanPham->theloai->tl_ten }}</a>
                         <h2 class="font-size-25 text-lh-1dot2">{{ $sanPham->sp_ten }}</h2>
@@ -106,8 +108,8 @@
                     <p><strong>SKU</strong>: FW511948218</p>
                     <div class="mb-4">
                         <div class="d-flex align-items-baseline">
-                            <ins class="font-size-36 text-decoration-none">$1,999.00</ins>
-                            <del class="font-size-20 ml-2 text-gray-6">$2,299.00</del>
+                            <ins class="font-size-36 text-decoration-none"> {{ number_format($sanPham->sp_gia)}} VNĐ</ins>
+                            {{-- <del class="font-size-20 ml-2 text-gray-6">$2,299.00</del> --}}
                         </div>
                     </div>
                     <div class="border-top border-bottom py-3 mb-4">
@@ -125,30 +127,31 @@
                     </div>
                     <div class="d-md-flex align-items-end mb-3">
                         <div class="max-width-150 mb-4 mb-md-0">
-                            <h6 class="font-size-14">Quantity</h6>
+                            <h6 class="font-size-14">Số lượng</h6>
                             <!-- Quantity -->
-                            <div class="border rounded-pill py-2 px-3 border-color-1">
-                                <div class="js-quantity row align-items-center">
-                                    <div class="col">
-                                        <input class="js-result form-control h-auto border-0 rounded p-0 shadow-none" type="text" value="1">
+                              <div class="border rounded-pill py-1 width-122 w-xl-80 px-3 border-color-1">
+                                        <div class="js-quantity row align-items-center">
+                                            <div class="col">
+                                                <input id="js-result-{{$sanPham->sp_id}}" class="js-result  form-control h-auto border-0 rounded p-0 shadow-none" name="sp_soluong" type="text" value="1">
+                                            </div>
+                                            <div class="col-auto pr-1">
+                                                <a data-id={{$sanPham->sp_id}} class="js-minus  btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
+                                                    <small class="fas fa-minus btn-icon__inner"></small>
+                                                </a>
+                                                <a data-id={{$sanPham->sp_id}} class="js-plus  btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
+                                                    <small class="fas fa-plus btn-icon__inner"></small>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-auto pr-1">
-                                        <a class="js-minus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
-                                            <small class="fas fa-minus btn-icon__inner"></small>
-                                        </a>
-                                        <a class="js-plus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
-                                            <small class="fas fa-plus btn-icon__inner"></small>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
                             <!-- End Quantity -->
                         </div>
                         <div class="ml-md-3">
-                            <a href="#" class="btn px-5 btn-primary-dark transition-3d-hover"><i class="ec ec-add-to-cart mr-2 font-size-20"></i> Add to Cart</a>
+                            <button type="submit" class="btn px-5 btn-primary-dark transition-3d-hover"><i class="ec ec-add-to-cart mr-2 font-size-20"></i>Thêm vào giỏ hàng</button>
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -888,3 +891,34 @@
     <!-- End Brand Carousel -->
 </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $(".js-plus").on('click', function (e) {
+              e.preventDefault();
+               var id = $(this).attr("data-id");
+               var resultVal = $('#js-result-'+id).val();
+               parseInt(resultVal,10);
+                resultVal = parseInt(resultVal) + 1;
+               $('#js-result-'+id).val(resultVal);
+            });
+            $(".js-minus").on('click', function (e) {
+              e.preventDefault();
+               var id = $(this).attr("data-id");
+               var resultVal = $('#js-result-'+id).val();
+               resultVal = parseInt(resultVal,10);
+               console.log(resultVal > 0);
+               if(resultVal > 0)
+               {
+                 resultVal = parseInt(resultVal) - 1;
+                 $('#js-result-'+id).val(resultVal);
+               }
+               else
+               {
+                   $('#js-result-'+id).val(0);
+               }
+               
+            });
+        });
+    </script>
+@endpush 

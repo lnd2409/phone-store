@@ -24,7 +24,7 @@ class CreateKhachhangTable extends Migration
             $table->string('username');
             $table->string('password');
 
-            $table->bigInteger('gy_id')->unsigned();
+            $table->bigInteger('gy_id')->nullable()->unsigned();
             $table->foreign('gy_id')->references('gy_id')->on('gopy')->onDelete('CASCADE');
 
             $table->timestamps();
