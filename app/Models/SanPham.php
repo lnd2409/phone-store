@@ -56,7 +56,7 @@ class SanPham extends Model
     /**
      * @var array
      */
-    protected $fillable = ['tl_id', 'ncc_id', 'bh_id', 'sp_ten', 'sp_gia', 'sp_soluong', 'sp_mota', 'sp_tinhtrang', 'sp_trangthai', 'created_at', 'updated_at'];
+    protected $fillable = ['sp_id','tl_id', 'ncc_id', 'bh_id', 'sp_ten', 'sp_gia', 'sp_soluong', 'sp_mota', 'sp_tinhtrang', 'sp_trangthai', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -128,6 +128,16 @@ class SanPham extends Model
     public function hinhanhsanphams()
     {
         return $this->hasMany('App\Hinhanhsanpham', 'sp_id', 'sp_id');
+    }
+
+    /**
+     * Get the hinhdaidien associated with the SanPham
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function hinhdaidien()
+    {
+        return $this->hasOne(Hinhanhsanpham::class, 'sp_id', 'sp_id');
     }
 
     /**
