@@ -15,7 +15,7 @@ use App\Http\Controllers\TrangChu\SanPhamController;
 */
 
 Route::get('/admin', function () {
-    return view('admin.template.master');
+    return view('admin.index');
 });
 
 
