@@ -6,17 +6,21 @@
             <div class="container">
                 <div class="d-flex align-items-center">
                     <div class="topbar-left">
-                        <a href="#" class="text-gray-70 font-size-13 u-header-topbar__nav-link">Welcome to Worldwide Electronics Store</a>
+                        <a href="#" class="text-gray-70 font-size-13 u-header-topbar__nav-link">Xin chào!  @if (Auth::guard('khachhang')->check())
+                           <strong>  {{Auth::guard('khachhang')->user()->kh_ten}} </strong>
+                        @else
+                        <strong>Khách hàng!</strong>
+                        @endif </a>
                     </div>
                     <div class="topbar-right ml-auto">
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
-                                <a href="#" class="u-header-topbar__nav-link"><i class="ec ec-map-pointer mr-1"></i> Store Locator</a>
+                                <a href="#" class="u-header-topbar__nav-link"><i class="ec ec-map-pointer mr-1"></i> <strong id="digital-clock"></strong></a>
                             </li>
-                            <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border full-bg">
+                            {{-- <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border full-bg">
                                 <a href="#" class="u-header-topbar__nav-link"><i class="ec ec-transport mr-1"></i> Track Your Order</a>
-                            </li>
-                            <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border full-bg u-header-topbar__nav-item-no-border u-header-topbar__nav-item-border-single">
+                            </li> --}}
+                            {{-- <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border full-bg u-header-topbar__nav-item-no-border u-header-topbar__nav-item-border-single">
                                 <div class="d-flex align-items-center">
                                     <!-- Language -->
                                     <div class="position-relative">
@@ -44,22 +48,27 @@
                                     </div>
                                     <!-- End Language -->
                                 </div>
-                            </li>
+                            </li> --}}
                             <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border full-bg">
                                 <!-- Account Sidebar Toggle Button -->
-                                <a id="sidebarNavToggler" href="javascript:;" role="button" class="u-header-topbar__nav-link"
-                                    aria-controls="sidebarContent"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                    data-unfold-event="click"
-                                    data-unfold-hide-on-scroll="false"
-                                    data-unfold-target="#sidebarContent"
-                                    data-unfold-type="css-animation"
-                                    data-unfold-animation-in="fadeInRight"
-                                    data-unfold-animation-out="fadeOutRight"
-                                    data-unfold-duration="500">
-                                    <i class="ec ec-user mr-1"></i> Register <span class="text-primary-darken-5">or</span> Sign in
-                                </a>
+                                @if (Auth::guard('khachhang')->check())
+                                    <a id="sidebarNavToggler" href="{{ route('client.logout') }}" role="button" class="u-header-topbar__nav-link">
+                                        <i class="ec ec-user mr-1"></i> Đăng xuất
+                                @else
+                                    <a id="sidebarNavToggler" href="javascript:;" role="button" class="u-header-topbar__nav-link"
+                                        aria-controls="sidebarContent"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                        data-unfold-event="click"
+                                        data-unfold-hide-on-scroll="false"
+                                        data-unfold-target="#sidebarContent"
+                                        data-unfold-type="css-animation"
+                                        data-unfold-animation-in="fadeInRight"
+                                        data-unfold-animation-out="fadeOutRight"
+                                        data-unfold-duration="500">
+                                        <i class="ec ec-user mr-1"></i> Đăng nhập <span class="text-primary-darken-5">or&nbsp;</span> Đăng ký
+                                    </a>
+                                    @endif
                                 <!-- End Account Sidebar Toggle Button -->
                             </li>
                         </ul>
@@ -542,10 +551,10 @@
                                 <li class="col d-none d-xl-block"><a href="../shop/wishlist.html" class="text-gray-90" data-toggle="tooltip" data-placement="top" title="Favorites"><i class="font-size-22 ec ec-favorites"></i></a></li>
                                 <li class="col d-xl-none px-2 px-sm-3"><a href="../shop/my-account.html" class="text-gray-90" data-toggle="tooltip" data-placement="top" title="My Account"><i class="font-size-22 ec ec-user"></i></a></li>
                                 <li class="col pr-xl-0 px-2 px-sm-3">
-                                    <a href="../shop/cart.html" class="text-gray-90 position-relative d-flex " data-toggle="tooltip" data-placement="top" title="Cart">
+                                    <a href="{{ route('client.gettocart') }}" class="text-gray-90 position-relative d-flex " data-toggle="tooltip" data-placement="top" title="Giỏ hàng">
                                         <i class="font-size-22 ec ec-shopping-bag"></i>
-                                        <span class="width-22 height-22 bg-dark position-absolute d-flex align-items-center justify-content-center rounded-circle left-12 top-8 font-weight-bold font-size-12 text-white">2</span>
-                                        <span class="d-none d-xl-block font-weight-bold font-size-16 text-gray-90 ml-3">$1785.00</span>
+                                        <span class="width-22 height-22 bg-dark position-absolute d-flex align-items-center justify-content-center rounded-circle left-12 top-8 font-weight-bold font-size-12 text-white">{{ Cart::count(); }}</span>
+                                        {{-- <span class="d-none d-xl-block font-weight-bold font-size-16 text-gray-90 ml-3">{{ Cart::subtotal(0,0); }}</span> --}}
                                     </a>
                                 </li>
                             </ul>

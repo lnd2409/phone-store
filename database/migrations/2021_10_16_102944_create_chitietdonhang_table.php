@@ -16,11 +16,11 @@ class CreateChitietdonhangTable extends Migration
         Schema::create('chitietdonhang', function (Blueprint $table) {
             $table->id('ctdh_id');
             $table->integer('ctdh_soluong');
-            $table->integer('ctdh_giamgia');
-            $table->integer('ctdh_trangthai')->default(0);
-            $table->string('ctdh_sdtnguoinhan');
-            $table->string('ctdh_diachinguoinhan');
-
+            $table->integer('ctdh_giamgia')->nullable();
+            $table->integer('ctdh_gia');
+           
+            $table->bigInteger('sp_id')->unsigned();
+            $table->foreign('sp_id')->references('sp_id')->on('sanpham')->onDelete('CASCADE');
             $table->bigInteger('dh_id')->unsigned();
             $table->foreign('dh_id')->references('dh_id')->on('donhang')->onDelete('CASCADE');
 

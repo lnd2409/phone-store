@@ -4348,3 +4348,16 @@
 </div>
 <!-- End Brand Carousel -->
 @endsection
+@push('scripts')
+@if(Session::has('payMess'))
+    <script>
+        alert('Thanh toán thành công');
+    </script>
+@endif
+@if(Session::has('payMessErr'))
+    <script>
+        alert('Lỗi thanh toán! Vui lòng thanh toán lại.');
+    </script>
+@endif
+
+@endpush

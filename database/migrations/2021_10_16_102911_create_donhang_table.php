@@ -15,10 +15,10 @@ class CreateDonhangTable extends Migration
     {
         Schema::create('donhang', function (Blueprint $table) {
             $table->id('dh_id');
-
-            $table->bigInteger('sp_id')->unsigned();
-            $table->foreign('sp_id')->references('sp_id')->on('sanpham')->onDelete('CASCADE');
-
+            $table->integer('dh_trangthai')->default(0);
+            $table->string('dh_tenguoinhan');
+            $table->string('dh_sdtnguoinhan');
+            $table->string('dh_diachinguoinhan');
             $table->bigInteger('kh_id')->unsigned();
             $table->foreign('kh_id')->references('kh_id')->on('khachhang')->onDelete('CASCADE');
             
