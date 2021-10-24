@@ -56,7 +56,7 @@ class TheLoai extends Model
      */
     public function thuoctinhs()
     {
-        return $this->belongsToMany('App\Thuoctinh', null, 'tl_id', 'tt_id');
+        return $this->belongsToMany('App\Models\Thuoctinh', null, 'tl_id', 'tt_id');
     }
 
     /**
@@ -64,6 +64,6 @@ class TheLoai extends Model
      */
     public function thuoctinhsanphams()
     {
-        return $this->hasMany('App\Thuoctinhsanpham', 'tl_id', 'tl_id');
+        return $this->hasMany('App\Models\Thuoctinhsanpham', 'tl_id', 'tl_id');
     }
 }

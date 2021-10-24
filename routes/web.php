@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrangChu\ClientController;
 use App\Http\Controllers\TrangChu\SanPhamController;
+
+//admin
+use App\Http\Controllers\Admin\SanPhamAdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,8 +17,17 @@ use App\Http\Controllers\TrangChu\SanPhamController;
 |
 */
 
-Route::get('/admin', function () {
-    return view('admin.index');
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return view('admin.index');
+    });
+
+    #product
+    Route::get('san-pham', [SanPhamAdminController::class, 'index'])->name('admin.product.list');
+    Route::get('them-san-pham', [SanPhamAdminController::class, 'add'])->name('admin.product.add');
+    Route::post('xu-ly-them-san-pham', [SanPhamAdminController::class, 'store'])->name('admin.product.store');\
+    Route::get('{idTheLoai}/thuoc-tinh', [SanPhamAdminController::class, 'ajaxThuocTinh'])->name('admin.product.ajax.cate');
 });
 
 

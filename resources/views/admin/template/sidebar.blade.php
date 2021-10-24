@@ -42,8 +42,8 @@
             <li><a href="blog-dashboard.html"><i class="zmdi zmdi-blogger"></i><span>Blogger</span> </a></li> --}}
             <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Sản phẩm</span> </a>
                 <ul class="ml-menu">
-                    <li><a href="ec-product.html">Sản phẩm</a></li>
-                    <li><a href="ec-product-List.html">Danh sách sản phẩm</a></li>
+                    <li><a href="{{ route('admin.product.list') }}">Danh sách sản phẩm</a></li>
+                    <li><a href="{{ route('admin.product.add') }}">Thêm sản phẩm</a></li>
                 </ul>
             </li>
         </ul>

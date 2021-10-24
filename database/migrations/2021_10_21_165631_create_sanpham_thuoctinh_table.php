@@ -19,7 +19,7 @@ class CreateSanphamThuoctinhTable extends Migration
 
             $table->bigInteger('tt_id')->unsigned();
             $table->foreign('tt_id')->references('tt_id')->on('thuoctinh')->onDelete('CASCADE');
-            $table->string('sptt_giatri');
+            $table->string('sptt_giatri')->nullable();
 
         });
     }
