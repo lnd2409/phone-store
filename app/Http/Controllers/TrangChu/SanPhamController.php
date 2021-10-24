@@ -29,8 +29,9 @@ class SanPhamController extends Controller
 
     public function compare(Request $request,SanPham $sanpham1, SanPham $sanpham2)
     {
-        $sanpham1=SanPham::where('sp_id',1)->first();
-        $sanpham2=SanPham::where('sp_id',2)->first();
+        if($sanpham1->tl_id != $sanpham1->tl_id){
+            return back()->with('error','Không thể so sánh 2 sản phẩm khác loại');
+        }
         return view('client.compare',compact('sanpham1','sanpham2'));
     }
 }

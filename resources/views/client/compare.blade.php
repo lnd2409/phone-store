@@ -99,28 +99,204 @@
                 </tr>
 
                 <tr>
-                    <th>Add to cart</th>
+                    <th>Nhà cung cấp</th>
                     <td>
-                        <div class=""><a href="#"
-                                class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-3 px-xl-5">Add
-                                to cart</a></div>
+                        <span>{{$sanpham1->nhacungcap->ncc_ten}}</span>
                     </td>
                     <td>
-                        <div class=""><a href="#"
-                                class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-3 px-xl-5">Add
-                                to cart</a></div>
+                        <span>{{$sanpham2->nhacungcap->ncc_ten}}</span>
                     </td>
                 </tr>
-
-
-
+                <!-- dt -->
+                @if($sanpham1->tl_id==1)
                 <tr>
-                    <th>Remove</th>
-                    <td class="text-center">
-                        <a href="#" class="text-gray-90"><i class="fa fa-times"></i></a>
+                    <th>Màn hình</th>
+                    <td>
+                        <span>{{$sanpham1->chitietthuoctinh(1)}}</span>
                     </td>
-                    <td class="text-center">
-                        <a href="#" class="text-gray-90"><i class="fa fa-times"></i></a>
+                    <td>
+                        <span>{{$sanpham2->chitietthuoctinh(2)}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Hệ điều hành</th>
+                    <td>
+                        <span>{{$sanpham1->chitietthuoctinh(2)}}</span>
+                    </td>
+                    <td>
+                        <span>{{$sanpham2->chitietthuoctinh(2)}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Camera sau</th>
+                    <td>
+                        <span>{{$sanpham1->chitietthuoctinh(3)}}</span>
+                    </td>
+                    <td>
+                        <span>{{$sanpham2->chitietthuoctinh(3)}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Camera trước</th>
+                    <td>
+                        <span>{{$sanpham1->chitietthuoctinh(4)}}</span>
+                    </td>
+                    <td>
+                        <span>{{$sanpham2->chitietthuoctinh(4)}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Chip</th>
+                    <td>
+                        <span>{{$sanpham1->chitietthuoctinh(5)}}</span>
+                    </td>
+                    <td>
+                        <span>{{$sanpham2->chitietthuoctinh(5)}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>RAM</th>
+                    <td>
+                        <span>{{$sanpham1->chitietthuoctinh(6)}}</span>
+                    </td>
+                    <td>
+                        <span>{{$sanpham2->chitietthuoctinh(6)}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Bộ nhớ trong</th>
+                    <td>
+                        <span>{{$sanpham1->chitietthuoctinh(7)}}</span>
+                    </td>
+                    <td>
+                        <span>{{$sanpham2->chitietthuoctinh(7)}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>SIM</th>
+                    <td>
+                        <span>{{$sanpham1->chitietthuoctinh(8)}}</span>
+                    </td>
+                    <td>
+                        <span>{{$sanpham2->chitietthuoctinh(8)}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Pin, Sạc</th>
+                    <td>
+                        <span>{{$sanpham1->chitietthuoctinh(9)}}</span>
+                    </td>
+                    <td>
+                        <span>{{$sanpham2->chitietthuoctinh(9)}}</span>
+                    </td>
+                </tr>
+                <!-- laptop -->
+                @else if($sanpham1->tl_id==2)
+                <tr>
+                    <th>CPU</th>
+                    <td>
+                        <span>{{$sanpham1->chitietthuoctinh(10)}}</span>
+                    </td>
+                    <td>
+                        <span>{{$sanpham2->chitietthuoctinh(10)}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>RAM</th>
+                    <td>
+                        <span>{{$sanpham1->chitietthuoctinh(6)}}</span>
+                    </td>
+                    <td>
+                        <span>{{$sanpham2->chitietthuoctinh(6)}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Ổ cứng</th>
+                    <td>
+                        <span>{{$sanpham1->chitietthuoctinh(12)}}</span>
+                    </td>
+                    <td>
+                        <span>{{$sanpham2->chitietthuoctinh(12)}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Màn hình</th>
+                    <td>
+                        <span>{{$sanpham1->chitietthuoctinh(1)}}</span>
+                    </td>
+                    <td>
+                        <span>{{$sanpham2->chitietthuoctinh(1)}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Card màn hình</th>
+                    <td>
+                        <span>{{$sanpham1->chitietthuoctinh(13)}}</span>
+                    </td>
+                    <td>
+                        <span>{{$sanpham2->chitietthuoctinh(13)}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Cổng kết nối</th>
+                    <td>
+                        <span>{{$sanpham1->chitietthuoctinh(14)}}</span>
+                    </td>
+                    <td>
+                        <span>{{$sanpham2->chitietthuoctinh(14)}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Hệ điều hành</th>
+                    <td>
+                        <span>{{$sanpham1->chitietthuoctinh(15)}}</span>
+                    </td>
+                    <td>
+                        <span>{{$sanpham2->chitietthuoctinh(15)}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Thiết kế</th>
+                    <td>
+                        <span>{{$sanpham1->chitietthuoctinh(16)}}</span>
+                    </td>
+                    <td>
+                        <span>{{$sanpham2->chitietthuoctinh(16)}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Kích thước, trọng lượng</th>
+                    <td>
+                        <span>{{$sanpham1->chitietthuoctinh(17)}}</span>
+                    </td>
+                    <td>
+                        <span>{{$sanpham2->chitietthuoctinh(17)}}</span>
+                    </td>
+                </tr>
+                @endif
+                <tr>
+                    <th>Thêm vào giỏ</th>
+                    <td>
+                        <div class="">
+                            <form method="post" action="{{route('client.addtocart',$sanpham1->sp_id)}}">
+                                @csrf
+                                <input type="hidden" name="sp_soluong" value="1">
+                                <a href="#" onclick="$(this).closest('form').submit()"
+                                    class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-3 px-xl-5">Add
+                                    to cart</a>
+                            </form>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="">
+                            <form method="post" action="{{route('client.addtocart',$sanpham2->sp_id)}}">
+                                @csrf
+                                <input type="hidden" name="sp_soluong" value="1">
+                                <a href="#" onclick="$(this).closest('form').submit()"
+                                    class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-3 px-xl-5">Add
+                                    to cart</a>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             </tbody>
