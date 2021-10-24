@@ -16,6 +16,13 @@
 <!-- Custom Css -->
 <link rel="stylesheet" href="{{ asset('template/admin') }}/assets/css/main.css">
 <link rel="stylesheet" href="{{ asset('template/admin') }}/assets/css/color_skins.css">
+
+{{-- <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css"> --}}
+<!-- JQuery DataTable Css -->
+<link rel="stylesheet" href="{{ asset('template/admin') }}/assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css">
+<!-- Custom Css -->
+{{-- <link  rel="stylesheet" href="assets/css/main.css"> --}}
+{{-- <link rel="stylesheet" href="assets/css/color_skins.css"> --}}
 </head>
 <body class="theme-orange">
 <div class="overlay"></div><!-- Search  -->
@@ -166,5 +173,6 @@
     @yield('content')
 </section>
 @include('admin.template.js')
+@stack('ajax.product')
 </body>
 </html>

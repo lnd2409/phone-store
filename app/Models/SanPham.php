@@ -63,7 +63,7 @@ class SanPham extends Model
      */
     public function baohanh()
     {
-        return $this->belongsTo('App\Baohanh', 'bh_id', 'bh_id');
+        return $this->belongsTo('App\Models\Baohanh', 'bh_id', 'bh_id');
     }
 
     /**
@@ -71,7 +71,7 @@ class SanPham extends Model
      */
     public function nhacungcap()
     {
-        return $this->belongsTo('App\Nhacungcap', 'ncc_id', 'ncc_id');
+        return $this->belongsTo('App\Models\Nhacungcap', 'ncc_id', 'ncc_id');
     }
 
     /**
@@ -87,7 +87,7 @@ class SanPham extends Model
      */
     public function bannersanphams()
     {
-        return $this->hasMany('App\Bannersanpham', 'sp_id', 'sp_id');
+        return $this->hasMany('App\Models\Bannersanpham', 'sp_id', 'sp_id');
     }
 
     /**
@@ -95,7 +95,7 @@ class SanPham extends Model
      */
     public function binhluans()
     {
-        return $this->hasMany('App\Binhluan', 'sp_id', 'sp_id');
+        return $this->hasMany('App\Models\Binhluan', 'sp_id', 'sp_id');
     }
 
     /**
@@ -103,7 +103,7 @@ class SanPham extends Model
      */
     public function chitietbolocsanphams()
     {
-        return $this->hasMany('App\Chitietbolocsanpham', 'sp_id', 'sp_id');
+        return $this->hasMany('App\Models\Chitietbolocsanpham', 'sp_id', 'sp_id');
     }
 
     /**
@@ -111,7 +111,7 @@ class SanPham extends Model
      */
     public function chitietkhuyenmaisanphams()
     {
-        return $this->hasMany('App\Chitietkhuyenmaisanpham', 'sp_id', 'sp_id');
+        return $this->hasMany('App\Models\Chitietkhuyenmaisanpham', 'sp_id', 'sp_id');
     }
 
     /**
@@ -119,7 +119,7 @@ class SanPham extends Model
      */
     public function donhangs()
     {
-        return $this->hasMany('App\Donhang', 'sp_id', 'sp_id');
+        return $this->hasMany('App\Models\Donhang', 'sp_id', 'sp_id');
     }
 
     /**
@@ -127,7 +127,7 @@ class SanPham extends Model
      */
     public function hinhanhsanphams()
     {
-        return $this->hasMany('App\Hinhanhsanpham', 'sp_id', 'sp_id');
+        return $this->hasMany('App\Models\Hinhanhsanpham', 'sp_id', 'sp_id');
     }
 
     /**
@@ -135,7 +135,7 @@ class SanPham extends Model
      */
     public function sanphamThuoctinhs()
     {
-        return $this->hasMany('App\SanphamThuoctinh', 'sp_id', 'sp_id');
+        return $this->hasMany('App\Models\SanphamThuoctinh', 'sp_id', 'sp_id');
     }
 
     /**
@@ -143,7 +143,7 @@ class SanPham extends Model
      */
     public function slideranhsps()
     {
-        return $this->hasMany('App\Slideranhsp', 'sp_id', 'sp_id');
+        return $this->hasMany('App\Models\Slideranhsp', 'sp_id', 'sp_id');
     }
 
     /**
@@ -151,6 +151,6 @@ class SanPham extends Model
      */
     public function tintucs()
     {
-        return $this->hasMany('App\Tintuc', 'sp_id', 'sp_id');
+        return $this->hasMany('App\Models\Tintuc', 'sp_id', 'sp_id');
     }
 }

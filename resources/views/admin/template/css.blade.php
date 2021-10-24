@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="{{ asset('template/client') }}/assets/vendor/fancybox/jquery.fancybox.css">
 <link rel="stylesheet" href="{{ asset('template/client') }}/assets/vendor/slick-carousel/slick/slick.css">
 <link rel="stylesheet" href="{{ asset('template/client') }}/assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css">
-
+<!-- Bootstrap Select Css -->
+<link href="{{ asset('template/client') }}/assets/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 <!-- CSS Electro Template -->
 <link rel="stylesheet" href="{{ asset('template/client') }}/assets/css/theme.css">
