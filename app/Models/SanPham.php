@@ -163,4 +163,9 @@ class SanPham extends Model
     {
         return $this->hasMany('App\Models\Tintuc', 'sp_id', 'sp_id');
     }
+
+    public function chitietthuoctinh($tt_id)
+    {
+        return SanphamThuoctinh::where('sp_id',$this->attributes['sp_id'])->where('tt_id',$tt_id)->first('sptt_giatri')->sptt_giatri??'';
+    }
 }

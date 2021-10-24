@@ -29,7 +29,7 @@ Route::prefix('admin')->group(function () {
     #product
     Route::get('san-pham', [SanPhamAdminController::class, 'index'])->name('admin.product.list');
     Route::get('them-san-pham', [SanPhamAdminController::class, 'add'])->name('admin.product.add');
-    Route::post('xu-ly-them-san-pham', [SanPhamAdminController::class, 'store'])->name('admin.product.store');\
+    Route::post('xu-ly-them-san-pham', [SanPhamAdminController::class, 'store'])->name('admin.product.store');
     Route::get('{idTheLoai}/thuoc-tinh', [SanPhamAdminController::class, 'ajaxThuocTinh'])->name('admin.product.ajax.cate');
 });
 
@@ -62,4 +62,3 @@ Route::get('/chi-tiet-gio-hang',[CartProductController::class,'getProductToCart'
 Route::get('/thanh-toan-don-hang',[VNPayController::class,'index'])->name('client.checkoutcart');
 Route::post('/thanh-toan-don-hang',[VNPayController::class,'payCart'])->name('client.paymentcart');
 Route::get('/ket-qua-thanh-toan',[VNPayController::class,'storePayCart'])->name('client.returnvnpay');
-

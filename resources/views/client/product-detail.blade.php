@@ -254,6 +254,10 @@
         width: 12 px !important;
     }
 
+    .hide {
+        display: none !important;
+    }
+
 </style>
 @endpush
 @section('content')
@@ -405,112 +409,123 @@
                 <form action="{{ route('client.addtocart', ['id'=>$sanPham->sp_id]) }}" method="post">
                     @csrf
                     <div class="mb-2">
-                    <div class="border-bottom mb-3 pb-md-1 pb-3">
-                        <a href="#"
-                            class="font-size-12 text-gray-5 mb-2 d-inline-block">{{ $sanPham->theloai->tl_ten }}</a>
-                        <h2 class="font-size-25 text-lh-1dot2">{{ $sanPham->sp_ten }}</h2>
-                        <div class="mb-2">
-                            <a class="d-inline-flex align-items-center small font-size-15 text-lh-1" href="#">
-                                <div class="text-warning mr-2">
-                                    <small class="fas fa-star"></small>
-                                    <small class="fas fa-star"></small>
-                                    <small class="fas fa-star"></small>
-                                    <small class="fas fa-star"></small>
-                                    <small class="far fa-star text-muted"></small>
-                                </div>
-                                <span class="text-secondary font-size-13">(3 khách hàng đã đánh giá)</span>
+                        <div class="border-bottom mb-3 pb-md-1 pb-3">
+                            <a href="#"
+                                class="font-size-12 text-gray-5 mb-2 d-inline-block">{{ $sanPham->theloai->tl_ten }}</a>
+                            <h2 class="font-size-25 text-lh-1dot2">{{ $sanPham->sp_ten }}</h2>
+                            <div class="mb-2">
+                                <a class="d-inline-flex align-items-center small font-size-15 text-lh-1" href="#">
+                                    <div class="text-warning mr-2">
+                                        <small class="fas fa-star"></small>
+                                        <small class="fas fa-star"></small>
+                                        <small class="fas fa-star"></small>
+                                        <small class="fas fa-star"></small>
+                                        <small class="far fa-star text-muted"></small>
+                                    </div>
+                                    <span class="text-secondary font-size-13">(3 khách hàng đã đánh giá)</span>
+                                </a>
+                            </div>
+                            <div class="d-md-flex align-items-center">
+                                <a href="#" class="max-width-150 ml-n2 mb-2 mb-md-0 d-block"><img class="img-fluid"
+                                        src="{{ asset('template/client') }}/assets/img/200X60/img1.png"
+                                        alt="Image Description"></a>
+                                <div class="ml-md-3 text-gray-9 font-size-14">Availability: <span
+                                        class="text-green font-weight-bold">26 in stock</span></div>
+                            </div>
+                        </div>
+                        <div class="flex-horizontal-center flex-wrap mb-4">
+                            <a href="#" class="text-gray-6 font-size-13 mr-2"><i
+                                    class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
+                            <a href="#" class="text-gray-6 font-size-13 ml-2 btn-compare"
+                                data-id="{{ $sanPham->sp_id }}"
+                                data-img="{{ asset('template/client') }}/assets/img/212X200/img1.jpg"
+                                data-name="{{ $sanPham->sp_ten }}" data-tl="{{ $sanPham->tl_id }}"><i
+                                    class="ec ec-compare mr-1 font-size-15"></i>
+                                <span id="span-compare">
+                                    Compare
+                                </span>
                             </a>
                         </div>
-                        <div class="d-md-flex align-items-center">
-                            <a href="#" class="max-width-150 ml-n2 mb-2 mb-md-0 d-block"><img class="img-fluid"
-                                    src="{{ asset('template/client') }}/assets/img/200X60/img1.png"
-                                    alt="Image Description"></a>
-                            <div class="ml-md-3 text-gray-9 font-size-14">Availability: <span
-                                    class="text-green font-weight-bold">26 in stock</span></div>
+                        <div class="mb-2">
+                            <ul class="font-size-14 pl-3 ml-1 text-gray-110">
+                                <li>4.5 inch HD Touch Screen (1280 x 720)</li>
+                                <li>Android 4.4 KitKat OS</li>
+                                <li>1.4 GHz Quad Core™ Processor</li>
+                                <li>20 MP Electro and 28 megapixel CMOS rear camera</li>
+                            </ul>
                         </div>
-                    </div>
-                    <div class="flex-horizontal-center flex-wrap mb-4">
-                        <a href="#" class="text-gray-6 font-size-13 mr-2"><i
-                                class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
-                        <a href="#" class="text-gray-6 font-size-13 ml-2 btn-compare" data-id="{{ $sanPham->sp_id }}"
-                            data-img="{{ asset('template/client') }}/assets/img/212X200/img1.jpg"
-                            data-name="{{ $sanPham->sp_ten }}"><i class="ec ec-compare mr-1 font-size-15"></i>
-                            <span id="span-compare">
-                                Compare
-                            </span>
-                        </a>
-                    </div>
-                    <div class="mb-2">
-                        <ul class="font-size-14 pl-3 ml-1 text-gray-110">
-                            <li>4.5 inch HD Touch Screen (1280 x 720)</li>
-                            <li>Android 4.4 KitKat OS</li>
-                            <li>1.4 GHz Quad Core™ Processor</li>
-                            <li>20 MP Electro and 28 megapixel CMOS rear camera</li>
-                        </ul>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-                    <p><strong>SKU</strong>: FW511948218</p>
-                    <div class="mb-4">
-                        <div class="d-flex align-items-baseline">
-                            <ins class="font-size-36 text-decoration-none"> {{ number_format($sanPham->sp_gia)}} VNĐ</ins>
-                            {{-- <del class="font-size-20 ml-2 text-gray-6">$2,299.00</del> --}}
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
+                        </p>
+                        <p><strong>SKU</strong>: FW511948218</p>
+                        <div class="mb-4">
+                            <div class="d-flex align-items-baseline">
+                                <ins class="font-size-36 text-decoration-none"> {{ number_format($sanPham->sp_gia)}}
+                                    VNĐ</ins>
+                                {{-- <del class="font-size-20 ml-2 text-gray-6">$2,299.00</del> --}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="border-top border-bottom py-3 mb-4">
-                        <div class="d-flex align-items-center">
-                            <h6 class="font-size-14 mb-0">Color</h6>
-                            <!-- Select -->
-                            <div class="dropdown bootstrap-select js-select dropdown-select ml-3"><select
-                                    class="js-select selectpicker dropdown-select ml-3"
-                                    data-style="btn-sm bg-white font-weight-normal py-2 border" tabindex="-98">
-                                    <option value="one" selected="">White with Gold</option>
-                                    <option value="two">Red</option>
-                                    <option value="three">Green</option>
-                                    <option value="four">Blue</option>
-                                </select><button type="button"
-                                    class="btn dropdown-toggle btn-sm bg-white font-weight-normal py-2 border"
-                                    data-toggle="dropdown" role="button" title="White with Gold">
-                                    <div class="filter-option">
-                                        <div class="filter-option-inner">
-                                            <div class="filter-option-inner-inner">White with Gold</div>
+                        <div class="border-top border-bottom py-3 mb-4">
+                            <div class="d-flex align-items-center">
+                                <h6 class="font-size-14 mb-0">Color</h6>
+                                <!-- Select -->
+                                <div class="dropdown bootstrap-select js-select dropdown-select ml-3"><select
+                                        class="js-select selectpicker dropdown-select ml-3"
+                                        data-style="btn-sm bg-white font-weight-normal py-2 border" tabindex="-98">
+                                        <option value="one" selected="">White with Gold</option>
+                                        <option value="two">Red</option>
+                                        <option value="three">Green</option>
+                                        <option value="four">Blue</option>
+                                    </select><button type="button"
+                                        class="btn dropdown-toggle btn-sm bg-white font-weight-normal py-2 border"
+                                        data-toggle="dropdown" role="button" title="White with Gold">
+                                        <div class="filter-option">
+                                            <div class="filter-option-inner">
+                                                <div class="filter-option-inner-inner">White with Gold</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </button>
-                                <div class="dropdown-menu " role="combobox">
-                                    <div class="inner show" role="listbox" aria-expanded="false" tabindex="-1">
-                                        <ul class="dropdown-menu inner show"></ul>
+                                    </button>
+                                    <div class="dropdown-menu " role="combobox">
+                                        <div class="inner show" role="listbox" aria-expanded="false" tabindex="-1">
+                                            <ul class="dropdown-menu inner show"></ul>
+                                        </div>
                                     </div>
                                 </div>
+                                <!-- End Select -->
                             </div>
-                            <!-- End Select -->
                         </div>
-                    </div>
-                    <div class="d-md-flex align-items-end mb-3">
-                        <div class="max-width-150 mb-4 mb-md-0">
-                            <h6 class="font-size-14">Số lượng</h6>
-                            <!-- Quantity -->
-                              <div class="border rounded-pill py-1 width-122 w-xl-80 px-3 border-color-1">
-                                        <div class="js-quantity row align-items-center">
-                                            <div class="col">
-                                                <input id="js-result-{{$sanPham->sp_id}}" class="js-result  form-control h-auto border-0 rounded p-0 shadow-none" name="sp_soluong" type="text" value="1">
-                                            </div>
-                                            <div class="col-auto pr-1">
-                                                <a data-id={{$sanPham->sp_id}} class="js-minus  btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
-                                                    <small class="fas fa-minus btn-icon__inner"></small>
-                                                </a>
-                                                <a data-id={{$sanPham->sp_id}} class="js-plus  btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
-                                                    <small class="fas fa-plus btn-icon__inner"></small>
-                                                </a>
-                                            </div>
+                        <div class="d-md-flex align-items-end mb-3">
+                            <div class="max-width-150 mb-4 mb-md-0">
+                                <h6 class="font-size-14">Số lượng</h6>
+                                <!-- Quantity -->
+                                <div class="border rounded-pill py-1 width-122 w-xl-80 px-3 border-color-1">
+                                    <div class="js-quantity row align-items-center">
+                                        <div class="col">
+                                            <input id="js-result-{{$sanPham->sp_id}}"
+                                                class="js-result  form-control h-auto border-0 rounded p-0 shadow-none"
+                                                name="sp_soluong" type="text" value="1">
+                                        </div>
+                                        <div class="col-auto pr-1">
+                                            <a data-id={{$sanPham->sp_id}}
+                                                class="js-minus  btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0"
+                                                href="javascript:;">
+                                                <small class="fas fa-minus btn-icon__inner"></small>
+                                            </a>
+                                            <a data-id={{$sanPham->sp_id}}
+                                                class="js-plus  btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0"
+                                                href="javascript:;">
+                                                <small class="fas fa-plus btn-icon__inner"></small>
+                                            </a>
                                         </div>
                                     </div>
-                            <!-- End Quantity -->
-                        </div>
-                        <div class="ml-md-3">
-                            <button type="submit" class="btn px-5 btn-primary-dark transition-3d-hover"><i class="ec ec-add-to-cart mr-2 font-size-20"></i>Thêm vào giỏ hàng</button>
+                                </div>
+                                <!-- End Quantity -->
+                            </div>
+                            <div class="ml-md-3">
+                                <button type="submit" class="btn px-5 btn-primary-dark transition-3d-hover"><i
+                                        class="ec ec-add-to-cart mr-2 font-size-20"></i>Thêm vào giỏ hàng</button>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </form>
             </div>
         </div>
@@ -1436,10 +1451,10 @@
     <!-- End Brand Carousel -->
 
     <!-- compare-->
-    <div class="stickcompare stickcompare_new cp-desktop spaceInDown" style="display: block;">
+    <div class="stickcompare stickcompare_new cp-desktop spaceInDown" style="display: block;" id="stickcompare">
         <label class="error" style="display: none; opacity: 1;">Bạn đã chọn sản phẩm này rồi, vui lòng chọn sản phẩm
             khác!</label>
-        <a href="javascript:;" onclick="clearCompare(event);" class="clearall">
+        <a href="#" onclick="clearCompare();" class="clearall">
             <i class="iconcate-closess"></i>Thu gọn </a>
         <ul class="listcompare" data-catename="điện thoại">
             <li>
@@ -1476,6 +1491,7 @@
         function reloadCompare() {
             let id = $(".btn-compare").attr('data-id');
             document.getElementById("span-compare").textContent = "Compare";
+            checkCompare();
             for (let index = 1; index < 3; index++) {
                 $("#compare_img" + index).attr("src", sessionStorage.getItem('compare_img' + index));
                 $("#compare_name" + index).text(sessionStorage.getItem('compare_name' + index));
@@ -1483,7 +1499,6 @@
                     $(".btn-compare").addClass("btn-remove-compare");
                     $(".btn-compare").removeClass("btn-compare");
                     document.getElementById("span-compare").textContent = "Remove";
-
                 }
             }
         }
@@ -1491,16 +1506,24 @@
             let id = $(this).attr('data-id');
             let img = $(this).attr('data-img');
             let name = $(this).attr('data-name');
+            let tl = $(this).attr('data-tl');
             let num = 1;
             let exist = 0; //kiểm tra tồn tại id trong session chưa
             // không có thì lưu số 1
 
             for (let index = 1; index < 3; index++) {
                 // kiểm tra đã có chưa
+                if (sessionStorage.getItem("compare_tl" + index) !== null && sessionStorage.getItem(
+                        "tl" +
+                        index) != tl) {
+                    alert("Không thể so sánh hai sản phẩm khác loại");
+                    return;
+                }
                 if (sessionStorage.getItem("compare_id" + index) == id) {
                     sessionStorage.removeItem("compare_id" + index);
                     sessionStorage.removeItem("compare_img" + index);
                     sessionStorage.removeItem("compare_name" + index);
+                    sessionStorage.removeItem("compare_tl" + index);
                     exist = 1;
                 }
             }
@@ -1513,6 +1536,7 @@
                     sessionStorage.setItem("compare_id" + index, id);
                     sessionStorage.setItem("compare_img" + index, img);
                     sessionStorage.setItem("compare_name" + index, name);
+                    sessionStorage.setItem("compare_tl" + index, tl);
                     reloadCompare();
                     break;
                 }
@@ -1545,9 +1569,11 @@
             sessionStorage.removeItem("compare_id1");
             sessionStorage.removeItem("compare_img1");
             sessionStorage.removeItem("compare_name1");
+            sessionStorage.removeItem("compare_tl1");
             sessionStorage.removeItem("compare_id2");
             sessionStorage.removeItem("compare_img2");
             sessionStorage.removeItem("compare_name2");
+            sessionStorage.removeItem("compare_tl2");
             reloadCompare();
 
         });
@@ -1563,38 +1589,50 @@
                 window.location.href = url;
             }
         });
+
     });
+
+    function checkCompare() {
+        if (sessionStorage.getItem("compare_id1") !== null || sessionStorage.getItem("compare_id2") !== null) {
+            $(".stickcompare").height('20%');
+        } else {
+            $(".stickcompare").height(0);
+
+        }
+    }
+
+    function clearCompare() {
+        $(".stickcompare").height() == 0 ? $(".stickcompare").height('20%') : $(".stickcompare").height(0);
+    }
 
 </script>
 @endpush
 @push('scripts')
-    <script>
-        $(document).ready(function () {
-            $(".js-plus").on('click', function (e) {
-              e.preventDefault();
-               var id = $(this).attr("data-id");
-               var resultVal = $('#js-result-'+id).val();
-               parseInt(resultVal,10);
-                resultVal = parseInt(resultVal) + 1;
-               $('#js-result-'+id).val(resultVal);
-            });
-            $(".js-minus").on('click', function (e) {
-              e.preventDefault();
-               var id = $(this).attr("data-id");
-               var resultVal = $('#js-result-'+id).val();
-               resultVal = parseInt(resultVal,10);
-               console.log(resultVal > 0);
-               if(resultVal > 0)
-               {
-                 resultVal = parseInt(resultVal) - 1;
-                 $('#js-result-'+id).val(resultVal);
-               }
-               else
-               {
-                   $('#js-result-'+id).val(0);
-               }
-
-            });
+<script>
+    $(document).ready(function () {
+        $(".js-plus").on('click', function (e) {
+            e.preventDefault();
+            var id = $(this).attr("data-id");
+            var resultVal = $('#js-result-' + id).val();
+            parseInt(resultVal, 10);
+            resultVal = parseInt(resultVal) + 1;
+            $('#js-result-' + id).val(resultVal);
         });
-    </script>
+        $(".js-minus").on('click', function (e) {
+            e.preventDefault();
+            var id = $(this).attr("data-id");
+            var resultVal = $('#js-result-' + id).val();
+            resultVal = parseInt(resultVal, 10);
+            console.log(resultVal > 0);
+            if (resultVal > 0) {
+                resultVal = parseInt(resultVal) - 1;
+                $('#js-result-' + id).val(resultVal);
+            } else {
+                $('#js-result-' + id).val(0);
+            }
+
+        });
+    });
+
+</script>
 @endpush
