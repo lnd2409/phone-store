@@ -40,9 +40,9 @@ Route::prefix('admin')->group(function () {
 // });
 Route::get('/so-sanh-san-pham/{sanpham1}/{sanpham2}', [SanPhamController::class, 'compare'])->name('client.compare');
 Route::get('/thong-tin-san-pham',[SanPhamController::class, 'getInfo'])->name('client.getInfo');
-Route::get('/', [ClientController::class, 'index'])->name('client.index');
-Route::get('/{idCate}',[SanPhamController::class, 'getProductByCategory'])->name('client.get-product-by-cat');
-Route::get('san-pham/{id}',[SanPhamController::class, 'productDetail'])->name('client.product-detail');
+// Route::get('/', [ClientController::class, 'index'])->name('client.index');
+// Route::get('/{idCate}',[SanPhamController::class, 'getProductByCategory'])->name('client.get-product-by-cat');
+// Route::get('san-pham/{id}',[SanPhamController::class, 'productDetail'])->name('client.product-detail');
 
 
 //Xử lý đăng nhập khách hàng
