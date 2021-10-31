@@ -8,7 +8,8 @@
         <div class="info-container">
             <div class="name" data-toggle="dropdown">John Doe</div>
             <div class="btn-group user-helper-dropdown">
-                <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="button"> keyboard_arrow_down </i>
+                <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+                    role="button"> keyboard_arrow_down </i>
                 <ul class="dropdown-menu slideUp">
                     <li><a href="profile.html"><i class="material-icons">person</i>Profile</a></li>
                     <li class="divider"></li>
@@ -38,13 +39,15 @@
                 </ul>
             </li> --}}
             {{-- <li><a href="widgets.html"><i class="zmdi zmdi-delicious"></i><span>Widgets</span> </a></li>
-            <li><a href="mail-inbox.html"><i class="zmdi zmdi-email"></i><span>Inbox</span> </a></li>
             <li><a href="blog-dashboard.html"><i class="zmdi zmdi-blogger"></i><span>Blogger</span> </a></li> --}}
-            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Sản phẩm</span> </a>
+            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Sản
+                        phẩm</span> </a>
                 <ul class="ml-menu">
                     <li><a href="{{ route('admin.product.list') }}">Danh sách sản phẩm</a></li>
                     <li><a href="{{ route('admin.product.add') }}">Thêm sản phẩm</a></li>
                 </ul>
+            </li>
+            <li><a href="{{ route('admin.staffs.index') }}"><i class="zmdi zmdi-email"></i><span>Nhân viên</span> </a>
             </li>
         </ul>
     </div>
@@ -63,21 +66,39 @@
             <div class="slim_scroll">
                 <h6>Flat Color</h6>
                 <ul class="choose-skin">
-                    <li data-theme="purple"><div class="purple"></div><span>Purple</span></li>
-                    <li data-theme="blue"><div class="blue"></div><span>Blue</span></li>
-                    <li data-theme="cyan"><div class="cyan"></div><span>Cyan</span></li>
+                    <li data-theme="purple">
+                        <div class="purple"></div><span>Purple</span>
+                    </li>
+                    <li data-theme="blue">
+                        <div class="blue"></div><span>Blue</span>
+                    </li>
+                    <li data-theme="cyan">
+                        <div class="cyan"></div><span>Cyan</span>
+                    </li>
                 </ul>
                 <h6>Multi Color</h6>
                 <ul class="choose-skin">
-                    <li data-theme="black"><div class="black"></div><span>Black</span></li>
-                    <li data-theme="deep-purple"><div class="deep-purple"></div><span>Deep Purple</span></li>
-                    <li data-theme="red"><div class="red"></div><span>Red</span></li>
+                    <li data-theme="black">
+                        <div class="black"></div><span>Black</span>
+                    </li>
+                    <li data-theme="deep-purple">
+                        <div class="deep-purple"></div><span>Deep Purple</span>
+                    </li>
+                    <li data-theme="red">
+                        <div class="red"></div><span>Red</span>
+                    </li>
                 </ul>
                 <h6>Gradient Color</h6>
                 <ul class="choose-skin">
-                    <li data-theme="green"><div class="green"></div><span>Green</span> </li>
-                    <li data-theme="orange" class="active"><div class="orange"></div><span>Orange</span></li>
-                    <li data-theme="blush"><div class="blush"></div><span>Blush</span></li>
+                    <li data-theme="green">
+                        <div class="green"></div><span>Green</span>
+                    </li>
+                    <li data-theme="orange" class="active">
+                        <div class="orange"></div><span>Orange</span>
+                    </li>
+                    <li data-theme="blush">
+                        <div class="blush"></div><span>Blush</span>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -95,10 +116,12 @@
                     <li class="online">
                         <a href="javascript:void(0);">
                             <div class="media">
-                                <img class="media-object " src="{{ asset('template/admin') }}/assets/images/xs/avatar4.jpg" alt="">
+                                <img class="media-object "
+                                    src="{{ asset('template/admin') }}/assets/images/xs/avatar4.jpg" alt="">
                                 <div class="media-body">
                                     <span class="name">Sophia</span>
-                                    <span class="message">There are many variations of passages of Lorem Ipsum available</span>
+                                    <span class="message">There are many variations of passages of Lorem Ipsum
+                                        available</span>
                                     <span class="badge badge-outline status"></span>
                                 </div>
                             </div>
@@ -107,7 +130,8 @@
                     <li class="online">
                         <a href="javascript:void(0);">
                             <div class="media">
-                                <img class="media-object " src="{{ asset('template/admin') }}/assets/images/xs/avatar5.jpg" alt="">
+                                <img class="media-object "
+                                    src="{{ asset('template/admin') }}/assets/images/xs/avatar5.jpg" alt="">
                                 <div class="media-body">
                                     <span class="name">Grayson</span>
                                     <span class="message">All the Lorem Ipsum generators on the</span>
@@ -119,7 +143,8 @@
                     <li class="offline">
                         <a href="javascript:void(0);">
                             <div class="media">
-                                <img class="media-object " src="{{ asset('template/admin') }}/assets/images/xs/avatar2.jpg" alt="">
+                                <img class="media-object "
+                                    src="{{ asset('template/admin') }}/assets/images/xs/avatar2.jpg" alt="">
                                 <div class="media-body">
                                     <span class="name">Isabella</span>
                                     <span class="message">Contrary to popular belief, Lorem Ipsum</span>
@@ -131,7 +156,8 @@
                     <li class="me">
                         <a href="javascript:void(0);">
                             <div class="media">
-                                <img class="media-object " src="{{ asset('template/admin') }}/assets/images/xs/avatar1.jpg" alt="">
+                                <img class="media-object "
+                                    src="{{ asset('template/admin') }}/assets/images/xs/avatar1.jpg" alt="">
                                 <div class="media-body">
                                     <span class="name">John</span>
                                     <span class="message">It is a long established fact that a reader</span>
@@ -143,7 +169,8 @@
                     <li class="online">
                         <a href="javascript:void(0);">
                             <div class="media">
-                                <img class="media-object " src="{{ asset('template/admin') }}/assets/images/xs/avatar3.jpg" alt="">
+                                <img class="media-object "
+                                    src="{{ asset('template/admin') }}/assets/images/xs/avatar3.jpg" alt="">
                                 <div class="media-body">
                                     <span class="name">Alexander</span>
                                     <span class="message">Richard McClintock, a Latin professor</span>
@@ -158,7 +185,8 @@
                     <li class="offline inlineblock">
                         <a href="javascript:void(0);">
                             <div class="media">
-                                <img class="media-object " src="{{ asset('template/admin') }}/assets/images/xs/avatar10.jpg" alt="">
+                                <img class="media-object "
+                                    src="{{ asset('template/admin') }}/assets/images/xs/avatar10.jpg" alt="">
                                 <div class="media-body">
                                     <span class="badge badge-outline status"></span>
                                 </div>
@@ -168,7 +196,8 @@
                     <li class="offline inlineblock">
                         <a href="javascript:void(0);">
                             <div class="media">
-                                <img class="media-object " src="{{ asset('template/admin') }}/assets/images/xs/avatar6.jpg" alt="">
+                                <img class="media-object "
+                                    src="{{ asset('template/admin') }}/assets/images/xs/avatar6.jpg" alt="">
                                 <div class="media-body">
                                     <span class="badge badge-outline status"></span>
                                 </div>
@@ -178,7 +207,8 @@
                     <li class="offline inlineblock">
                         <a href="javascript:void(0);">
                             <div class="media">
-                                <img class="media-object " src="{{ asset('template/admin') }}/assets/images/xs/avatar7.jpg" alt="">
+                                <img class="media-object "
+                                    src="{{ asset('template/admin') }}/assets/images/xs/avatar7.jpg" alt="">
                                 <div class="media-body">
                                     <span class="badge badge-outline status"></span>
                                 </div>
@@ -188,7 +218,8 @@
                     <li class="offline inlineblock">
                         <a href="javascript:void(0);">
                             <div class="media">
-                                <img class="media-object " src="{{ asset('template/admin') }}/assets/images/xs/avatar8.jpg" alt="">
+                                <img class="media-object "
+                                    src="{{ asset('template/admin') }}/assets/images/xs/avatar8.jpg" alt="">
                                 <div class="media-body">
                                     <span class="badge badge-outline status"></span>
                                 </div>
@@ -198,7 +229,8 @@
                     <li class="offline inlineblock">
                         <a href="javascript:void(0);">
                             <div class="media">
-                                <img class="media-object " src="{{ asset('template/admin') }}/assets/images/xs/avatar9.jpg" alt="">
+                                <img class="media-object "
+                                    src="{{ asset('template/admin') }}/assets/images/xs/avatar9.jpg" alt="">
                                 <div class="media-body">
                                     <span class="badge badge-outline status"></span>
                                 </div>
@@ -208,7 +240,8 @@
                     <li class="online inlineblock">
                         <a href="javascript:void(0);">
                             <div class="media">
-                                <img class="media-object " src="{{ asset('template/admin') }}/assets/images/xs/avatar5.jpg" alt="">
+                                <img class="media-object "
+                                    src="{{ asset('template/admin') }}/assets/images/xs/avatar5.jpg" alt="">
                                 <div class="media-body">
                                     <span class="badge badge-outline status"></span>
                                 </div>
@@ -218,7 +251,8 @@
                     <li class="offline inlineblock">
                         <a href="javascript:void(0);">
                             <div class="media">
-                                <img class="media-object " src="{{ asset('template/admin') }}/assets/images/xs/avatar4.jpg" alt="">
+                                <img class="media-object "
+                                    src="{{ asset('template/admin') }}/assets/images/xs/avatar4.jpg" alt="">
                                 <div class="media-body">
                                     <span class="badge badge-outline status"></span>
                                 </div>
@@ -228,7 +262,8 @@
                     <li class="offline inlineblock">
                         <a href="javascript:void(0);">
                             <div class="media">
-                                <img class="media-object " src="{{ asset('template/admin') }}/assets/images/xs/avatar3.jpg" alt="">
+                                <img class="media-object "
+                                    src="{{ asset('template/admin') }}/assets/images/xs/avatar3.jpg" alt="">
                                 <div class="media-body">
                                     <span class="badge badge-outline status"></span>
                                 </div>
@@ -238,7 +273,8 @@
                     <li class="online inlineblock">
                         <a href="javascript:void(0);">
                             <div class="media">
-                                <img class="media-object " src="{{ asset('template/admin') }}/assets/images/xs/avatar2.jpg" alt="">
+                                <img class="media-object "
+                                    src="{{ asset('template/admin') }}/assets/images/xs/avatar2.jpg" alt="">
                                 <div class="media-body">
                                     <span class="badge badge-outline status"></span>
                                 </div>
@@ -248,7 +284,8 @@
                     <li class="offline inlineblock">
                         <a href="javascript:void(0);">
                             <div class="media">
-                                <img class="media-object " src="{{ asset('template/admin') }}/assets/images/xs/avatar1.jpg" alt="">
+                                <img class="media-object "
+                                    src="{{ asset('template/admin') }}/assets/images/xs/avatar1.jpg" alt="">
                                 <div class="media-body">
                                     <span class="badge badge-outline status"></span>
                                 </div>
@@ -313,31 +350,41 @@
         </div>
         <div class="body">
             <div class="chat-widget">
-            <ul class="chat-scroll-list clearfix">
-                <li class="left float-left">
-                    <img src="{{ asset('template/admin') }}/assets/images/xs/avatar3.jpg" class="rounded-circle" alt="">
-                    <div class="chat-info">
-                        <a class="name" href="javascript:void(0);">Alexander</a>
-                        <span class="datetime">6:12</span>
-                        <span class="message">Hello, John </span>
-                    </div>
-                </li>
-                <li class="right">
-                    <div class="chat-info"><span class="datetime">6:15</span> <span class="message">Hi, Alexander<br> How are you!</span> </div>
-                </li>
-                <li class="right">
-                    <div class="chat-info"><span class="datetime">6:16</span> <span class="message">There are many variations of passages of Lorem Ipsum available</span> </div>
-                </li>
-                <li class="left float-left"> <img src="{{ asset('template/admin') }}/assets/images/xs/avatar2.jpg" class="rounded-circle" alt="">
-                    <div class="chat-info"><a class="name" href="javascript:void(0);">Elizabeth</a> <span class="datetime">6:25</span> <span class="message">Hi, Alexander,<br> John <br> What are you doing?</span> </div>
-                </li>
-                <li class="left float-left"> <img src="{{ asset('template/admin') }}/assets/images/xs/avatar1.jpg" class="rounded-circle" alt="">
-                    <div class="chat-info"><a class="name" href="javascript:void(0);">Michael</a> <span class="datetime">6:28</span> <span class="message">I would love to join the team.</span> </div>
-                </li>
+                <ul class="chat-scroll-list clearfix">
+                    <li class="left float-left">
+                        <img src="{{ asset('template/admin') }}/assets/images/xs/avatar3.jpg" class="rounded-circle"
+                            alt="">
+                        <div class="chat-info">
+                            <a class="name" href="javascript:void(0);">Alexander</a>
+                            <span class="datetime">6:12</span>
+                            <span class="message">Hello, John </span>
+                        </div>
+                    </li>
                     <li class="right">
-                    <div class="chat-info"><span class="datetime">7:02</span> <span class="message">Hello, <br>Michael</span> </div>
-                </li>
-            </ul>
+                        <div class="chat-info"><span class="datetime">6:15</span> <span class="message">Hi,
+                                Alexander<br> How are you!</span> </div>
+                    </li>
+                    <li class="right">
+                        <div class="chat-info"><span class="datetime">6:16</span> <span class="message">There are many
+                                variations of passages of Lorem Ipsum available</span> </div>
+                    </li>
+                    <li class="left float-left"> <img src="{{ asset('template/admin') }}/assets/images/xs/avatar2.jpg"
+                            class="rounded-circle" alt="">
+                        <div class="chat-info"><a class="name" href="javascript:void(0);">Elizabeth</a> <span
+                                class="datetime">6:25</span> <span class="message">Hi, Alexander,<br> John <br> What are
+                                you doing?</span> </div>
+                    </li>
+                    <li class="left float-left"> <img src="{{ asset('template/admin') }}/assets/images/xs/avatar1.jpg"
+                            class="rounded-circle" alt="">
+                        <div class="chat-info"><a class="name" href="javascript:void(0);">Michael</a> <span
+                                class="datetime">6:28</span> <span class="message">I would love to join the team.</span>
+                        </div>
+                    </li>
+                    <li class="right">
+                        <div class="chat-info"><span class="datetime">7:02</span> <span class="message">Hello,
+                                <br>Michael</span> </div>
+                    </li>
+                </ul>
             </div>
             <div class="input-group">
                 <div class="form-line">
