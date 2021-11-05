@@ -41,6 +41,10 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
+        $check=Quantri::where('username',$request->username)->first();
+        if($check){
+            return back()->with('warning','Username đã tồn tại');
+        }
         $request->merge(['password'=>Hash::make($request->password)]);
         Quantri::create($request->all());
         toastr()->success('Đã thêm thành công nhân viên');

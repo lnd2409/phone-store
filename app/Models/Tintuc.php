@@ -8,6 +8,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class Tintuc
@@ -35,7 +36,6 @@ class Tintuc extends Model
 	protected $casts = [
 		'tt_trangthai' => 'int',
 		'qt_id' => 'int',
-		'sp_id' => 'int'
 	];
 
 	protected $fillable = [
@@ -44,7 +44,6 @@ class Tintuc extends Model
 		'tt_hinhanh',
 		'tt_trangthai',
 		'qt_id',
-		'sp_id'
 	];
 
 	public function quantri()
@@ -52,8 +51,9 @@ class Tintuc extends Model
 		return $this->belongsTo(Quantri::class, 'qt_id');
 	}
 
-	public function sanpham()
+	public function getTtHinhanhAttribute()
 	{
-		return $this->belongsTo(Sanpham::class, 'sp_id');
+		return Storage::disk('tt_hinhanh')->url($this->attributes['tt_hinhanh']);
 	}
+
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrangChu\ClientController;
 use App\Http\Controllers\TrangChu\SanPhamController;
@@ -25,7 +26,6 @@ use App\Http\Controllers\TrangChu\VNPayController;
 Route::middleware(['checkAuthQuanTri'])->group(function () {
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', function () {return view('admin.index');})->name('index');
-        Route::get('/quan-tri', function () {return view('admin.posts.index');})->name('posts.index');
 
         // auth
         Route::get('/logout', [AuthController::class,'logout'])->name('logout');
@@ -41,6 +41,16 @@ Route::middleware(['checkAuthQuanTri'])->group(function () {
             Route::get('/sua/{quantri}', [StaffController::class,'edit'])->name('edit');
             Route::post('/cap-nhat/{quantri}', [StaffController::class,'update'])->name('update');
             Route::post('/xoa/{quantri}', [StaffController::class,'destroy'])->name('destroy');
+            
+        });
+        Route::prefix('bai-viet')->name('posts.')->group(function () {
+            Route::get('/', [PostController::class,'index'])->name('index');
+            Route::get('/them', [PostController::class,'create'])->name('create');
+            Route::post('/luu', [PostController::class,'store'])->name('store');
+            Route::get('/sua/{tintuc}', [PostController::class,'edit'])->name('edit');
+            Route::post('/cap-nhat/{tintuc}', [PostController::class,'update'])->name('update');
+            Route::post('/xoa/{tintuc}', [PostController::class,'destroy'])->name('destroy');
+            Route::get('/detail/{tintuc}', [PostController::class,'detail'])->name('detail');
             
         });
     });
