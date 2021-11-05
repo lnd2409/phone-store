@@ -32,5 +32,9 @@
 <script src="{{ asset('template/admin') }}/assets/plugins/jquery-datatable/buttons/buttons.html5.min.js"></script>
 <script src="{{ asset('template/admin') }}/assets/plugins/jquery-datatable/buttons/buttons.print.min.js"></script>
 <script src="{{ asset('template/admin') }}/assets/js/pages/tables/jquery-datatable.js"></script>
+
+
+<script src="{{ asset('template/admin') }}/assets/plugins/ckeditor/ckeditor.js"></script> <!-- Ckeditor -->
+<script src="{{ asset('template/admin') }}/assets/js/pages/forms/editors.js"></script>
 @toastr_js
 @toastr_render

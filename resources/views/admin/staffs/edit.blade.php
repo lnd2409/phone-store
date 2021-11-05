@@ -103,7 +103,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" name="username" class="form-control" required
+                                        <input type="text" class="form-control" readonly
                                             value="{{$quantri->username}}" />
                                     </div>
                                 </div>
