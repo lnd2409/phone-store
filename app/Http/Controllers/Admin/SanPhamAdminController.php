@@ -57,6 +57,43 @@ class SanPhamAdminController extends Controller
                 ]
             );
         }
+
+        if($request->hasFile('productImage'))
+        {
+            $file = $request->file('productImage');
+            $nameFile = $file->getClientOriginalName('productImage');
+            $file->move('upload/images/product',$nameFile);
+            DB::table('hinhanhsanpham')->insert(
+                [
+                    'hasp_duongdan' => 'upload/images/product/'.$nameFile,
+                    'hasp_hinhanhdaidien' => 1,
+                    'sp_id' => $sanPham
+                ]
+            );
+        }
+
+        if ($request->productSlider != null) {
+            # code...
+            // foreach ($request->productSlider as $key => $value) {
+                # code...
+                $file = $request->file('productSlider');
+                foreach ($file as $key => $value) {
+                // dd($file);
+                $nameFile = $value->getClientOriginalName('productSlider');
+                $value->move('upload/images/product',$nameFile);
+                DB::table('hinhanhsanpham')->insert(
+                    [
+                        'hasp_duongdan' => 'upload/images/product/'.$nameFile,
+                        'sp_id' => $sanPham
+                    ]
+                );
+            }
+                // dd($request->productSlider);
+            // }
+
+
+        }
+
         return redirect()->route('admin.product.list');
     }
 

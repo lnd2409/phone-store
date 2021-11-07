@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                        <button type="button" class="btn btn-raised btn-primary waves-effect">Thêm sản phẩm</button>
+                        <a type="button" href="{{ route('admin.product.add') }}" class="btn btn-raised btn-primary waves-effect">Thêm sản phẩm</a>
                     </h2>
                     {{-- <ul class="header-dropdown">
                         <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more-vert"></i> </a>

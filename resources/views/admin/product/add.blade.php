@@ -16,7 +16,7 @@
     </div>
     <div class="container-fluid">
         <!-- Input -->
-        <form action="{{ route('admin.product.store') }}" method="POST">
+        <form action="{{ route('admin.product.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12">
@@ -93,9 +93,21 @@
                             <div class="row clearfix">
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <input type="file" name="anhdaidien" value="" id="filePhoto" class="required borrowerImageFile" data-errormsg="PhotoUploadErrorMsg">
+                                        <input type="file" name="productImage" value="" id="filePhoto" class="required borrowerImageFile" data-errormsg="PhotoUploadErrorMsg">
                                         <br/><br/>
                                         <img id="previewHolder" alt="Ảnh đại diện sản phẩm" width="250px" height="250px"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2 class="card-inside-title">Hình ảnh slider</h2>
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <input type="file" id="upload_file" name="productSlider[]" onchange="preview_image();" multiple/>
+                                        {{-- <input type="file" name="anhdaidien" value="" id="filePhoto" class="required borrowerImageFile" data-errormsg="PhotoUploadErrorMsg">
+                                        <br/><br/> --}}
+                                        <br/><br/>
+                                        <div id="image_preview" alt="Ảnh đại diện sản phẩm"></div>
                                     </div>
                                 </div>
                             </div>
@@ -149,7 +161,14 @@
 
             });
 
-
+            function preview_image()
+            {
+                var total_file=document.getElementById("upload_file").files.length;
+                for(var i=0;i<total_file;i++)
+                {
+                    $('#image_preview').append("<img width='250px' height='250px' src='"+URL.createObjectURL(event.target.files[i])+"'>");
+                }
+            }
             function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();

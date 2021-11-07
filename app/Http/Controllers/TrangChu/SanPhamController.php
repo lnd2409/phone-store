@@ -6,12 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SanPham;
 use App\Models\TheLoai;
+use App\Models\HinhAnhSanPham;
 use Session;
 
 class SanPhamController extends Controller
 {
     public function getProductByCategory($idCat) {
-        $sanPham = SanPham::join('theloai','theloai.tl_id','sanpham.tl_id')->where('tl_tenkhongdau',$idCat)->get();
+        $sanPham = SanPham::join('theloai','theloai.tl_id','sanpham.tl_id')->where('tl_tenkhongdau',$idCat)
+                    ->join('hinhanhsanpham','hinhanhsanpham.sp_id','sanpham.sp_id')
+                    ->where('hinhanhsanpham.hasp_hinhanhdaidien', 1)
+                    ->get();
         $theLoai = TheLoai::where('tl_tenkhongdau',$idCat)->first();
         return view('client.product-by-category', compact('sanPham','theLoai'));
     }
