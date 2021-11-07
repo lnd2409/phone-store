@@ -16,10 +16,10 @@ class CreateHinhanhsanphanTable extends Migration
         Schema::create('hinhanhsanpham', function (Blueprint $table) {
             $table->id('hasp_id');
             $table->string('hasp_duongdan')->nullable();
-
+            $table->integer('hasp_hinhanhdaidien')->nullable();
             $table->bigInteger('sp_id')->unsigned();
             $table->foreign('sp_id')->references('sp_id')->on('sanpham')->onDelete('CASCADE');
-            
+
             $table->timestamps();
         });
     }

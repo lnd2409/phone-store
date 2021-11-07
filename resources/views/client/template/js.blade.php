@@ -14,8 +14,8 @@
 <script src="{{ asset('template/client') }}/assets/vendor/fancybox/jquery.fancybox.min.js"></script>
 <script src="{{ asset('template/client') }}/assets/vendor/typed.js/lib/typed.min.js"></script>
 <script src="{{ asset('template/client') }}/assets/vendor/slick-carousel/slick/slick.js"></script>
+<script src="{{ asset('template/client') }}/assets/vendor/appear.js"></script>
 <script src="{{ asset('template/client') }}/assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-
 <!-- JS Electro -->
 <script src="{{ asset('template/client') }}/assets/js/hs.core.js"></script>
 <script src="{{ asset('template/client') }}/assets/js/components/hs.countdown.js"></script>
@@ -28,10 +28,14 @@
 <script src="{{ asset('template/client') }}/assets/js/components/hs.fancybox.js"></script>
 <script src="{{ asset('template/client') }}/assets/js/components/hs.onscroll-animation.js"></script>
 <script src="{{ asset('template/client') }}/assets/js/components/hs.slick-carousel.js"></script>
+
+<script src="{{ asset('template/client') }}/assets/js/components/hs.quantity-counter.js"></script>
 <script src="{{ asset('template/client') }}/assets/js/components/hs.show-animation.js"></script>
 <script src="{{ asset('template/client') }}/assets/js/components/hs.svg-injector.js"></script>
+<script src="{{ asset('template/client') }}/assets/js/components/hs.scroll-nav.js"></script>
 <script src="{{ asset('template/client') }}/assets/js/components/hs.go-to.js"></script>
 <script src="{{ asset('template/client') }}/assets/js/components/hs.selectpicker.js"></script>
+
 
 <!-- JS Plugins Init. -->
 <script>
@@ -59,6 +63,14 @@
                 $(this).find('input[type="search"]').focus();
             }
         });
+
+        // initialization of HSScrollNav component
+        $.HSCore.components.HSScrollNav.init($('.js-scroll-nav'), {
+          duration: 700
+        });
+
+        // initialization of quantity counter
+        $.HSCore.components.HSQantityCounter.init('.js-quantity');
 
         // initialization of popups
         $.HSCore.components.HSFancyBox.init('.js-fancybox');
@@ -134,25 +146,25 @@
 </script>
 @stack('scripts')
 <script>
-        
+
         var days = ['Chủ nhật','Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm','Thứ Sáu','Thứ Bảy'];
-       
+
         function getDateTime() {
-        var now     = new Date(); 
+        var now     = new Date();
         var year    = now.getFullYear();
-        var month   = now.getMonth()+1; 
+        var month   = now.getMonth()+1;
         var day     = now.getDate();
         var hour    = now.getHours();
         var minute  = now.getMinutes();
         var second  = now.getSeconds();
          var thu = days[ now.getDay() ];
- 
+
         if(month.toString().length == 1) {
              month = '0'+month;
         }
         if(day.toString().length == 1) {
              day = '0'+day;
-        }   
+        }
         if(hour.toString().length == 1) {
              hour = '0'+hour;
         }
@@ -161,8 +173,8 @@
         }
         if(second.toString().length == 1) {
              second = '0'+second;
-        }   
-        var dateTime =thu+', '+day+'/'+month+'/'+year+' '+hour+':'+minute+':'+second;   
+        }
+        var dateTime =thu+', '+day+'/'+month+'/'+year+' '+hour+':'+minute+':'+second;
          return dateTime;
     }
 
@@ -171,5 +183,5 @@
         currentTime = getDateTime();
         document.getElementById("digital-clock").innerHTML = currentTime;
     }, 1000);
-        
+
     </script>

@@ -65,16 +65,6 @@
                             </div>
                             <h2 class="card-inside-title">Thuộc tính</h2>
                             <div class="row clearfix thuocTinh">
-                                {{-- <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                    <label></label>
-                                </div>
-                                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" id="email_address_2" class="form-control" placeholder="Enter your email address">
-                                        </div>
-                                    </div>
-                                </div> --}}
                             </div>
                             <h2 class="card-inside-title">Nhà cung cấp</h2>
                             <div class="row clearfix">
@@ -88,6 +78,7 @@
                                     </select>
                                 </div>
                             </div>
+
                             <h2 class="card-inside-title">Mô tả</h2>
                             <div class="row clearfix">
                                 <div class="col-sm-12">
@@ -95,6 +86,16 @@
                                         <div class="form-line">
                                             <textarea rows="4" name="moTa" class="form-control no-resize" placeholder="Nhập mô tả sản phẩm..."></textarea>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2 class="card-inside-title">Hình ảnh đại diện</h2>
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <input type="file" name="anhdaidien" value="" id="filePhoto" class="required borrowerImageFile" data-errormsg="PhotoUploadErrorMsg">
+                                        <br/><br/>
+                                        <img id="previewHolder" alt="Ảnh đại diện sản phẩm" width="250px" height="250px"/>
                                     </div>
                                 </div>
                             </div>
@@ -144,6 +145,26 @@
                     });
                 });
 
+
+
+            });
+
+
+            function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                $('#previewHolder').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                alert('select a file to see preview');
+                $('#previewHolder').attr('src', '');
+            }
+            }
+
+            $("#filePhoto").change(function() {
+                readURL(this);
             });
         </script>
     @endpush

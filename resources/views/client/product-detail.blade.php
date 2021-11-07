@@ -285,120 +285,48 @@
     <div class="mb-xl-14 mb-6">
         <div class="row">
             <div class="col-md-5 mb-4 mb-md-0">
-                <div id="sliderSyncingNav" class="js-slick-carousel u-slick mb-2 slick-initialized slick-slider"
-                    data-infinite="true"
-                    data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle"
-                    data-arrow-left-classes="fas fa-arrow-left u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left ml-lg-2 ml-xl-4"
-                    data-arrow-right-classes="fas fa-arrow-right u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right mr-lg-2 mr-xl-4"
-                    data-nav-for="#sliderSyncingThumb">
-                    <div class="js-prev d-none d-lg-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle fas fa-arrow-left u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left ml-lg-2 ml-xl-4 slick-arrow"
-                        style=""></div>
-                    <div class="slick-list draggable">
-                        <div class="slick-track"
-                            style="opacity: 1; width: 6226px; transform: translate3d(-566px, 0px, 0px);">
-                            <div class="js-slide slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true"
-                                style="width: 566px;" tabindex="-1">
-                                <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img5.jpg"
-                                    alt="Image Description">
-                            </div>
-                            <div class="js-slide slick-slide slick-current slick-active" data-slick-index="0"
-                                aria-hidden="false" style="width: 566px; height: auto;" tabindex="0">
-                                <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img1.jpg"
-                                    alt="Image Description">
-                            </div>
-                            <div class="js-slide slick-slide" data-slick-index="1" aria-hidden="true"
-                                style="width: 566px; height: auto;" tabindex="-1">
-                                <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img2.jpg"
-                                    alt="Image Description">
-                            </div>
-                            <div class="js-slide slick-slide" data-slick-index="2" aria-hidden="true"
-                                style="width: 566px; height: auto;" tabindex="-1">
-                                <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img3.jpg"
-                                    alt="Image Description">
-                            </div>
-                            <div class="js-slide slick-slide" data-slick-index="3" aria-hidden="true"
-                                style="width: 566px; height: auto;" tabindex="-1">
-                                <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img4.jpg"
-                                    alt="Image Description">
-                            </div>
-                            <div class="js-slide slick-slide" data-slick-index="4" aria-hidden="true"
-                                style="width: 566px; height: auto;" tabindex="-1">
-                                <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img5.jpg"
-                                    alt="Image Description">
-                            </div>
-                            <div class="js-slide slick-slide slick-cloned" data-slick-index="5" aria-hidden="true"
-                                style="width: 566px;" tabindex="-1">
-                                <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img1.jpg"
-                                    alt="Image Description">
-                            </div>
-                            <div class="js-slide slick-slide slick-cloned" data-slick-index="6" aria-hidden="true"
-                                style="width: 566px;" tabindex="-1">
-                                <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img2.jpg"
-                                    alt="Image Description">
-                            </div>
-                            <div class="js-slide slick-slide slick-cloned" data-slick-index="7" aria-hidden="true"
-                                style="width: 566px;" tabindex="-1">
-                                <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img3.jpg"
-                                    alt="Image Description">
-                            </div>
-                            <div class="js-slide slick-slide slick-cloned" data-slick-index="8" aria-hidden="true"
-                                style="width: 566px;" tabindex="-1">
-                                <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img4.jpg"
-                                    alt="Image Description">
-                            </div>
-                            <div class="js-slide slick-slide slick-cloned" data-slick-index="9" aria-hidden="true"
-                                style="width: 566px;" tabindex="-1">
-                                <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img5.jpg"
-                                    alt="Image Description">
-                            </div>
-                        </div>
-                    </div>
+                <div id="sliderSyncingNav" class="js-slick-carousel u-slick mb-2 slick-initialized slick-slider" data-infinite="true" data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle" data-arrow-left-classes="fas fa-arrow-left u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left ml-lg-2 ml-xl-4" data-arrow-right-classes="fas fa-arrow-right u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right mr-lg-2 mr-xl-4" data-nav-for="#sliderSyncingThumb"><div class="js-prev d-none d-lg-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle fas fa-arrow-left u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left ml-lg-2 ml-xl-4 slick-arrow" style=""></div>
+                    <div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 6226px; transform: translate3d(-566px, 0px, 0px);"><div class="js-slide slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" style="width: 566px;" tabindex="-1">
+                        <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img5.jpg" alt="Image Description">
+                    </div><div class="js-slide slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 566px; height: auto;" tabindex="0">
+                        <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img1.jpg" alt="Image Description">
+                    </div><div class="js-slide slick-slide" data-slick-index="1" aria-hidden="true" style="width: 566px; height: auto;" tabindex="-1">
+                        <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img2.jpg" alt="Image Description">
+                    </div><div class="js-slide slick-slide" data-slick-index="2" aria-hidden="true" style="width: 566px; height: auto;" tabindex="-1">
+                        <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img3.jpg" alt="Image Description">
+                    </div><div class="js-slide slick-slide" data-slick-index="3" aria-hidden="true" style="width: 566px; height: auto;" tabindex="-1">
+                        <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img4.jpg" alt="Image Description">
+                    </div><div class="js-slide slick-slide" data-slick-index="4" aria-hidden="true" style="width: 566px; height: auto;" tabindex="-1">
+                        <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img5.jpg" alt="Image Description">
+                    </div><div class="js-slide slick-slide slick-cloned" data-slick-index="5" aria-hidden="true" style="width: 566px;" tabindex="-1">
+                        <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img1.jpg" alt="Image Description">
+                    </div><div class="js-slide slick-slide slick-cloned" data-slick-index="6" aria-hidden="true" style="width: 566px;" tabindex="-1">
+                        <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img2.jpg" alt="Image Description">
+                    </div><div class="js-slide slick-slide slick-cloned" data-slick-index="7" aria-hidden="true" style="width: 566px;" tabindex="-1">
+                        <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img3.jpg" alt="Image Description">
+                    </div><div class="js-slide slick-slide slick-cloned" data-slick-index="8" aria-hidden="true" style="width: 566px;" tabindex="-1">
+                        <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img4.jpg" alt="Image Description">
+                    </div><div class="js-slide slick-slide slick-cloned" data-slick-index="9" aria-hidden="true" style="width: 566px;" tabindex="-1">
+                        <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img5.jpg" alt="Image Description">
+                    </div></div></div>
 
 
 
 
-                    <div class="js-next d-none d-lg-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle fas fa-arrow-right u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right mr-lg-2 mr-xl-4 slick-arrow"
-                        style=""></div>
-                </div>
+                <div class="js-next d-none d-lg-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle fas fa-arrow-right u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right mr-lg-2 mr-xl-4 slick-arrow" style=""></div></div>
 
-                <div id="sliderSyncingThumb"
-                    class="js-slick-carousel u-slick u-slick--slider-syncing u-slick--slider-syncing-size u-slick--gutters-1 u-slick--transform-off slick-initialized slick-slider slick-transform-off"
-                    data-infinite="true" data-slides-show="5" data-is-thumbs="true" data-nav-for="#sliderSyncingNav">
-                    <div class="slick-list draggable">
-                        <div class="slick-track"
-                            style="opacity: 1; width: 575px; transform: translate3d(0px, 0px, 0px);">
-                            <div class="js-slide slick-slide slick-current slick-active"
-                                style="cursor: pointer; width: 107px; height: auto;" data-slick-index="0"
-                                aria-hidden="false" tabindex="0">
-                                <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img1.jpg"
-                                    alt="Image Description">
-                            </div>
-                            <div class="js-slide slick-slide slick-active"
-                                style="cursor: pointer; width: 107px; height: auto;" data-slick-index="1"
-                                aria-hidden="false" tabindex="0">
-                                <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img2.jpg"
-                                    alt="Image Description">
-                            </div>
-                            <div class="js-slide slick-slide slick-active"
-                                style="cursor: pointer; width: 107px; height: auto;" data-slick-index="2"
-                                aria-hidden="false" tabindex="0">
-                                <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img3.jpg"
-                                    alt="Image Description">
-                            </div>
-                            <div class="js-slide slick-slide slick-active"
-                                style="cursor: pointer; width: 107px; height: auto;" data-slick-index="3"
-                                aria-hidden="false" tabindex="0">
-                                <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img4.jpg"
-                                    alt="Image Description">
-                            </div>
-                            <div class="js-slide slick-slide slick-active"
-                                style="cursor: pointer; width: 107px; height: auto;" data-slick-index="4"
-                                aria-hidden="false" tabindex="0">
-                                <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img5.jpg"
-                                    alt="Image Description">
-                            </div>
-                        </div>
-                    </div>
+                <div id="sliderSyncingThumb" class="js-slick-carousel u-slick u-slick--slider-syncing u-slick--slider-syncing-size u-slick--gutters-1 u-slick--transform-off slick-initialized slick-slider slick-transform-off" data-infinite="true" data-slides-show="5" data-is-thumbs="true" data-nav-for="#sliderSyncingNav">
+                    <div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 575px; transform: translate3d(0px, 0px, 0px);"><div class="js-slide slick-slide slick-current slick-active" style="cursor: pointer; width: 107px; height: auto;" data-slick-index="0" aria-hidden="false" tabindex="0">
+                        <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img1.jpg" alt="Image Description">
+                    </div><div class="js-slide slick-slide slick-active" style="cursor: pointer; width: 107px; height: auto;" data-slick-index="1" aria-hidden="false" tabindex="0">
+                        <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img2.jpg" alt="Image Description">
+                    </div><div class="js-slide slick-slide slick-active" style="cursor: pointer; width: 107px; height: auto;" data-slick-index="2" aria-hidden="false" tabindex="0">
+                        <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img3.jpg" alt="Image Description">
+                    </div><div class="js-slide slick-slide slick-active" style="cursor: pointer; width: 107px; height: auto;" data-slick-index="3" aria-hidden="false" tabindex="0">
+                        <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img4.jpg" alt="Image Description">
+                    </div><div class="js-slide slick-slide slick-active" style="cursor: pointer; width: 107px; height: auto;" data-slick-index="4" aria-hidden="false" tabindex="0">
+                        <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img5.jpg" alt="Image Description">
+                    </div></div></div>
 
 
 
