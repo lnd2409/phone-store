@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrangChu\ClientController;
 use App\Http\Controllers\TrangChu\SanPhamController;
 
 //admin
 use App\Http\Controllers\Admin\SanPhamAdminController;
+use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\TrangChu\CartProductController;
 use App\Http\Controllers\TrangChu\CheckAuthController;
 use App\Http\Controllers\TrangChu\VNPayController;
@@ -20,18 +23,40 @@ use App\Http\Controllers\TrangChu\VNPayController;
 |
 */
 
+Route::middleware(['checkAuthQuanTri'])->group(function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/', function () {return view('admin.index');})->name('index');
 
-Route::prefix('admin')->group(function () {
-    Route::get('/', function () {
-        return view('admin.index');
+        // auth
+        Route::get('/logout', [AuthController::class,'logout'])->name('logout');
+        #product
+        Route::get('san-pham', [SanPhamAdminController::class, 'index'])->name('product.list');
+        Route::get('them-san-pham', [SanPhamAdminController::class, 'add'])->name('product.add');
+        Route::post('xu-ly-them-san-pham', [SanPhamAdminController::class, 'store'])->name('product.store');
+        Route::get('{idTheLoai}/thuoc-tinh', [SanPhamAdminController::class, 'ajaxThuocTinh'])->name('product.ajax.cate');
+        Route::prefix('nhan-vien')->name('staffs.')->group(function () {
+            Route::get('/', [StaffController::class,'index'])->name('index');
+            Route::get('/them', [StaffController::class,'create'])->name('create');
+            Route::post('/luu', [StaffController::class,'store'])->name('store');
+            Route::get('/sua/{quantri}', [StaffController::class,'edit'])->name('edit');
+            Route::post('/cap-nhat/{quantri}', [StaffController::class,'update'])->name('update');
+            Route::post('/xoa/{quantri}', [StaffController::class,'destroy'])->name('destroy');
+            
+        });
+        Route::prefix('bai-viet')->name('posts.')->group(function () {
+            Route::get('/', [PostController::class,'index'])->name('index');
+            Route::get('/them', [PostController::class,'create'])->name('create');
+            Route::post('/luu', [PostController::class,'store'])->name('store');
+            Route::get('/sua/{tintuc}', [PostController::class,'edit'])->name('edit');
+            Route::post('/cap-nhat/{tintuc}', [PostController::class,'update'])->name('update');
+            Route::post('/xoa/{tintuc}', [PostController::class,'destroy'])->name('destroy');
+            Route::get('/detail/{tintuc}', [PostController::class,'detail'])->name('detail');
+            
+        });
     });
-
-    #product
-    Route::get('san-pham', [SanPhamAdminController::class, 'index'])->name('admin.product.list');
-    Route::get('them-san-pham', [SanPhamAdminController::class, 'add'])->name('admin.product.add');
-    Route::post('xu-ly-them-san-pham', [SanPhamAdminController::class, 'store'])->name('admin.product.store');
-    Route::get('{idTheLoai}/thuoc-tinh', [SanPhamAdminController::class, 'ajaxThuocTinh'])->name('admin.product.ajax.cate');
 });
+Route::view('/sign-in', 'admin.auth.sign-in')->name('admin.signIn');
+Route::post('/handleLogin', [AuthController::class,'handleLogin'])->name('admin.handleLogin');
 
 
 //client

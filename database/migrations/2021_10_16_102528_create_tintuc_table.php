@@ -17,14 +17,12 @@ class CreateTintucTable extends Migration
             $table->id('tt_id');
             $table->string('tt_tieude');
             $table->text('tt_noidung');
-            $table->string('tt_hinhanh');
+            $table->string('tt_hinhanh')->nullable();
             $table->integer('tt_trangthai')->default(0);
 
             $table->bigInteger('qt_id')->unsigned();
             $table->foreign('qt_id')->references('qt_id')->on('quantri')->onDelete('CASCADE');
 
-            $table->bigInteger('sp_id')->unsigned();
-            $table->foreign('sp_id')->references('sp_id')->on('sanpham')->onDelete('CASCADE');
 
             $table->timestamps();
         });
