@@ -6,21 +6,16 @@
             <img src="{{ asset('template/admin') }}/assets/images/xs/avatar1.jpg" width="48" height="48" alt="User" />
         </div>
         <div class="info-container">
-            <div class="name" data-toggle="dropdown">John Doe</div>
+            <div class="name" data-toggle="dropdown">{{ Auth::guard('quantri')->user()->qt_ten }}</div>
             <div class="btn-group user-helper-dropdown">
                 <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
                     role="button"> keyboard_arrow_down </i>
                 <ul class="dropdown-menu slideUp">
-                    <li><a href="profile.html"><i class="material-icons">person</i>Profile</a></li>
-                    <li class="divider"></li>
-                    <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
-                    <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
-                    <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
-                    <li class="divider"></li>
-                    <li><a href="sign-in.html"><i class="material-icons">input</i>Sign Out</a></li>
+                    <li><a href="profile.html"><i class="material-icons">person</i>Thông tin</a></li>
+                    <li><a href="sign-in.html"><i class="material-icons">input</i>Đăng xuất</a></li>
                 </ul>
             </div>
-            <div class="email">john.doe@example.com</div>
+            <div class="email">{{ Auth::guard('quantri')->user()->qt_email }}</div>
         </div>
     </div>
     <!-- #User Info -->
@@ -28,18 +23,6 @@
     <div class="menu">
         <ul class="list">
             <li class="header">Quản lý cửa hàng</li>
-            {{-- <li class="active open"><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a>
-                <ul class="ml-menu">
-                    <li class="active"><a href="index.html">Main Dashboard</a></li>
-                    <li><a href="dashboard-rtl.html">RTL Dashboard</a></li>
-                    <li><a href="index2.html">Horizontal Menu</a></li>
-                    <li><a href="blog-dashboard.html">Blog Dashboard</a></li>
-                    <li><a href="ec-dashboard.html">Ecommerce Dashboard</a></li>
-                    <li><a href="iot-dashboard.html">Iot Dashboard</a></li>
-                </ul>
-            </li> --}}
-            {{-- <li><a href="widgets.html"><i class="zmdi zmdi-delicious"></i><span>Widgets</span> </a></li>
-            <li><a href="blog-dashboard.html"><i class="zmdi zmdi-blogger"></i><span>Blogger</span> </a></li> --}}
             <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Sản
                         phẩm</span> </a>
                 <ul class="ml-menu">

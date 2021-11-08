@@ -168,4 +168,8 @@ class SanPham extends Model
     {
         return SanphamThuoctinh::where('sp_id',$this->attributes['sp_id'])->where('tt_id',$tt_id)->first('sptt_giatri')->sptt_giatri??'';
     }
+
+    public function getNameAttr($tt_id) {
+        return Thuoctinh::where('tt_id', $tt_id)->first('tt_ten')->tt_ten??'';
+    }
 }

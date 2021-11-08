@@ -285,149 +285,77 @@
         <div class="mb-xl-14 mb-6">
             <div class="row">
                 <div class="col-md-5 mb-4 mb-md-0">
-                    <div id="sliderSyncingNav" class="js-slick-carousel u-slick mb-2"
-                        data-infinite="true"
+                    <div id="sliderSyncingNav" class="js-slick-carousel u-slick mb-2" data-infinite="true"
                         data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle"
                         data-arrow-left-classes="fas fa-arrow-left u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left ml-lg-2 ml-xl-4"
                         data-arrow-right-classes="fas fa-arrow-right u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right mr-lg-2 mr-xl-4"
                         data-nav-for="#sliderSyncingThumb">
                         @foreach ($sanPham->hinhanhsanphams as $item)
                             <div class="js-slide">
-                                <img class="img-fluid" src="{{ asset($item->hasp_duongdan) }}" alt="Image Description">
+                                <img class="img-fluid" src="{{ asset($item->hasp_duongdan) }}"
+                                    alt="Image Description">
                             </div>
                         @endforeach
-                        {{-- <div class="js-slide">
-                            <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img1.jpg" alt="Image Description">
-                        </div>
-                        <div class="js-slide">
-                            <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img2.jpg" alt="Image Description">
-                        </div>
-                        <div class="js-slide">
-                            <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img3.jpg" alt="Image Description">
-                        </div>
-                        <div class="js-slide">
-                            <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img4.jpg" alt="Image Description">
-                        </div>
-                        <div class="js-slide">
-                            <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img5.jpg" alt="Image Description">
-                        </div> --}}
                     </div>
 
-                    <div id="sliderSyncingThumb" class="js-slick-carousel u-slick u-slick--slider-syncing u-slick--slider-syncing-size u-slick--gutters-1 u-slick--transform-off"
-                        data-infinite="true"
-                        data-slides-show="5"
-                        data-is-thumbs="true"
-                        data-nav-for="#sliderSyncingNav">
+                    <div id="sliderSyncingThumb"
+                        class="js-slick-carousel u-slick u-slick--slider-syncing u-slick--slider-syncing-size u-slick--gutters-1 u-slick--transform-off"
+                        data-infinite="true" data-slides-show="5" data-is-thumbs="true" data-nav-for="#sliderSyncingNav">
                         @foreach ($sanPham->hinhanhsanphams as $item)
                             <div class="js-slide" style="cursor: pointer;">
-                                <img class="img-fluid" src="{{ asset($item->hasp_duongdan) }}" alt="Image Description">
+                                <img class="img-fluid" src="{{ asset($item->hasp_duongdan) }}"
+                                    alt="Image Description">
                             </div>
                         @endforeach
-                        {{-- <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img1.jpg" alt="Image Description">
-                        </div>
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img2.jpg" alt="Image Description">
-                        </div>
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img3.jpg" alt="Image Description">
-                        </div>
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img4.jpg" alt="Image Description">
-                        </div>
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="{{ asset('template/client') }}/assets/img/720X660/img5.jpg" alt="Image Description">
-                        </div> --}}
                     </div>
                 </div>
                 <div class="col-md-7 mb-md-6 mb-lg-0">
-                    <form action="{{ route('client.addtocart', ['id' => $sanPham->sp_id]) }}" method="post">
-                        @csrf
-                        <div class="mb-2">
-                            <div class="border-bottom mb-3 pb-md-1 pb-3">
-                                <a href="#"
-                                    class="font-size-12 text-gray-5 mb-2 d-inline-block">{{ $sanPham->theloai->tl_ten }}</a>
-                                <h2 class="font-size-25 text-lh-1dot2">{{ $sanPham->sp_ten }}</h2>
-                                <div class="mb-2">
-                                    <a class="d-inline-flex align-items-center small font-size-15 text-lh-1" href="#">
-                                        <div class="text-warning mr-2">
-                                            <small class="fas fa-star"></small>
-                                            <small class="fas fa-star"></small>
-                                            <small class="fas fa-star"></small>
-                                            <small class="fas fa-star"></small>
-                                            <small class="far fa-star text-muted"></small>
-                                        </div>
-                                        <span class="text-secondary font-size-13">(3 khách hàng đã đánh giá)</span>
-                                    </a>
-                                </div>
-                                <div class="d-md-flex align-items-center">
-                                    <a href="#" class="max-width-150 ml-n2 mb-2 mb-md-0 d-block"><img class="img-fluid"
-                                            src="{{ asset('template/client') }}/assets/img/200X60/img1.png"
-                                            alt="Image Description"></a>
-                                    <div class="ml-md-3 text-gray-9 font-size-14">Availability: <span
-                                            class="text-green font-weight-bold">26 in stock</span></div>
-                                </div>
-                            </div>
-                            <div class="flex-horizontal-center flex-wrap mb-4">
-                                <a href="#" class="text-gray-6 font-size-13 mr-2"><i
-                                        class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
-                                <a href="#" class="text-gray-6 font-size-13 ml-2 btn-compare"
-                                    data-id="{{ $sanPham->sp_id }}"
-                                    data-img="{{ asset('template/client') }}/assets/img/212X200/img1.jpg"
-                                    data-name="{{ $sanPham->sp_ten }}" data-tl="{{ $sanPham->tl_id }}"><i
-                                        class="ec ec-compare mr-1 font-size-15"></i>
-                                    <span id="span-compare">
-                                        Compare
-                                    </span>
+
+                    <div class="mb-2">
+                        <div class="border-bottom mb-3 pb-md-1 pb-3">
+                            <a href="#"
+                                class="font-size-12 text-gray-5 mb-2 d-inline-block">{{ $sanPham->theloai->tl_ten }}</a>
+                            <h2 class="font-size-25 text-lh-1dot2">{{ $sanPham->sp_ten }}</h2>
+                            <div class="mb-2">
+                                <a class="d-inline-flex align-items-center small font-size-15 text-lh-1" href="#">
+                                    <div class="text-warning mr-2">
+                                        <small class="fas fa-star"></small>
+                                        <small class="fas fa-star"></small>
+                                        <small class="fas fa-star"></small>
+                                        <small class="fas fa-star"></small>
+                                        <small class="far fa-star text-muted"></small>
+                                    </div>
+                                    <span class="text-secondary font-size-13">(3 khách hàng đã đánh giá)</span>
                                 </a>
                             </div>
-                            <div class="mb-2">
-                                <ul class="font-size-14 pl-3 ml-1 text-gray-110">
-                                    <li>4.5 inch HD Touch Screen (1280 x 720)</li>
-                                    <li>Android 4.4 KitKat OS</li>
-                                    <li>1.4 GHz Quad Core™ Processor</li>
-                                    <li>20 MP Electro and 28 megapixel CMOS rear camera</li>
-                                </ul>
+                        </div>
+                        <div class="flex-horizontal-center flex-wrap mb-4">
+                            <a href="#" class="text-gray-6 font-size-13 ml-2 btn-compare" data-id="{{ $sanPham->sp_id }}"
+                                data-img="{{ asset('template/client') }}/assets/img/212X200/img1.jpg"
+                                data-name="{{ $sanPham->sp_ten }}" data-tl="{{ $sanPham->tl_id }}"><i
+                                    class="ec ec-compare mr-1 font-size-15"></i>
+                                <span id="span-compare">
+                                    So sánh
+                                </span>
+                            </a>
+                        </div>
+                        <div class="mb-2">
+                            <ul class="font-size-14 pl-3 ml-1 text-gray-110">
+
+                            </ul>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
+                        </p>
+                        <p><strong>Mã sản phẩm</strong>: {{ $sanPham->sp_id }}</p>
+                        <div class="mb-4">
+                            <div class="d-flex align-items-baseline">
+                                <ins class="font-size-36 text-decoration-none"> {{ number_format($sanPham->sp_gia) }}
+                                    VNĐ</ins>
+                                {{-- <del class="font-size-20 ml-2 text-gray-6">$2,299.00</del> --}}
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
-                            </p>
-                            <p><strong>SKU</strong>: FW511948218</p>
-                            <div class="mb-4">
-                                <div class="d-flex align-items-baseline">
-                                    <ins class="font-size-36 text-decoration-none"> {{ number_format($sanPham->sp_gia) }}
-                                        VNĐ</ins>
-                                    {{-- <del class="font-size-20 ml-2 text-gray-6">$2,299.00</del> --}}
-                                </div>
-                            </div>
-                            <div class="border-top border-bottom py-3 mb-4">
-                                <div class="d-flex align-items-center">
-                                    <h6 class="font-size-14 mb-0">Color</h6>
-                                    <!-- Select -->
-                                    <div class="dropdown bootstrap-select js-select dropdown-select ml-3"><select
-                                            class="js-select selectpicker dropdown-select ml-3"
-                                            data-style="btn-sm bg-white font-weight-normal py-2 border" tabindex="-98">
-                                            <option value="one" selected="">White with Gold</option>
-                                            <option value="two">Red</option>
-                                            <option value="three">Green</option>
-                                            <option value="four">Blue</option>
-                                        </select><button type="button"
-                                            class="btn dropdown-toggle btn-sm bg-white font-weight-normal py-2 border"
-                                            data-toggle="dropdown" role="button" title="White with Gold">
-                                            <div class="filter-option">
-                                                <div class="filter-option-inner">
-                                                    <div class="filter-option-inner-inner">White with Gold</div>
-                                                </div>
-                                            </div>
-                                        </button>
-                                        <div class="dropdown-menu " role="combobox">
-                                            <div class="inner show" role="listbox" aria-expanded="false" tabindex="-1">
-                                                <ul class="dropdown-menu inner show"></ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Select -->
-                                </div>
-                            </div>
+                        </div>
+                        <form action="{{ route('client.addtocart', ['id' => $sanPham->sp_id]) }}" method="post">
+                            @csrf
                             <div class="d-md-flex align-items-end mb-3">
                                 <div class="max-width-150 mb-4 mb-md-0">
                                     <h6 class="font-size-14">Số lượng</h6>
@@ -460,8 +388,9 @@
                                             class="ec ec-add-to-cart mr-2 font-size-20"></i>Thêm vào giỏ hàng</button>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -472,226 +401,30 @@
                 <ul class="nav nav-classic nav-tab nav-tab-lg justify-content-xl-center flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble border-0 pb-1 pb-xl-0 mb-n1 mb-xl-0"
                     id="pills-tab-8" role="tablist">
                     <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
-                        <a class="nav-link active" id="Jpills-one-example1-tab" data-toggle="pill"
-                            href="#Jpills-one-example1" role="tab" aria-controls="Jpills-one-example1"
-                            aria-selected="true">Accessories</a>
-                    </li>
-                    <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
-                        <a class="nav-link" id="Jpills-two-example1-tab" data-toggle="pill"
+                        <a class="nav-link active" id="Jpills-two-example1-tab" data-toggle="pill"
                             href="#Jpills-two-example1" role="tab" aria-controls="Jpills-two-example1"
-                            aria-selected="false">Description</a>
+                            aria-selected="true">Mô tả</a>
                     </li>
                     <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
                         <a class="nav-link" id="Jpills-three-example1-tab" data-toggle="pill"
                             href="#Jpills-three-example1" role="tab" aria-controls="Jpills-three-example1"
-                            aria-selected="false">Specification</a>
+                            aria-selected="false">Thông số chi tiết</a>
                     </li>
                     <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
                         <a class="nav-link" id="Jpills-four-example1-tab" data-toggle="pill"
                             href="#Jpills-four-example1" role="tab" aria-controls="Jpills-four-example1"
-                            aria-selected="false">Reviews</a>
+                            aria-selected="false">Bình luận</a>
                     </li>
                 </ul>
             </div>
             <!-- Tab Content -->
             <div class="borders-radius-17 border p-4 mt-4 mt-md-0 px-lg-10 py-lg-9">
                 <div class="tab-content" id="Jpills-tabContent">
-                    <div class="tab-pane fade active show" id="Jpills-one-example1" role="tabpanel"
-                        aria-labelledby="Jpills-one-example1-tab">
-                        <div class="row no-gutters">
-                            <div class="col mb-6 mb-md-0">
-                                <ul class="row list-unstyled products-group no-gutters border-bottom border-md-bottom-0">
-                                    <li class="col-4 col-md-4 col-xl-2gdot5 product-item remove-divider-sm-down border-0">
-                                        <div class="product-item__outer h-100">
-                                            <div class="remove-prodcut-hover product-item__inner px-xl-4 p-3">
-                                                <div class="product-item__body pb-xl-2">
-                                                    <div class="mb-2 d-none d-md-block"><a
-                                                            href="../shop/product-categories-7-column-full-width.html"
-                                                            class="font-size-12 text-gray-5">Speakers</a></div>
-                                                    <h5 class="mb-1 product-item__title d-none d-md-block"><a href="#"
-                                                            class="text-blue font-weight-bold">Wireless Audio System
-                                                            Multiroom 360 degree Full base audio</a></h5>
-                                                    <div class="mb-2">
-                                                        <a href="../shop/single-product-fullwidth.html"
-                                                            class="d-block text-center"><img class="img-fluid"
-                                                                src="{{ asset('template/client') }}/assets/img/212X200/img1.jpg"
-                                                                alt="Image Description"></a>
-                                                    </div>
-                                                    <div class="flex-center-between mb-1 d-none d-md-block">
-                                                        <div class="prodcut-price">
-                                                            <div class="text-gray-100">$685,00</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="col-4 col-md-4 col-xl-2gdot5 product-item remove-divider-sm-down">
-                                        <div class="product-item__outer h-100">
-                                            <div
-                                                class="remove-prodcut-hover add-accessories product-item__inner px-xl-4 p-3">
-                                                <div class="product-item__body pb-xl-2">
-                                                    <div class="mb-2 d-none d-md-block"><a
-                                                            href="../shop/product-categories-7-column-full-width.html"
-                                                            class="font-size-12 text-gray-5">Speakers</a></div>
-                                                    <h5 class="mb-1 product-item__title d-none d-md-block"><a href="#"
-                                                            class="text-blue font-weight-bold">Tablet White EliteBook
-                                                            Revolve 810 G2</a></h5>
-                                                    <div class="mb-2">
-                                                        <a href="../shop/single-product-fullwidth.html"
-                                                            class="d-block text-center"><img class="img-fluid"
-                                                                src="{{ asset('template/client') }}/assets/img/212X200/img2.jpg"
-                                                                alt="Image Description"></a>
-                                                    </div>
-                                                    <div class="flex-center-between mb-1 d-none d-md-block">
-                                                        <div
-                                                            class="prodcut-price d-flex align-items-center position-relative">
-                                                            <ins
-                                                                class="font-size-20 text-red text-decoration-none">$1999,00</ins>
-                                                            <del
-                                                                class="font-size-12 tex-gray-6 position-absolute bottom-100">$2
-                                                                299,00</del>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li
-                                        class="col-4 col-md-4 col-xl-2gdot5 product-item remove-divider-sm-down remove-divider">
-                                        <div class="product-item__outer h-100">
-                                            <div
-                                                class="remove-prodcut-hover add-accessories product-item__inner px-xl-4 p-3">
-                                                <div class="product-item__body pb-xl-2">
-                                                    <div class="mb-2 d-none d-md-block"><a
-                                                            href="../shop/product-categories-7-column-full-width.html"
-                                                            class="font-size-12 text-gray-5">Speakers</a></div>
-                                                    <h5 class="mb-1 product-item__title d-none d-md-block"><a href="#"
-                                                            class="text-blue font-weight-bold">Purple Solo 2 Wireless</a>
-                                                    </h5>
-                                                    <div class="mb-2">
-                                                        <a href="../shop/single-product-fullwidth.html"
-                                                            class="d-block text-center"><img class="img-fluid"
-                                                                src="{{ asset('template/client') }}/assets/img/212X200/img3.jpg"
-                                                                alt="Image Description"></a>
-                                                    </div>
-                                                    <div class="flex-center-between mb-1 d-none d-md-block">
-                                                        <div class="prodcut-price">
-                                                            <div class="text-gray-100">$685,00</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div
-                                    class="form-check pl-4 pl-md-0 ml-md-4 mb-2 pb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
-                                    <input class="form-check-input" type="checkbox" value="" id="inlineCheckbox1"
-                                        checked="" disabled="">
-                                    <label class="form-check-label mb-1" for="inlineCheckbox1">
-                                        <strong>This product: </strong> Ultra Wireless S50 Headphones S50 with Bluetooth -
-                                        <span class="text-red font-size-16">$35.00</span>
-                                    </label>
-                                </div>
-                                <div
-                                    class="form-check pl-4 pl-md-0 ml-md-4 mb-2 pb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option1"
-                                        checked="">
-                                    <label class="form-check-label mb-1 text-blue" for="inlineCheckbox2">
-                                        <span class="text-decoration-on cursor-pointer-on">Universal Headphones Case in
-                                            Black</span> - <span class="text-red font-size-16">$159.00</span>
-                                    </label>
-                                </div>
-                                <div
-                                    class="form-check pl-4 pl-md-0 ml-md-4 mb-2 pb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option2"
-                                        checked="">
-                                    <label class="form-check-label mb-1 text-blue" for="inlineCheckbox3">
-                                        <span class="text-decoration-on cursor-pointer-on">Headphones USB Wires</span> -
-                                        <span class="text-red font-size-16">$50.00</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-md-auto">
-                                <div class="mr-xl-15">
-                                    <div class="mb-3">
-                                        <div class="text-red font-size-26 text-lh-1dot2">$244.00</div>
-                                        <div class="text-gray-6">for 3 item(s)</div>
-                                    </div>
-                                    <a href="#"
-                                        class="btn btn-sm btn-block btn-primary-dark btn-wide transition-3d-hover">Add all
-                                        to cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="Jpills-two-example1" role="tabpanel"
+                    <div class="tab-pane fade active show" id="Jpills-two-example1" role="tabpanel"
                         aria-labelledby="Jpills-two-example1-tab">
-                        <h3 class="font-size-24 mb-3">Perfectly Done</h3>
-                        <p>Praesent ornare, ex a interdum consectetur, lectus diam sodales elit, vitae egestas est enim
-                            ornare nisl. Nullam in lectus nec sem semper viverra. In lobortis egestas massa. Nam nec massa
-                            nisi. Suspendisse potenti. Quisque suscipit vulputate dui quis volutpat. Ut id elit facilisis,
-                            feugiat est in, tempus lacus. Ut ultrices dictum metus, a ultricies ex vulputate ac. Ut id
-                            cursus tellus, non tempor quam. Morbi porta diam nisi, id finibus nunc tincidunt eu.</p>
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="pt-lg-8 pt-xl-10">
-                                    <h3 class="font-size-24 mb-3">Wireless</h3>
-                                    <p class="mb-6">Fusce vitae nibh mi. Integer posuere, libero et ullamcorper
-                                        facilisis,
-                                        enim eros tincidunt orci, eget vestibulum sapien nisi ut leo. Cras finibus vel est
-                                        ut mollis. Donec luctus condimentum ante et euismod.</p>
-                                    <h3 class="font-size-24 mb-3">Fresh Design</h3>
-                                    <p class="mb-6">Integer bibendum aliquet ipsum, in ultrices enim sodales sed.
-                                        Quisque ut
-                                        urna vitae lacus laoreet malesuada eu at massa. Pellentesque nibh augue,
-                                        pellentesque nec dictum vel, pretium a arcu. Duis eu urna suscipit, lobortis elit
-                                        quis, ullamcorper massa.</p>
-                                    <h3 class="font-size-24 mb-3">Fabolous Sound</h3>
-                                    <p class="mb-6">Cras rutrum, nibh a sodales accumsan, elit sapien ultrices
-                                        sapien, eget
-                                        semper lectus ex congue elit. Nullam dui elit, fermentum a varius at, iaculis non
-                                        dolor. In hac habitasse platea dictumst.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 text-right">
-                                <img class="img-fluid mr-n4 mr-lg-n10"
-                                    src="{{ asset('template/client') }}/assets/img/580X580/img1.jpg"
-                                    alt="Image Description">
-                            </div>
-                            <div class="col-md-6 text-left">
-                                <img class="img-fluid ml-n4 ml-lg-n10"
-                                    src="{{ asset('template/client') }}/assets/img/580X580/img2.jpg"
-                                    alt="Image Description">
-                            </div>
-                            <div class="col-md-6 align-self-center">
-                                <div class="pt-lg-8 pt-xl-10 text-right">
-                                    <h3 class="font-size-24 mb-3">Inteligent Bass</h3>
-                                    <p class="mb-6">Fusce vitae nibh mi. Integer posuere, libero et ullamcorper
-                                        facilisis,
-                                        enim eros tincidunt orci, eget vestibulum sapien nisi ut leo. Cras finibus vel est
-                                        ut mollis. Donec luctus condimentum ante et euismod.</p>
-                                    <h3 class="font-size-24 mb-3">Battery Life</h3>
-                                    <p class="mb-6">Integer bibendum aliquet ipsum, in ultrices enim sodales sed.
-                                        Quisque ut
-                                        urna vitae lacus laoreet malesuada eu at massa. Pellentesque nibh augue,
-                                        pellentesque nec dictum vel, pretium a arcu. Duis eu urna suscipit, lobortis elit
-                                        quis, ullamcorper massa.</p>
-                                </div>
-                            </div>
+                            {!! $sanPham->sp_mota !!}
                         </div>
-                        <ul class="nav flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble">
-                            <li class="nav-item text-gray-111 flex-shrink-0 flex-xl-shrink-1"><strong>SKU:</strong> <span
-                                    class="sku">FW511948218</span></li>
-                            <li class="nav-item text-gray-111 mx-3 flex-shrink-0 flex-xl-shrink-1">/</li>
-                            <li class="nav-item text-gray-111 flex-shrink-0 flex-xl-shrink-1"><strong>Category:</strong> <a
-                                    href="#" class="text-blue">Headphones</a></li>
-                            <li class="nav-item text-gray-111 mx-3 flex-shrink-0 flex-xl-shrink-1">/</li>
-                            <li class="nav-item text-gray-111 flex-shrink-0 flex-xl-shrink-1"><strong>Tags:</strong> <a
-                                    href="#" class="text-blue">Fast</a>, <a href="#"
-                                    class="text-blue">Gaming</a>, <a href="#" class="text-blue">Strong</a></li>
-                        </ul>
                     </div>
                     <div class="tab-pane fade" id="Jpills-three-example1" role="tabpanel"
                         aria-labelledby="Jpills-three-example1-tab">
@@ -699,105 +432,12 @@
                             <div class="table-responsive mb-4">
                                 <table class="table table-hover">
                                     <tbody>
+                                        @foreach ($sanPham->sanphamThuoctinhs as $item)
                                         <tr>
-                                            <th class="px-4 px-xl-5 border-top-0">Weight</th>
-                                            <td class="border-top-0">7.25kg</td>
+                                            <th class="px-4 px-xl-5 border-top-0">{{ $sanPham->getNameAttr($item->tt_id) }}</th>
+                                            <td class="border-top-0">{{ $sanPham->chitietthuoctinh($item->tt_id) }}</td>
                                         </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">Dimensions</th>
-                                            <td>90 x 60 x 90 cm</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">Size</th>
-                                            <td>One Size Fits all</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">color</th>
-                                            <td>Black with Red, White with Gold</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">Guarantee</th>
-                                            <td>5 years</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <h3 class="font-size-18 mb-4">Technical Specifications</h3>
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <tbody>
-                                        <tr>
-                                            <th class="px-4 px-xl-5 border-top-0">Brand</th>
-                                            <td class="border-top-0">Apple</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">Item Height</th>
-                                            <td>18 Millimeters</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">Item Width</th>
-                                            <td>31.4 Centimeters</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">Screen Size</th>
-                                            <td>13 Inches</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">Item Weight</th>
-                                            <td>1.6 Kg</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">Product Dimensions</th>
-                                            <td>21.9 x 31.4 x 1.8 cm</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">Item model number</th>
-                                            <td>MF841HN/A</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">Processor Brand</th>
-                                            <td>Intel</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">Processor Type</th>
-                                            <td>Core i5</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">Processor Speed</th>
-                                            <td>2.9 GHz</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">RAM Size</th>
-                                            <td>8 GB</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">Hard Drive Size</th>
-                                            <td>512 GB</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">Hard Disk Technology</th>
-                                            <td>Solid State Drive</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">Graphics Coprocessor</th>
-                                            <td>Intel Integrated Graphics</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">Graphics Card Description</th>
-                                            <td>Integrated Graphics Card</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">Hardware Platform</th>
-                                            <td>Mac</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">Operating System</th>
-                                            <td>Mac OS</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="px-4 px-xl-5">Average Battery Life (in hours)</th>
-                                            <td>9</td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -1313,21 +953,21 @@
                     data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-normal u-slick__arrow-centered--y"
                     data-arrow-left-classes="fa fa-angle-left u-slick__arrow-classic-inner--left z-index-9"
                     data-arrow-right-classes="fa fa-angle-right u-slick__arrow-classic-inner--right" data-responsive="[{
-                        &quot;breakpoint&quot;: 992,
-                        &quot;settings&quot;: {
-                            &quot;slidesToShow&quot;: 2
-                        }
-                    }, {
-                        &quot;breakpoint&quot;: 768,
-                        &quot;settings&quot;: {
-                            &quot;slidesToShow&quot;: 1
-                        }
-                    }, {
-                        &quot;breakpoint&quot;: 554,
-                        &quot;settings&quot;: {
-                            &quot;slidesToShow&quot;: 1
-                        }
-                    }]">
+                            &quot;breakpoint&quot;: 992,
+                            &quot;settings&quot;: {
+                                &quot;slidesToShow&quot;: 2
+                            }
+                        }, {
+                            &quot;breakpoint&quot;: 768,
+                            &quot;settings&quot;: {
+                                &quot;slidesToShow&quot;: 1
+                            }
+                        }, {
+                            &quot;breakpoint&quot;: 554,
+                            &quot;settings&quot;: {
+                                &quot;slidesToShow&quot;: 1
+                            }
+                        }]">
                     <div class="js-prev d-none d-lg-inline-block u-slick__arrow-normal u-slick__arrow-centered--y fa fa-angle-left u-slick__arrow-classic-inner--left z-index-9 slick-arrow slick-disabled"
                         aria-disabled="true" style=""></div>
                     <div class="slick-list draggable">

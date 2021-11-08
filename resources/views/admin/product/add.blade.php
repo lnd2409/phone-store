@@ -84,7 +84,8 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <textarea rows="4" name="moTa" class="form-control no-resize" placeholder="Nhập mô tả sản phẩm..."></textarea>
+                                            <textarea id="ckeditor" name="moTa"></textarea>
+                                            {{-- <textarea rows="4" name="moTa" class="form-control no-resize" placeholder="Nhập mô tả sản phẩm..."></textarea> --}}
                                         </div>
                                     </div>
                                 </div>

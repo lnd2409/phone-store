@@ -71,7 +71,6 @@ class SanPhamAdminController extends Controller
                 ]
             );
         }
-
         if ($request->productSlider != null) {
             # code...
             // foreach ($request->productSlider as $key => $value) {
