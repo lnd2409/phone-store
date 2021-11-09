@@ -22,7 +22,7 @@ class CreateBinhluanTable extends Migration
             $table->bigInteger('kh_id')->unsigned();
             $table->foreign('kh_id')->references('kh_id')->on('khachhang')->onDelete('CASCADE');
 
-            $table->bigInteger('qt_id')->unsigned();
+            $table->bigInteger('qt_id')->nullable()->unsigned();
             $table->foreign('qt_id')->references('qt_id')->on('quantri')->onDelete('CASCADE');
 
             $table->timestamps();

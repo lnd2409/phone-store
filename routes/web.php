@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrangChu\ClientController;
 use App\Http\Controllers\TrangChu\SanPhamController;
+use App\Http\Controllers\TrangChu\ReviewController;
 
 //admin
 use App\Http\Controllers\Admin\SanPhamAdminController;
@@ -53,6 +54,11 @@ Route::middleware(['checkAuthQuanTri'])->group(function () {
             Route::get('/detail/{tintuc}', [PostController::class,'detail'])->name('detail');
             
         });
+
+        //Review
+        Route::get('/quan-li-binh-luan',[ReviewController::class,'adminGetReview'])->name('getreview');
+        Route::get('/chi-tiet-binh-luan/{id}',[ReviewController::class,'adminDetailReview'])->name('getdetailreview');
+        Route::post('/tra-loi-binh-luan',[ReviewController::class,'adminRepReview'])->name('getrepreview');
     });
 });
 Route::view('/sign-in', 'admin.auth.sign-in')->name('admin.signIn');
@@ -83,7 +89,13 @@ Route::get('san-pham/{id}',[SanPhamController::class, 'productDetail'])->name('c
 
 //Thêm sản phẩm vào giỏ hàng
 Route::post('/san-pham-them-gio-hang/{id}',[CartProductController::class,'addProductToCart'])->name('client.addtocart');
+Route::post('/cap-nhat-gio-hang/{id}',[CartProductController::class,'updateProductToCart'])->name('client.updatetocart');
 Route::get('/chi-tiet-gio-hang',[CartProductController::class,'getProductToCart'])->name('client.gettocart');
+Route::get('/xoa-gio-hang',[CartProductController::class,'destroyProductToCart'])->name('client.destroytocart');
 Route::get('/thanh-toan-don-hang',[VNPayController::class,'index'])->name('client.checkoutcart');
 Route::post('/thanh-toan-don-hang',[VNPayController::class,'payCart'])->name('client.paymentcart');
 Route::get('/ket-qua-thanh-toan',[VNPayController::class,'storePayCart'])->name('client.returnvnpay');
+
+//Bình luận sản phẩm
+Route::post('/san-pham-binh-luan',[ReviewController::class,'store'])->name('client.submitreview');
+

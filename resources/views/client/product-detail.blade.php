@@ -448,7 +448,7 @@
                         <div class="row mb-8">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <h3 class="font-size-18 mb-6">Based on 3 reviews</h3>
+                                    <h3 class="font-size-18 mb-6">Đã có 3 đánh giá</h3>
                                     <h2 class="font-size-30 font-weight-bold text-lh-1 mb-0">4.3</h2>
                                     <div class="text-lh-1">overall</div>
                                 </div>
@@ -569,10 +569,10 @@
                                 <!-- End Ratings -->
                             </div>
                             <div class="col-md-6">
-                                <h3 class="font-size-18 mb-5">Add a review</h3>
                                 <!-- Form -->
-                                <form class="js-validate" novalidate="novalidate">
-                                    <div class="row align-items-center mb-4">
+                                <form class="js-validate" novalidate="novalidate" action="{{ route('client.submitreview') }}" method="POST">
+                                    @csrf
+                                    {{-- <div class="row align-items-center mb-4">
                                         <div class="col-md-4 col-lg-3">
                                             <label for="rating" class="form-label mb-0">Your Review</label>
                                         </div>
@@ -587,18 +587,20 @@
                                                 </div>
                                             </a>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="js-form-message form-group mb-3 row">
                                         <div class="col-md-4 col-lg-3">
-                                            <label for="descriptionTextarea" class="form-label">Your Review</label>
+                                            {{-- <label for="descriptionTextarea" class="form-label">Your Review</label> --}}
                                         </div>
                                         <div class="col-md-8 col-lg-9">
-                                            <textarea class="form-control" rows="3" id="descriptionTextarea"
+                                            <textarea class="form-control" rows="3" id="descriptionTextarea" name="bl_noidung"
                                                 data-msg="Please enter your message." data-error-class="u-has-error"
                                                 data-success-class="u-has-success"></textarea>
                                         </div>
+                                        <input type="hidden" name="kh_id" value=" {{Auth::guard('khachhang')->id()}}">
+                                        <input type="hidden" name="sp_id" value=" {{$sanPham->sp_id}} ">
                                     </div>
-                                    <div class="js-form-message form-group mb-3 row">
+                                    {{-- <div class="js-form-message form-group mb-3 row">
                                         <div class="col-md-4 col-lg-3">
                                             <label for="inputName" class="form-label">Name <span
                                                     class="text-danger">*</span></label>
@@ -620,12 +622,17 @@
                                                 data-msg="Please enter a valid email address."
                                                 data-error-class="u-has-error" data-success-class="u-has-success">
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="row">
                                         <div class="offset-md-4 offset-lg-3 col-auto">
-                                            <button type="submit"
-                                                class="btn btn-primary-dark btn-wide transition-3d-hover">Add
-                                                Review</button>
+                                           @if (Auth::guard('khachhang')->check())
+                                                <button type="submit"
+                                                class="btn btn-primary-dark btn-wide transition-3d-hover">Gửi</button>
+                                           @else
+                                              <a id="sidebarNavToggler" href="javascript:;" role="button" class="u-header-topbar__nav-link target-of-invoker-has-unfolds" aria-controls="sidebarContent" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-hide-on-scroll="false" data-unfold-target="#sidebarContent" data-unfold-type="css-animation" data-unfold-animation-in="fadeInRight" data-unfold-animation-out="fadeOutRight" data-unfold-duration="500">
+                                        <i class="ec ec-user mr-1"></i> Đăng nhập <span class="text-primary-darken-5">or&nbsp;</span> Đăng ký
+                                    </a>
+                                           @endif
                                         </div>
                                     </div>
                                 </form>
@@ -633,9 +640,11 @@
                             </div>
                         </div>
                         <!-- Review -->
-                        <div class="border-bottom border-color-1 pb-4 mb-4">
+                        @foreach ($binhluan as $item)
+                            @if ($item->ctbl_idrep ==NULL)
+                                <div class="border-bottom border-color-1 pb-4 mb-4">
                             <!-- Review Rating -->
-                            <div class="d-flex justify-content-between align-items-center text-secondary font-size-1 mb-2">
+                            {{-- <div class="d-flex justify-content-between align-items-center text-secondary font-size-1 mb-2">
                                 <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
                                     <small class="fas fa-star"></small>
                                     <small class="fas fa-star"></small>
@@ -643,73 +652,34 @@
                                     <small class="far fa-star text-muted"></small>
                                     <small class="far fa-star text-muted"></small>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- End Review Rating -->
 
-                            <p class="text-gray-90">Fusce vitae nibh mi. Integer posuere, libero et ullamcorper
-                                facilisis,
-                                enim eros tincidunt orci, eget vestibulum sapien nisi ut leo. Cras finibus vel est ut
-                                mollis. Donec luctus condimentum ante et euismod.</p>
+                            <p class="text-gray-90">
+                                {{$item->ctbl_noidung}}
+                            </p>
 
                             <!-- Reviewer -->
-                            <div class="mb-2">
-                                <strong>John Doe</strong>
+                            <div class="">
+                                <strong> {{$item->kh_ten}} </strong>
                                 <span class="font-size-13 text-gray-23">- April 3, 2019</span>
                             </div>
                             <!-- End Reviewer -->
+                            @foreach ($binhluan as $item1)
+                                @if ($item->ctbl_id == $item1->ctbl_idrep)
+                                     <div style="margin: 50px">
+                                      
+                                             <p class="text-gray-90">
+                                                 <span>Cửa hàng: </span> {{$item1->ctbl_noidung}}
+                                            </p>
+                                     </div>
+                                @endif
+                            @endforeach
                         </div>
                         <!-- End Review -->
-                        <!-- Review -->
-                        <div class="border-bottom border-color-1 pb-4 mb-4">
-                            <!-- Review Rating -->
-                            <div class="d-flex justify-content-between align-items-center text-secondary font-size-1 mb-2">
-                                <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
-                                    <small class="fas fa-star"></small>
-                                    <small class="fas fa-star"></small>
-                                    <small class="fas fa-star"></small>
-                                    <small class="fas fa-star"></small>
-                                    <small class="fas fa-star"></small>
-                                </div>
-                            </div>
-                            <!-- End Review Rating -->
-
-                            <p class="text-gray-90">Pellentesque habitant morbi tristique senectus et netus et malesuada
-                                fames ac turpis egestas. Suspendisse eget facilisis odio. Duis sodales augue eu tincidunt
-                                faucibus. Etiam justo ligula, placerat ac augue id, volutpat porta dui.</p>
-
-                            <!-- Reviewer -->
-                            <div class="mb-2">
-                                <strong>Anna Kowalsky</strong>
-                                <span class="font-size-13 text-gray-23">- April 3, 2019</span>
-                            </div>
-                            <!-- End Reviewer -->
-                        </div>
-                        <!-- End Review -->
-                        <!-- Review -->
-                        <div class="pb-4">
-                            <!-- Review Rating -->
-                            <div class="d-flex justify-content-between align-items-center text-secondary font-size-1 mb-2">
-                                <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
-                                    <small class="fas fa-star"></small>
-                                    <small class="fas fa-star"></small>
-                                    <small class="fas fa-star"></small>
-                                    <small class="fas fa-star"></small>
-                                    <small class="far fa-star text-muted"></small>
-                                </div>
-                            </div>
-                            <!-- End Review Rating -->
-
-                            <p class="text-gray-90">Sed id tincidunt sapien. Pellentesque cursus accumsan tellus, nec
-                                ultricies nulla sollicitudin eget. Donec feugiat orci vestibulum porttitor sagittis.</p>
-
-                            <!-- Reviewer -->
-                            <div class="mb-2">
-                                <strong>Peter Wargner</strong>
-                                <span class="font-size-13 text-gray-23">- April 3, 2019</span>
-                            </div>
-                            <!-- End Reviewer -->
-                        </div>
-                        <!-- End Review -->
+                            @endif
+                        @endforeach
+                        
                     </div>
                 </div>
             </div>

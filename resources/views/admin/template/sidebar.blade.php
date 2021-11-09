@@ -34,6 +34,8 @@
             </li>
             <li><a href="{{ route('admin.posts.index') }}"><i class="zmdi zmdi-blogger"></i><span>Bài viết</span> </a>
             </li>
+            <li><a href="{{ route('admin.getreview') }}"><i class="zmdi zmdi-blogger"></i><span>Bình luận</span> </a>
+            </li>
         </ul>
     </div>
     <!-- #Menu -->

@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SanPham;
 use App\Models\TheLoai;
+use App\Models\BinhLuan;
 use App\Models\HinhAnhSanPham;
 use Session;
+use DB;
 
 class SanPhamController extends Controller
 {
@@ -22,7 +24,12 @@ class SanPhamController extends Controller
 
     public function productDetail($id) {
         $sanPham = SanPham::find($id);
-        return view('client.product-detail', compact('sanPham'));
+        $binhluan = DB::table('binhluan as bl')
+        ->join('chitietbinhluan as ctbl','ctbl.bl_id','bl.bl_id')
+        ->join('khachhang as kh','kh.kh_id','bl.kh_id')
+        // ->whereNull('ctbl.ctbl_idrep')
+        ->get();
+        return view('client.product-detail', compact('sanPham','binhluan'));
     }
 
     public function getInfo(Request $request)

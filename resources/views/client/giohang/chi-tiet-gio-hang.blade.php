@@ -24,7 +24,7 @@
                 <h1 class="text-center">Giỏ Hàng</h1>
             </div>
             <div class="mb-10 cart-table">
-                <form class="mb-4" action="#" method="post">
+                {{-- <form class="mb-4" action="#" method="post"> --}}
                     <table class="table" cellspacing="0">
                         <thead>
                             <tr>
@@ -33,12 +33,14 @@
                                 <th class="product-name">Sản phẩm</th>
                                 <th class="product-price">Giá</th>
                                 <th class="product-quantity w-lg-15">Số lượng</th>
+                                <th></th>
                                 <th class="product-subtotal">Thành tiền</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $sum = 0 ?>
                            @foreach ($cart as $item)
+                           <form action="{{ route('client.updatetocart', ['id'=>$item->rowId]) }}" method="post">
                             <tr class="">
                                 <td class="text-center">
                                     <a href="#" class="text-gray-32 font-size-26" title="Xóa">×</a>
@@ -60,27 +62,31 @@
                                     <!-- Quantity -->
                                     <div class="border rounded-pill py-1 width-122 w-xl-80 px-3 border-color-1">
                                         <div class="js-quantity row align-items-center">
-                                            <div class="col">
-                                                <input id="js-result-{{$item->id}}" class="js-result  form-control h-auto border-0 rounded p-0 shadow-none" type="text" value="{{$item->qty}}">
-                                            </div>
-                                            <div class="col-auto pr-1">
-                                                <a data-id={{$item->id}} class="js-minus  btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
-                                                    <small class="fas fa-minus btn-icon__inner"></small>
-                                                </a>
-                                                <a data-id={{$item->id}} class="js-plus  btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
-                                                    <small class="fas fa-plus btn-icon__inner"></small>
-                                                </a>
+                                                @csrf
+                                                <div class="col">
+                                                    <input id="js-result-{{$item->id}}" class="js-result  form-control h-auto border-0 rounded p-0 shadow-none" type="text" name="qty" value="{{$item->qty}}">
+                                                </div>
+                                                <div class="col-auto pr-1">
+                                                    <a data-id={{$item->id}} class="js-minus  btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
+                                                        <small class="fas fa-minus btn-icon__inner"></small>
+                                                    </a>
+                                                    <a data-id={{$item->id}} class="js-plus  btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
+                                                        <small class="fas fa-plus btn-icon__inner"></small>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- End Quantity -->
-                                </td>
-
-                                <td data-title="Total">
-                                    <span class="">{{ number_format($item->price * $item->qty)}} vnđ</span>
-                                    <?php $sum+=$item->price * $item->qty ?>
-                                </td>
-                            </tr>
+                                        <!-- End Quantity -->
+                                    </td>
+                                    <th>
+                                        <button class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 w-100 w-md-auto d-none d-md-inline-block">Cập nhật</button>
+                                    </th>
+                                    <td data-title="Total">
+                                        <span class="">{{ number_format($item->price * $item->qty)}} vnđ</span>
+                                        <?php $sum+=$item->price * $item->qty ?>
+                                    </td>
+                                </tr>
+                            </form>
                            @endforeach
                             <tr>
                                 <td colspan="6" class="border-top space-top-2 justify-content-center">
@@ -100,7 +106,7 @@
                                                 <!-- End Apply coupon Form -->
                                             </div>
                                             <div class="d-md-flex">
-                                                <button type="button" class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Xóa Giỏ Hàng</button>
+                                                <a href="{{ route('client.destroytocart') }}" class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Xóa Giỏ Hàng</a>
                                                @if (Auth::guard('khachhang')->check())
                                                     <a href="{{ route('client.checkoutcart') }}" class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 w-100 w-md-auto d-none d-md-inline-block">Thanh Toán</a>
                                                 @else
@@ -125,7 +131,7 @@
                             </tr>
                         </tbody>
                     </table>
-                </form>
+                {{-- </form> --}}
             </div>
             <div class="mb-8 cart-total">
                 <div class="row">
