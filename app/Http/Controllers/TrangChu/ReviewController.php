@@ -46,9 +46,12 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function reportComment($id)
     {
-        //
+       DB::table('binhluan')->where('bl_id',$id)->update([
+           'bl_baocao'=>1
+       ]);
+       return redirect()->back();
     }
 
     /**
@@ -71,7 +74,9 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('binhluan')->where('bl_id',$id)->delete();
+        return redirect()->back();
+
     }
 
 

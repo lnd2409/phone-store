@@ -10,6 +10,7 @@ use App\Http\Controllers\TrangChu\ReviewController;
 //admin
 use App\Http\Controllers\Admin\SanPhamAdminController;
 use App\Http\Controllers\Admin\StaffController;
+use App\Http\Controllers\Admin\BillController;
 use App\Http\Controllers\TrangChu\CartProductController;
 use App\Http\Controllers\TrangChu\CheckAuthController;
 use App\Http\Controllers\TrangChu\VNPayController;
@@ -59,6 +60,12 @@ Route::middleware(['checkAuthQuanTri'])->group(function () {
         Route::get('/quan-li-binh-luan',[ReviewController::class,'adminGetReview'])->name('getreview');
         Route::get('/chi-tiet-binh-luan/{id}',[ReviewController::class,'adminDetailReview'])->name('getdetailreview');
         Route::post('/tra-loi-binh-luan',[ReviewController::class,'adminRepReview'])->name('getrepreview');
+        Route::get('/xoa-binh-luan/{id}',[ReviewController::class,'destroy'])->name('destroycomment');
+
+        //Hóa đơn
+        Route::get('/hoa-don',[BillController::class,'index'])->name('getbill');
+        Route::get('/chi-tiet-hoa-don/{id}',[BillController::class,'detail'])->name('billdetail');
+        Route::get('/xoa-hoa-don/{id}',[BillController::class,'destroy'])->name('deletedetail');
     });
 });
 Route::view('/sign-in', 'admin.auth.sign-in')->name('admin.signIn');
@@ -98,4 +105,7 @@ Route::get('/ket-qua-thanh-toan',[VNPayController::class,'storePayCart'])->name(
 
 //Bình luận sản phẩm
 Route::post('/san-pham-binh-luan',[ReviewController::class,'store'])->name('client.submitreview');
+Route::get('/bao-cao-vi-pham/{id}',[ReviewController::class,'reportComment'])->name('client.reportcomment');
+
+
 

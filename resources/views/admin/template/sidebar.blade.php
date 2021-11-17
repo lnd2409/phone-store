@@ -36,6 +36,8 @@
             </li>
             <li><a href="{{ route('admin.getreview') }}"><i class="zmdi zmdi-blogger"></i><span>Bình luận</span> </a>
             </li>
+            <li><a href="{{ route('admin.getbill') }}"><i class="zmdi zmdi-blogger"></i><span>Đơn hàng</span> </a>
+            </li>
         </ul>
     </div>
     <!-- #Menu -->

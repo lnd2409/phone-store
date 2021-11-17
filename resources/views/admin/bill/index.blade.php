@@ -3,12 +3,12 @@
 <div class="block-header">
     <div class="row">
         <div class="col-lg-7 col-md-6 col-sm-12">
-            <h2>Quản lí bình luận</h2>
+            <h2>Quản lí Hóa đơn</h2>
         </div>
         <div class="col-lg-5 col-md-6 col-sm-12">
             <ul class="breadcrumb float-md-right">
                 <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
-                <li class="breadcrumb-item active">Bình luận</li>
+                <li class="breadcrumb-item active">Hóa đơn</li>
             </ul>
         </div>
     </div>
@@ -36,32 +36,21 @@
                     <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                         <thead>
                             <tr>
+                                <th>STT</th>
                                 <th>Tên khách hàng</th>
-                                <th>Tên sản phầm</th>
-                                <th>Nội dung</th>
-                                <th>Báo cáo vi phạm</th>
-                                <th style="width:250px !important">Quyền</th>
+                                <th style="width:130px !important">Quyền</th>
                             </tr>
                         </thead>
+                        <?php $i=1;?>
                         <tbody>
-                            @foreach ($binhluan as $item)
+                            @foreach ($donhang as $item)
                             <tr>
+                                <td>{{$i++}}</td>
                                 <td>{{ $item->kh_ten }}</td>
-                                <td>{{ $item->sp_ten }}</td>
-                                <td>{{ $item->ctbl_noidung }}</td> 
                                 <td>
-                                    @if ($item->bl_baocao ==0)
-                                        -
-                                    @else
-                                        <span style="color: red">Đã bị báo cáo</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    <a href="{{ route('client.product-detail',['id'=>$item->sp_id]) }}"
-                                        class="btn  btn-raised btn-success waves-effect">xem trang chủ</a>
-                                    <a href="{{ route('admin.getdetailreview',['id'=>$item->ctbl_id]) }}"
+                                    <a href="{{ route('admin.billdetail', ['id'=>$item->dh_id]) }}"
                                         class="btn  btn-raised btn-warning waves-effect">xem chi tiết</a>
-                                    <a  href="{{ route('admin.destroycomment', ['id'=>$item->bl_id]) }}"
+                                    <a  href="{{ route('admin.deletedetail', ['id'=>$item->dh_id]) }}"
                                         class="btn  btn-raised btn-danger waves-effect">Xóa</a>
                                 </td>
                             </tr>

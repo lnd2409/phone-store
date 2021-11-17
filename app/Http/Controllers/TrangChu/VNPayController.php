@@ -123,6 +123,16 @@ class VNPayController extends Controller
                    'sp_id'=>$value->id,
                    'dh_id'=>$donhang_id,
                ]);
+
+              //Cập nhật lại số lượng sản phẩm
+               $soluongsp = DB::table('sanpham')->where('sp_id',$value->id)->first();
+               $soluong = $soluongsp->sp_soluong;
+               DB::table('sanpham')->where('sp_id',$value->id)
+                ->update([
+                  'sp_soluong'=>$soluong-$value->qty
+                ])
+                ;
+
             }
            
             Session::forget('billInfo');

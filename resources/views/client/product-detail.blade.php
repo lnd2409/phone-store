@@ -655,26 +655,24 @@
                             </div> --}}
                             <!-- End Review Rating -->
 
-                            <p class="text-gray-90">
-                                {{$item->ctbl_noidung}}
-                            </p>
-
+                          
                             <!-- Reviewer -->
                             <div class="">
-                                <strong> {{$item->kh_ten}} </strong>
-                                <span class="font-size-13 text-gray-23">- April 3, 2019</span>
+                                <strong> {{$item->kh_ten}} </strong> &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="{{ route('client.reportcomment', ['id'=>$item->bl_id]) }}" title="Báo cáo vi phạm" class="font-size-13 text-gray-23"><i class="fa fa-flag" aria-hidden="true"></i></a>
                             </div>
+                              <p class="text-gray-90">
+                                {{$item->ctbl_noidung}}
+                                @foreach ($binhluan as $item1)
+                               @if ($item->ctbl_id == $item1->ctbl_idrep)
+                                    <div style="margin-left: 50px">
+                                       <span> <strong>Cửa hàng:</strong></span> {{$item1->ctbl_noidung}}
+                                    </div>
+                               @endif
+                           @endforeach
+                            </p>
                             <!-- End Reviewer -->
-                            @foreach ($binhluan as $item1)
-                                @if ($item->ctbl_id == $item1->ctbl_idrep)
-                                     <div style="margin: 50px">
-                                      
-                                             <p class="text-gray-90">
-                                                 <span>Cửa hàng: </span> {{$item1->ctbl_noidung}}
-                                            </p>
-                                     </div>
-                                @endif
-                            @endforeach
+                           
                         </div>
                         <!-- End Review -->
                             @endif
