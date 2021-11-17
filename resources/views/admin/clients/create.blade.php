@@ -18,7 +18,7 @@
 </div>
 <div class="container-fluid">
     <!-- Input -->
-    <form action="{{ route('admin.staffs.update',$quantri) }}" method="POST">
+    <form action="{{ route('admin.staffs.store') }}" method="POST">
         @csrf
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12">
@@ -29,8 +29,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" name="qt_ten" class="form-control" required
-                                            value="{{$quantri->qt_ten}}" />
+                                        <input type="text" name="qt_ten" class="form-control" required />
                                     </div>
                                 </div>
                             </div>
@@ -40,8 +39,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" name="qt_sdt" class="form-control"
-                                            value="{{$quantri->qt_sdt}}" />
+                                        <input type="text" name="qt_sdt" class="form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -51,8 +49,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" name="qt_email" class="form-control"
-                                            value="{{$quantri->qt_email}}" />
+                                        <input type="text" name="qt_email" class="form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -62,8 +59,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" name="qt_diachi" class="form-control"
-                                            value="{{$quantri->qt_diachi}}" />
+                                        <input type="text" name="qt_diachi" class="form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -74,10 +70,8 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                         <select name="qt_gioitinh" id="" class="form-control">
-                                            <option value="nam" @if($quantri->qt_gioitinh=='nam') selected @endif>Nam
-                                            </option>
-                                            <option value="nữ" @if($quantri->qt_gioitinh=='nữ') selected @endif>Nữ
-                                            </option>
+                                            <option value="nam">Nam</option>
+                                            <option value="nữ">Nữ</option>
                                         </select>
                                     </div>
                                 </div>
@@ -88,11 +82,9 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="radio" name="qt_active" value="1" id="active" checked
-                                            @if($quantri->qt_active==1) checked @endif><label
+                                        <input type="radio" name="qt_active" value="1" id="active" checked><label
                                             for="active">Active</label>
-                                        <input type="radio" name="qt_active" value="0" id="inactive"
-                                            @if($quantri->qt_active==0) checked @endif><label
+                                        <input type="radio" name="qt_active" value="0" id="inactive"><label
                                             for="inactive">Inactive</label>
                                     </div>
                                 </div>
@@ -103,8 +95,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" readonly
-                                            value="{{$quantri->username}}" />
+                                        <input type="text" name="username" class="form-control" required />
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +105,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" name="password" class="form-control" />
+                                        <input type="text" name="password" class="form-control" required />
                                     </div>
                                 </div>
                             </div>
@@ -125,16 +116,15 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                         @foreach($q as $key=>$item)
-                                        <input type="radio" name="q_id" value="{{$item->q_id}}"
-                                            @if($quantri->q_id==$item->q_id) checked @endif
-                                        id="{{$key}}quyen"><label for="{{$key}}quyen">{{$item->q_ten}}</label>
+                                        <input type="radio" name="q_id" value="{{$item->q_id}}" checked
+                                            id="{{$key}}quyen"><label for="{{$key}}quyen">{{$item->q_ten}}</label>
                                         @endforeach
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-raised btn-primary m-t-15 waves-effect">Cập nhật nhân
+                        <button type="submit" class="btn btn-raised btn-primary m-t-15 waves-effect">Thêm nhân
                             viên</button>
                         <!-- #END# Select -->
                     </div>

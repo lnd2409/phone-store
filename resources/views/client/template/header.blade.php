@@ -593,6 +593,13 @@
                                 </li>
                                 <!-- End Home -->
                                 @endforeach
+                                <li class="nav-item hs-has-mega-menu u-header__nav-item"
+                                    data-event="hover"
+                                    data-animation-in="slideInUp"
+                                    data-animation-out="fadeOut"
+                                    data-position="left">
+                                    <a id="homeMegaMenu" class="nav-link u-header__nav-link" href="{{ route('client.listPost') }}" aria-haspopup="true" aria-expanded="false">Bài viết</a>
+                                </li>
                             </ul>
                         </div>
                         <!-- End Navigation -->

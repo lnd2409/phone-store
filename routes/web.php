@@ -11,6 +11,7 @@ use App\Http\Controllers\TrangChu\ReviewController;
 use App\Http\Controllers\Admin\SanPhamAdminController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\BillController;
+use App\Http\Controllers\Admin\ClientController as AdminClientController;
 use App\Http\Controllers\TrangChu\CartProductController;
 use App\Http\Controllers\TrangChu\CheckAuthController;
 use App\Http\Controllers\TrangChu\VNPayController;
@@ -36,13 +37,22 @@ Route::middleware(['checkAuthQuanTri'])->group(function () {
         Route::get('them-san-pham', [SanPhamAdminController::class, 'add'])->name('product.add');
         Route::post('xu-ly-them-san-pham', [SanPhamAdminController::class, 'store'])->name('product.store');
         Route::get('{idTheLoai}/thuoc-tinh', [SanPhamAdminController::class, 'ajaxThuocTinh'])->name('product.ajax.cate');
-        Route::prefix('nhan-vien')->name('staffs.')->group(function () {
-            Route::get('/', [StaffController::class,'index'])->name('index');
-            Route::get('/them', [StaffController::class,'create'])->name('create');
-            Route::post('/luu', [StaffController::class,'store'])->name('store');
-            Route::get('/sua/{quantri}', [StaffController::class,'edit'])->name('edit');
-            Route::post('/cap-nhat/{quantri}', [StaffController::class,'update'])->name('update');
-            Route::post('/xoa/{quantri}', [StaffController::class,'destroy'])->name('destroy');
+        Route::group(['middleware' => 'checkRole:1'], function () {//admin
+        
+            Route::prefix('nhan-vien')->name('staffs.')->group(function () {
+                Route::get('/', [StaffController::class,'index'])->name('index');
+                Route::get('/them', [StaffController::class,'create'])->name('create');
+                Route::post('/luu', [StaffController::class,'store'])->name('store');
+                Route::get('/sua/{quantri}', [StaffController::class,'edit'])->name('edit');
+                Route::post('/cap-nhat/{quantri}', [StaffController::class,'update'])->name('update');
+                Route::post('/xoa/{quantri}', [StaffController::class,'destroy'])->name('destroy');
+                
+            });
+        });
+        Route::prefix('khach-hang')->name('clients.')->group(function () {
+            Route::get('/', [AdminClientController::class,'index'])->name('index');
+            Route::post('/khoi-phuc/{khachhang}', [AdminClientController::class,'restore'])->name('restore');
+            Route::post('/xoa/{khachhang}', [AdminClientController::class,'destroy'])->name('destroy');
             
         });
         Route::prefix('bai-viet')->name('posts.')->group(function () {
@@ -90,8 +100,10 @@ Route::get('/dang-xuat',[CheckAuthController::class,'checkLogout'])->name('clien
 
 
 Route::get('/', [ClientController::class, 'index'])->name('client.index');
+Route::get('/danh-muc/bai-viet',[SanPhamController::class, 'listPost'])->name('client.listPost');
 Route::get('/danh-muc/{idCate}',[SanPhamController::class, 'getProductByCategory'])->name('client.get-product-by-cat');
 Route::get('san-pham/{id}',[SanPhamController::class, 'productDetail'])->name('client.product-detail');
+Route::get('chi-tiet-bai-viet/{tintuc}',[SanPhamController::class, 'postDetail'])->name('client.post-detail');
 
 
 //Thêm sản phẩm vào giỏ hàng
