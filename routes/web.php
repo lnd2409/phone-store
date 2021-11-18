@@ -5,10 +5,13 @@ use App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrangChu\ClientController;
 use App\Http\Controllers\TrangChu\SanPhamController;
+use App\Http\Controllers\TrangChu\ReviewController;
 
 //admin
 use App\Http\Controllers\Admin\SanPhamAdminController;
 use App\Http\Controllers\Admin\StaffController;
+use App\Http\Controllers\Admin\BillController;
+use App\Http\Controllers\Admin\ClientController as AdminClientController;
 use App\Http\Controllers\TrangChu\CartProductController;
 use App\Http\Controllers\TrangChu\CheckAuthController;
 use App\Http\Controllers\TrangChu\VNPayController;
@@ -43,6 +46,24 @@ Route::middleware(['checkAuthQuanTri'])->group(function () {
             Route::get('/sua/{quantri}', [StaffController::class,'edit'])->name('edit');
             Route::post('/cap-nhat/{quantri}', [StaffController::class,'update'])->name('update');
             Route::post('/xoa/{quantri}', [StaffController::class,'destroy'])->name('destroy');
+        });
+
+        Route::group(['middleware' => 'checkRole:1'], function () {//admin
+
+            Route::prefix('nhan-vien')->name('staffs.')->group(function () {
+                Route::get('/', [StaffController::class,'index'])->name('index');
+                Route::get('/them', [StaffController::class,'create'])->name('create');
+                Route::post('/luu', [StaffController::class,'store'])->name('store');
+                Route::get('/sua/{quantri}', [StaffController::class,'edit'])->name('edit');
+                Route::post('/cap-nhat/{quantri}', [StaffController::class,'update'])->name('update');
+                Route::post('/xoa/{quantri}', [StaffController::class,'destroy'])->name('destroy');
+
+            });
+        });
+        Route::prefix('khach-hang')->name('clients.')->group(function () {
+            Route::get('/', [AdminClientController::class,'index'])->name('index');
+            Route::post('/khoi-phuc/{khachhang}', [AdminClientController::class,'restore'])->name('restore');
+            Route::post('/xoa/{khachhang}', [AdminClientController::class,'destroy'])->name('destroy');
 
         });
         Route::prefix('bai-viet')->name('posts.')->group(function () {
@@ -63,6 +84,16 @@ Route::middleware(['checkAuthQuanTri'])->group(function () {
             Route::get('/show-thuoc-tinh', [CategoryController::class,'getAttrAjax'])->name('getAttr');
         });
 
+        //Review
+        Route::get('/quan-li-binh-luan',[ReviewController::class,'adminGetReview'])->name('getreview');
+        Route::get('/chi-tiet-binh-luan/{id}',[ReviewController::class,'adminDetailReview'])->name('getdetailreview');
+        Route::post('/tra-loi-binh-luan',[ReviewController::class,'adminRepReview'])->name('getrepreview');
+        Route::get('/xoa-binh-luan/{id}',[ReviewController::class,'destroy'])->name('destroycomment');
+
+        //Hóa đơn
+        Route::get('/hoa-don',[BillController::class,'index'])->name('getbill');
+        Route::get('/chi-tiet-hoa-don/{id}',[BillController::class,'detail'])->name('billdetail');
+        Route::get('/xoa-hoa-don/{id}',[BillController::class,'destroy'])->name('deletedetail');
     });
 });
 Route::view('/sign-in', 'admin.auth.sign-in')->name('admin.signIn');
@@ -87,13 +118,17 @@ Route::get('/dang-xuat',[CheckAuthController::class,'checkLogout'])->name('clien
 
 
 Route::get('/', [ClientController::class, 'index'])->name('client.index');
+Route::get('/danh-muc/bai-viet',[SanPhamController::class, 'listPost'])->name('client.listPost');
 Route::get('/danh-muc/{idCate}',[SanPhamController::class, 'getProductByCategory'])->name('client.get-product-by-cat');
 Route::get('san-pham/{id}',[SanPhamController::class, 'productDetail'])->name('client.product-detail');
+Route::get('chi-tiet-bai-viet/{tintuc}',[SanPhamController::class, 'postDetail'])->name('client.post-detail');
 
 
 //Thêm sản phẩm vào giỏ hàng
 Route::post('/san-pham-them-gio-hang/{id}',[CartProductController::class,'addProductToCart'])->name('client.addtocart');
+Route::post('/cap-nhat-gio-hang/{id}',[CartProductController::class,'updateProductToCart'])->name('client.updatetocart');
 Route::get('/chi-tiet-gio-hang',[CartProductController::class,'getProductToCart'])->name('client.gettocart');
+Route::get('/xoa-gio-hang',[CartProductController::class,'destroyProductToCart'])->name('client.destroytocart');
 Route::get('/thanh-toan-don-hang',[VNPayController::class,'index'])->name('client.checkoutcart');
 Route::post('/thanh-toan-don-hang',[VNPayController::class,'payCart'])->name('client.paymentcart');
 Route::get('/ket-qua-thanh-toan',[VNPayController::class,'storePayCart'])->name('client.returnvnpay');
@@ -102,3 +137,6 @@ Route::get('/ket-qua-thanh-toan',[VNPayController::class,'storePayCart'])->name(
 Route::prefix('/san-pham')->name('product.')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('index');
 });
+//Bình luận sản phẩm
+Route::post('/san-pham-binh-luan',[ReviewController::class,'store'])->name('client.submitreview');
+Route::get('/bao-cao-vi-pham/{id}',[ReviewController::class,'reportComment'])->name('client.reportcomment');

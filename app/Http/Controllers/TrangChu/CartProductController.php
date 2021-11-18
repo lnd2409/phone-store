@@ -21,5 +21,19 @@ class CartProductController extends Controller
         $cart = Cart::content();
        return view('client.giohang.chi-tiet-gio-hang',compact('cart'));
     }
+    // cập nhật giỏ hàng
+    public function updateProductToCart(Request $request,$id){
+        Cart::update($id, $request->qty);
+        $cart = Cart::content();
+       return view('client.giohang.chi-tiet-gio-hang',compact('cart'));
+    }
+
+
+    public function destroyProductToCart(){
+       Cart::destroy();
+       return redirect()->route('client.index');
+    }
+
+
      
 }

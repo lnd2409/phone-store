@@ -38,3 +38,4 @@
 <script src="{{ asset('template/admin') }}/assets/js/pages/forms/editors.js"></script>
 @toastr_js
 @toastr_render
+@stack('scripts')

@@ -18,8 +18,13 @@ class CreateChitietbinhluanTable extends Migration
             $table->text('ctbl_noidung');
             $table->float('ctbl_danhgiasao')->nullable();
             $table->integer('ctbl_idrep')->nullable();
+
             $table->bigInteger('bl_id')->unsigned();
             $table->foreign('bl_id')->references('bl_id')->on('binhluan')->onDelete('CASCADE');
+
+            $table->bigInteger('qt_id')->nullable()->unsigned();
+            $table->foreign('qt_id')->references('qt_id')->on('quantri')->onDelete('CASCADE');
+
             $table->timestamps();
         });
     }
