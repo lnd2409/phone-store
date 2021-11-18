@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\TrangChu\CartProductController;
 use App\Http\Controllers\TrangChu\CheckAuthController;
 use App\Http\Controllers\TrangChu\VNPayController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\TrangChu\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,7 +43,7 @@ Route::middleware(['checkAuthQuanTri'])->group(function () {
             Route::get('/sua/{quantri}', [StaffController::class,'edit'])->name('edit');
             Route::post('/cap-nhat/{quantri}', [StaffController::class,'update'])->name('update');
             Route::post('/xoa/{quantri}', [StaffController::class,'destroy'])->name('destroy');
-            
+
         });
         Route::prefix('bai-viet')->name('posts.')->group(function () {
             Route::get('/', [PostController::class,'index'])->name('index');
@@ -51,8 +53,16 @@ Route::middleware(['checkAuthQuanTri'])->group(function () {
             Route::post('/cap-nhat/{tintuc}', [PostController::class,'update'])->name('update');
             Route::post('/xoa/{tintuc}', [PostController::class,'destroy'])->name('destroy');
             Route::get('/detail/{tintuc}', [PostController::class,'detail'])->name('detail');
-            
+
         });
+
+        Route::prefix('danh-muc')->name('cat.')->group(function () {
+            Route::get('/', [CategoryController::class,'index'])->name('index');
+            Route::get('/them-danh-muc/{id}/{action}', [CategoryController::class,'create'])->name('create');
+            Route::post('/xu-ly-them', [CategoryController::class,'store'])->name('store');
+            Route::get('/show-thuoc-tinh', [CategoryController::class,'getAttrAjax'])->name('getAttr');
+        });
+
     });
 });
 Route::view('/sign-in', 'admin.auth.sign-in')->name('admin.signIn');
@@ -87,3 +97,8 @@ Route::get('/chi-tiet-gio-hang',[CartProductController::class,'getProductToCart'
 Route::get('/thanh-toan-don-hang',[VNPayController::class,'index'])->name('client.checkoutcart');
 Route::post('/thanh-toan-don-hang',[VNPayController::class,'payCart'])->name('client.paymentcart');
 Route::get('/ket-qua-thanh-toan',[VNPayController::class,'storePayCart'])->name('client.returnvnpay');
+
+//Sản phẩm
+Route::prefix('/san-pham')->name('product.')->group(function () {
+    Route::get('/', [ProductController::class, 'index'])->name('index');
+});

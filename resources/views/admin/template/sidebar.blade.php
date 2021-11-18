@@ -27,7 +27,7 @@
                         phẩm</span> </a>
                 <ul class="ml-menu">
                     <li><a href="{{ route('admin.product.list') }}">Danh sách sản phẩm</a></li>
-                    <li><a href="{{ route('admin.product.add') }}">Thêm sản phẩm</a></li>
+                    <li><a href="{{ route('admin.cat.index') }}">Danh mục sản phẩm</a></li>
                 </ul>
             </li>
             <li><a href="{{ route('admin.staffs.index') }}"><i class="zmdi zmdi-email"></i><span>Nhân viên</span> </a>

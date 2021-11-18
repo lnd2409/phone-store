@@ -172,6 +172,7 @@
 <section class="content home">
     @yield('content')
 </section>
+{{-- @jquery --}}
 @include('admin.template.js')
 @stack('ajax.product')
 </body>
