@@ -8,6 +8,7 @@ use App\Models\SanPham;
 use App\Models\TheLoai;
 use App\Models\BinhLuan;
 use App\Models\HinhAnhSanPham;
+use App\Models\Tintuc;
 use Session;
 use DB;
 
@@ -44,5 +45,16 @@ class SanPhamController extends Controller
             return back()->with('error','Không thể so sánh 2 sản phẩm khác loại');
         }
         return view('client.compare',compact('sanpham1','sanpham2'));
+    }
+
+    public function listPost()
+    {
+        $post=Tintuc::where('tt_trangthai',1)->get();
+        return view('client.post',compact('post'));
+    }
+
+    public function postDetail(Tintuc $tintuc)
+    {
+        return view('client.post-detail',compact('tintuc'));
     }
 }

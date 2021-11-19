@@ -582,17 +582,77 @@
                                     data-position="left">
                                     <a id="homeMegaMenu" class="nav-link u-header__nav-link" href="{{ route('client.index') }}" aria-haspopup="true" aria-expanded="false">Trang chủ</a>
                                 </li>
-                                @foreach ($theLoaiView as $item)
+                                {{-- @foreach ($theLoaiView as $item) --}}
                                 <!-- Home -->
+                                <li class="nav-item hs-has-mega-menu u-header__nav-item" data-event="hover" data-animation-in="slideInUp" data-animation-out="fadeOut">
+                                    <a id="smartphonesMegaMenu" class="nav-link u-header__nav-link u-header__nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false">Danh mục</a>
+
+                                    <!-- Smart Phones - Mega Menu -->
+                                    <div class="hs-mega-menu w-100 u-header__sub-menu animated fadeOut" aria-labelledby="smartphonesMegaMenu" style="display: none;">
+                                        <div class="row u-header__mega-menu-wrapper">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <span class="u-header__sub-menu-title">Loại sản phẩm</span>
+                                                        <ul class="u-header__sub-menu-nav-group mb-3">
+                                                            @foreach ($theLoaiView as $item)
+                                                                <li><a href="{{ route('client.get-product-by-cat', ['idCate'=>$item->tl_tenkhongdau]) }}" class="nav-link u-header__sub-menu-nav-link">{{ $item->tl_ten }}</a></li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <span class="u-header__sub-menu-title">Nhà cung cấp</span>
+                                                        <ul class="u-header__sub-menu-nav-group mb-3">
+                                                            <li><a href="#" class="nav-link u-header__sub-menu-nav-link">Headsets</a></li>
+                                                            <li><a href="#" class="nav-link u-header__sub-menu-nav-link">Cables &amp; Chargers</a></li>
+                                                            <li><a href="#" class="nav-link u-header__sub-menu-nav-link">Electronic Accessories</a></li>
+                                                            <li><a href="#" class="nav-link u-header__sub-menu-nav-link">Selfie Sticks</a></li>
+                                                            <li><a href="#" class="nav-link u-header__sub-menu-nav-link">Internal Batteries</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Smart Phones - Mega Menu -->
+                                </li>
                                 <li class="nav-item hs-has-mega-menu u-header__nav-item"
                                     data-event="hover"
                                     data-animation-in="slideInUp"
                                     data-animation-out="fadeOut"
                                     data-position="left">
-                                    <a id="homeMegaMenu" class="nav-link u-header__nav-link" href="{{ route('client.get-product-by-cat', ['idCate'=>$item->tl_tenkhongdau]) }}" aria-haspopup="true" aria-expanded="false">{{ $item->tl_ten }}</a>
+                                    <a id="homeMegaMenu" class="nav-link u-header__nav-link" href="{{ route('product.index') }}" aria-haspopup="true" aria-expanded="false">Sản phẩm</a>
+                                </li>
+                                <li class="nav-item hs-has-mega-menu u-header__nav-item"
+                                    data-event="hover"
+                                    data-animation-in="slideInUp"
+                                    data-animation-out="fadeOut"
+                                    data-position="left">
+                                    <a id="homeMegaMenu" class="nav-link u-header__nav-link" href="#" aria-haspopup="true" aria-expanded="false">Tin tức</a>
+                                </li>
+                                <li class="nav-item hs-has-mega-menu u-header__nav-item"
+                                    data-event="hover"
+                                    data-animation-in="slideInUp"
+                                    data-animation-out="fadeOut"
+                                    data-position="left">
+                                    <a id="homeMegaMenu" class="nav-link u-header__nav-link" href="#" aria-haspopup="true" aria-expanded="false">Góp ý</a>
+                                </li>
+                                <li class="nav-item hs-has-mega-menu u-header__nav-item"
+                                    data-event="hover"
+                                    data-animation-in="slideInUp"
+                                    data-animation-out="fadeOut"
+                                    data-position="left">
+                                    <a id="homeMegaMenu" class="nav-link u-header__nav-link" href="#" aria-haspopup="true" aria-expanded="false">Giới thiệu</a>
                                 </li>
                                 <!-- End Home -->
-                                @endforeach
+                                {{-- @endforeach --}}
+                                <li class="nav-item hs-has-mega-menu u-header__nav-item"
+                                    data-event="hover"
+                                    data-animation-in="slideInUp"
+                                    data-animation-out="fadeOut"
+                                    data-position="left">
+                                    <a id="homeMegaMenu" class="nav-link u-header__nav-link" href="{{ route('client.listPost') }}" aria-haspopup="true" aria-expanded="false">Bài viết</a>
+                                </li>
                             </ul>
                         </div>
                         <!-- End Navigation -->

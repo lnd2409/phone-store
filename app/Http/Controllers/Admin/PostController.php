@@ -31,7 +31,7 @@ class PostController extends Controller
     public function create()
     {
         return view('admin.posts.create');
-        
+
     }
 
     /**
@@ -115,7 +115,7 @@ class PostController extends Controller
 
             $storagePath = Storage::disk('tt_hinhanh')->put($path, $request->file('tt_hinhanh'));
             $tintuc->update(['tt_hinhanh'=>$storagePath]);
-    
+
         }
     }
 }

@@ -12,7 +12,7 @@
                     role="button"> keyboard_arrow_down </i>
                 <ul class="dropdown-menu slideUp">
                     <li><a href="profile.html"><i class="material-icons">person</i>Thông tin</a></li>
-                    <li><a href="sign-in.html"><i class="material-icons">input</i>Đăng xuất</a></li>
+                    <li><a href="{{ route('admin.logout') }}"><i class="material-icons">input</i>Đăng xuất</a></li>
                 </ul>
             </div>
             <div class="email">{{ Auth::guard('quantri')->user()->qt_email }}</div>
@@ -27,10 +27,14 @@
                         phẩm</span> </a>
                 <ul class="ml-menu">
                     <li><a href="{{ route('admin.product.list') }}">Danh sách sản phẩm</a></li>
-                    <li><a href="{{ route('admin.product.add') }}">Thêm sản phẩm</a></li>
+                    <li><a href="{{ route('admin.cat.index') }}">Danh mục sản phẩm</a></li>
                 </ul>
             </li>
-            <li><a href="{{ route('admin.staffs.index') }}"><i class="zmdi zmdi-email"></i><span>Nhân viên</span> </a>
+            @if(Auth::guard('quantri')->user()->q_id==1)
+                <li><a href="{{ route('admin.staffs.index') }}"><i class="zmdi zmdi-email"></i><span>Nhân viên</span> </a>
+                </li>
+            @endif
+            <li><a href="{{ route('admin.clients.index') }}"><i class="zmdi zmdi-blogger"></i><span>Khách hàng</span> </a>
             </li>
             <li><a href="{{ route('admin.posts.index') }}"><i class="zmdi zmdi-blogger"></i><span>Bài viết</span> </a>
             </li>

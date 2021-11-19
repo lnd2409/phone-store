@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\checkAuthQuanTri;
+use App\Http\Middleware\checkRole;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -65,5 +66,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'checkAuthQuanTri' => checkAuthQuanTri::class,
+        'checkRole' => checkRole::class,
     ];
 }
