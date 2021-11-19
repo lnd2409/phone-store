@@ -38,6 +38,8 @@
             </li>
             <li><a href="{{ route('admin.getbill') }}"><i class="zmdi zmdi-blogger"></i><span>Đơn hàng</span> </a>
             </li>
+            <li><a href="{{ route('admin.warehouse') }}"><i class="zmdi zmdi-blogger"></i><span>Kho hàng</span> </a>
+            </li>
         </ul>
     </div>
     <!-- #Menu -->

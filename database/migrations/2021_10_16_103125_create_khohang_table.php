@@ -15,7 +15,7 @@ class CreateKhohangTable extends Migration
     {
         Schema::create('khohang', function (Blueprint $table) {
             $table->id('khohang_id');
-            $table->string('khohang_tensnapham');
+            $table->string('khohang_tensanpham');
             $table->integer('khohang_soluongnhap');
             $table->integer('khohang_soluongxuat')->nullable();
 

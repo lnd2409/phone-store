@@ -11,6 +11,7 @@ use App\Http\Controllers\TrangChu\ReviewController;
 use App\Http\Controllers\Admin\SanPhamAdminController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\BillController;
+use App\Http\Controllers\Admin\WarehouseController;
 use App\Http\Controllers\TrangChu\CartProductController;
 use App\Http\Controllers\TrangChu\CheckAuthController;
 use App\Http\Controllers\TrangChu\VNPayController;
@@ -66,6 +67,15 @@ Route::middleware(['checkAuthQuanTri'])->group(function () {
         Route::get('/hoa-don',[BillController::class,'index'])->name('getbill');
         Route::get('/chi-tiet-hoa-don/{id}',[BillController::class,'detail'])->name('billdetail');
         Route::get('/xoa-hoa-don/{id}',[BillController::class,'destroy'])->name('deletedetail');
+
+        // Kho hàng
+        Route::get('/kho-hang',[WarehouseController::class,'index'])->name('warehouse');
+        Route::get('/kho-hang-them',[WarehouseController::class,'getWarehouses'])->name('getwarehouses');
+        Route::post('/kho-hang-them',[WarehouseController::class,'sotreWarehouses'])->name('submitwarehouses');
+        Route::get('/kho-hang-cap-nhat/{id}',[WarehouseController::class,'updateWarehouses'])->name('updatewarehouses');
+        Route::post('/kho-hang-cap-nhat-luu',[WarehouseController::class,'submitWarehouses'])->name('luuwarehouses');
+        Route::get('/kho-hang-xoa/{id}',[WarehouseController::class,'destroyWarehouses'])->name('destroywarehouses');
+
     });
 });
 Route::view('/sign-in', 'admin.auth.sign-in')->name('admin.signIn');
