@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 /**
  * Class Tintuc
- * 
+ *
  * @property int $tt_id
  * @property string $tt_tieude
  * @property string $tt_noidung
@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Storage;
  * @property int $sp_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
+ *
  * @property Quantri $quantri
  * @property Sanpham $sanpham
  *

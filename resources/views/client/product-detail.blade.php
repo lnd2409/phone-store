@@ -394,6 +394,7 @@
                 </div>
             </div>
         </div>
+        {{-- <h1>{{ dd(Session::get('arrProduct')) }}</h1> --}}
         <!-- End Single Product Body -->
         <!-- Single Product Tab -->
         <div class="mb-8">
@@ -572,22 +573,6 @@
                                 <!-- Form -->
                                 <form class="js-validate" novalidate="novalidate" action="{{ route('client.submitreview') }}" method="POST">
                                     @csrf
-                                    {{-- <div class="row align-items-center mb-4">
-                                        <div class="col-md-4 col-lg-3">
-                                            <label for="rating" class="form-label mb-0">Your Review</label>
-                                        </div>
-                                        <div class="col-md-8 col-lg-9">
-                                            <a href="#" class="d-block">
-                                                <div class="text-warning text-ls-n2 font-size-16">
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div> --}}
                                     <div class="js-form-message form-group mb-3 row">
                                         <div class="col-md-4 col-lg-3">
                                             {{-- <label for="descriptionTextarea" class="form-label">Your Review</label> --}}
@@ -600,29 +585,6 @@
                                         <input type="hidden" name="kh_id" value=" {{Auth::guard('khachhang')->id()}}">
                                         <input type="hidden" name="sp_id" value=" {{$sanPham->sp_id}} ">
                                     </div>
-                                    {{-- <div class="js-form-message form-group mb-3 row">
-                                        <div class="col-md-4 col-lg-3">
-                                            <label for="inputName" class="form-label">Name <span
-                                                    class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input type="text" class="form-control" name="name" id="inputName"
-                                                aria-label="Alex Hecker" required="" data-msg="Please enter your name."
-                                                data-error-class="u-has-error" data-success-class="u-has-success">
-                                        </div>
-                                    </div>
-                                    <div class="js-form-message form-group mb-3 row">
-                                        <div class="col-md-4 col-lg-3">
-                                            <label for="emailAddress" class="form-label">Email <span
-                                                    class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input type="email" class="form-control" name="emailAddress"
-                                                id="emailAddress" aria-label="alexhecker@pixeel.com" required=""
-                                                data-msg="Please enter a valid email address."
-                                                data-error-class="u-has-error" data-success-class="u-has-success">
-                                        </div>
-                                    </div> --}}
                                     <div class="row">
                                         <div class="offset-md-4 offset-lg-3 col-auto">
                                            @if (Auth::guard('khachhang')->check())
@@ -655,7 +617,7 @@
                             </div> --}}
                             <!-- End Review Rating -->
 
-                          
+
                             <!-- Reviewer -->
                             <div class="">
                                 <strong> {{$item->kh_ten}} </strong> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -672,12 +634,12 @@
                            @endforeach
                             </p>
                             <!-- End Reviewer -->
-                           
+
                         </div>
                         <!-- End Review -->
                             @endif
                         @endforeach
-                        
+
                     </div>
                 </div>
             </div>
@@ -688,27 +650,27 @@
         <div class="mb-6">
             <div
                 class="d-flex justify-content-between align-items-center border-bottom border-color-1 flex-lg-nowrap flex-wrap mb-4">
-                <h3 class="section-title mb-0 pb-2 font-size-22">Related products</h3>
+                <h3 class="section-title mb-0 pb-2 font-size-22">Sản phẩm liên quan</h3>
             </div>
             <ul class="row list-unstyled products-group no-gutters">
+                @foreach ($sanPhamLienQuan as $item)
                 <li class="col-6 col-md-3 col-xl-2gdot4-only col-wd-2 product-item">
                     <div class="product-item__outer h-100">
                         <div class="product-item__inner px-xl-4 p-3">
                             <div class="product-item__body pb-xl-2">
                                 <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html"
-                                        class="font-size-12 text-gray-5">Speakers</a></div>
+                                        class="font-size-12 text-gray-5">{{ $item->theloai->tl_ten }}</a></div>
                                 <h5 class="mb-1 product-item__title"><a href="../shop/single-product-fullwidth.html"
-                                        class="text-blue font-weight-bold">Wireless Audio System Multiroom 360 degree Full
-                                        base audio</a></h5>
+                                        class="text-blue font-weight-bold">{{ $item->sp_ten }}</a></h5>
                                 <div class="mb-2">
                                     <a href="../shop/single-product-fullwidth.html" class="d-block text-center"><img
                                             class="img-fluid"
-                                            src="{{ asset('template/client') }}/assets/img/212X200/img1.jpg"
+                                            src="{{ asset($item->hasp_duongdan) }}"
                                             alt="Image Description"></a>
                                 </div>
                                 <div class="flex-center-between mb-1">
                                     <div class="prodcut-price">
-                                        <div class="text-gray-100">$685,00</div>
+                                        <div class="text-gray-100">{{ number_format($item->sp_gia) }}</div>
                                     </div>
                                     <div class="d-none d-xl-block prodcut-add-cart">
                                         <a href="../shop/single-product-fullwidth.html"
@@ -717,292 +679,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="product-item__footer">
+                            {{-- <div class="product-item__footer">
                                 <div class="border-top pt-2 flex-center-between flex-wrap">
                                     <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
                                             class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
                                     <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
                                             class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </li>
-                <li class="col-6 col-md-3 col-xl-2gdot4-only col-wd-2 product-item">
-                    <div class="product-item__outer h-100">
-                        <div class="product-item__inner px-xl-4 p-3">
-                            <div class="product-item__body pb-xl-2">
-                                <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html"
-                                        class="font-size-12 text-gray-5">Speakers</a></div>
-                                <h5 class="mb-1 product-item__title"><a href="../shop/single-product-fullwidth.html"
-                                        class="text-blue font-weight-bold">Tablet White EliteBook Revolve 810 G2</a></h5>
-                                <div class="mb-2">
-                                    <a href="../shop/single-product-fullwidth.html" class="d-block text-center"><img
-                                            class="img-fluid"
-                                            src="{{ asset('template/client') }}/assets/img/212X200/img2.jpg"
-                                            alt="Image Description"></a>
-                                </div>
-                                <div class="flex-center-between mb-1">
-                                    <div class="prodcut-price d-flex align-items-center position-relative">
-                                        <ins class="font-size-20 text-red text-decoration-none">$1999,00</ins>
-                                        <del class="font-size-12 tex-gray-6 position-absolute bottom-100">$2 299,00</del>
-                                    </div>
-                                    <div class="d-none d-xl-block prodcut-add-cart">
-                                        <a href="../shop/single-product-fullwidth.html"
-                                            class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                class="ec ec-add-to-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-item__footer">
-                                <div class="border-top pt-2 flex-center-between flex-wrap">
-                                    <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
-                                            class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                    <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
-                                            class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-6 col-md-3 col-xl-2gdot4-only col-wd-2 product-item">
-                    <div class="product-item__outer h-100">
-                        <div class="product-item__inner px-xl-4 p-3">
-                            <div class="product-item__body pb-xl-2">
-                                <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html"
-                                        class="font-size-12 text-gray-5">Speakers</a></div>
-                                <h5 class="mb-1 product-item__title"><a href="../shop/single-product-fullwidth.html"
-                                        class="text-blue font-weight-bold">Purple Solo 2 Wireless</a></h5>
-                                <div class="mb-2">
-                                    <a href="../shop/single-product-fullwidth.html" class="d-block text-center"><img
-                                            class="img-fluid"
-                                            src="{{ asset('template/client') }}/assets/img/212X200/img3.jpg"
-                                            alt="Image Description"></a>
-                                </div>
-                                <div class="flex-center-between mb-1">
-                                    <div class="prodcut-price">
-                                        <div class="text-gray-100">$685,00</div>
-                                    </div>
-                                    <div class="d-none d-xl-block prodcut-add-cart">
-                                        <a href="../shop/single-product-fullwidth.html"
-                                            class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                class="ec ec-add-to-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-item__footer">
-                                <div class="border-top pt-2 flex-center-between flex-wrap">
-                                    <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
-                                            class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                    <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
-                                            class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-6 col-md-3 col-xl-2gdot4-only col-wd-2 product-item remove-divider-md-lg">
-                    <div class="product-item__outer h-100">
-                        <div class="product-item__inner px-xl-4 p-3">
-                            <div class="product-item__body pb-xl-2">
-                                <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html"
-                                        class="font-size-12 text-gray-5">Speakers</a></div>
-                                <h5 class="mb-1 product-item__title"><a href="../shop/single-product-fullwidth.html"
-                                        class="text-blue font-weight-bold">Smartphone 6S 32GB LTE</a></h5>
-                                <div class="mb-2">
-                                    <a href="../shop/single-product-fullwidth.html" class="d-block text-center"><img
-                                            class="img-fluid"
-                                            src="{{ asset('template/client') }}/assets/img/212X200/img4.jpg"
-                                            alt="Image Description"></a>
-                                </div>
-                                <div class="flex-center-between mb-1">
-                                    <div class="prodcut-price">
-                                        <div class="text-gray-100">$685,00</div>
-                                    </div>
-                                    <div class="d-none d-xl-block prodcut-add-cart">
-                                        <a href="../shop/single-product-fullwidth.html"
-                                            class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                class="ec ec-add-to-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-item__footer">
-                                <div class="border-top pt-2 flex-center-between flex-wrap">
-                                    <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
-                                            class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                    <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
-                                            class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-6 col-md-3 col-xl-2gdot4-only col-wd-2 product-item remove-divider-xl">
-                    <div class="product-item__outer h-100">
-                        <div class="product-item__inner px-xl-4 p-3">
-                            <div class="product-item__body pb-xl-2">
-                                <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html"
-                                        class="font-size-12 text-gray-5">Speakers</a></div>
-                                <h5 class="mb-1 product-item__title"><a href="../shop/single-product-fullwidth.html"
-                                        class="text-blue font-weight-bold">Widescreen NX Mini F1 SMART NX</a></h5>
-                                <div class="mb-2">
-                                    <a href="../shop/single-product-fullwidth.html" class="d-block text-center"><img
-                                            class="img-fluid"
-                                            src="{{ asset('template/client') }}/assets/img/212X200/img5.jpg"
-                                            alt="Image Description"></a>
-                                </div>
-                                <div class="flex-center-between mb-1">
-                                    <div class="prodcut-price">
-                                        <div class="text-gray-100">$685,00</div>
-                                    </div>
-                                    <div class="d-none d-xl-block prodcut-add-cart">
-                                        <a href="../shop/single-product-fullwidth.html"
-                                            class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                class="ec ec-add-to-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-item__footer">
-                                <div class="border-top pt-2 flex-center-between flex-wrap">
-                                    <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
-                                            class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                    <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
-                                            class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-6 col-md-3 col-xl-2gdot4-only col-wd-2 product-item remove-divider-wd d-xl-none d-wd-block">
-                    <div class="product-item__outer h-100">
-                        <div class="product-item__inner px-xl-4 p-3">
-                            <div class="product-item__body pb-xl-2">
-                                <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html"
-                                        class="font-size-12 text-gray-5">Speakers</a></div>
-                                <h5 class="mb-1 product-item__title"><a href="../shop/single-product-fullwidth.html"
-                                        class="text-blue font-weight-bold">Tablet White EliteBook Revolve 810 G2</a></h5>
-                                <div class="mb-2">
-                                    <a href="../shop/single-product-fullwidth.html" class="d-block text-center"><img
-                                            class="img-fluid"
-                                            src="{{ asset('template/client') }}/assets/img/212X200/img2.jpg"
-                                            alt="Image Description"></a>
-                                </div>
-                                <div class="flex-center-between mb-1">
-                                    <div class="prodcut-price d-flex align-items-center position-relative">
-                                        <ins class="font-size-20 text-red text-decoration-none">$1999,00</ins>
-                                        <del class="font-size-12 tex-gray-6 position-absolute bottom-100">$2 299,00</del>
-                                    </div>
-                                    <div class="d-none d-xl-block prodcut-add-cart">
-                                        <a href="../shop/single-product-fullwidth.html"
-                                            class="btn-add-cart btn-primary transition-3d-hover"><i
-                                                class="ec ec-add-to-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-item__footer">
-                                <div class="border-top pt-2 flex-center-between flex-wrap">
-                                    <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
-                                            class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                    <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
-                                            class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                @endforeach
+
             </ul>
         </div>
         <!-- End Related products -->
-        <!-- Brand Carousel -->
-        <div class="mb-8">
-            <div class="py-2 border-top border-bottom">
-                <div class="js-slick-carousel u-slick my-1 slick-initialized slick-slider" data-slides-show="5"
-                    data-slides-scroll="1"
-                    data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-normal u-slick__arrow-centered--y"
-                    data-arrow-left-classes="fa fa-angle-left u-slick__arrow-classic-inner--left z-index-9"
-                    data-arrow-right-classes="fa fa-angle-right u-slick__arrow-classic-inner--right" data-responsive="[{
-                            &quot;breakpoint&quot;: 992,
-                            &quot;settings&quot;: {
-                                &quot;slidesToShow&quot;: 2
-                            }
-                        }, {
-                            &quot;breakpoint&quot;: 768,
-                            &quot;settings&quot;: {
-                                &quot;slidesToShow&quot;: 1
-                            }
-                        }, {
-                            &quot;breakpoint&quot;: 554,
-                            &quot;settings&quot;: {
-                                &quot;slidesToShow&quot;: 1
-                            }
-                        }]">
-                    <div class="js-prev d-none d-lg-inline-block u-slick__arrow-normal u-slick__arrow-centered--y fa fa-angle-left u-slick__arrow-classic-inner--left z-index-9 slick-arrow slick-disabled"
-                        aria-disabled="true" style=""></div>
-                    <div class="slick-list draggable">
-                        <div class="slick-track"
-                            style="opacity: 1; width: 1680px; transform: translate3d(0px, 0px, 0px);">
-                            <div class="js-slide slick-slide slick-current slick-active" data-slick-index="0"
-                                aria-hidden="false" style="width: 280px; height: auto;" tabindex="0">
-                                <a href="#" class="link-hover__brand" tabindex="0">
-                                    <img class="img-fluid m-auto max-height-50"
-                                        src="{{ asset('template/client') }}/assets/img/200X60/img1.png"
-                                        alt="Image Description">
-                                </a>
-                            </div>
-                            <div class="js-slide slick-slide slick-active" data-slick-index="1" aria-hidden="false"
-                                style="width: 280px; height: auto;" tabindex="0">
-                                <a href="#" class="link-hover__brand" tabindex="0">
-                                    <img class="img-fluid m-auto max-height-50"
-                                        src="{{ asset('template/client') }}/assets/img/200X60/img2.png"
-                                        alt="Image Description">
-                                </a>
-                            </div>
-                            <div class="js-slide slick-slide slick-active" data-slick-index="2" aria-hidden="false"
-                                style="width: 280px; height: auto;" tabindex="0">
-                                <a href="#" class="link-hover__brand" tabindex="0">
-                                    <img class="img-fluid m-auto max-height-50"
-                                        src="{{ asset('template/client') }}/assets/img/200X60/img3.png"
-                                        alt="Image Description">
-                                </a>
-                            </div>
-                            <div class="js-slide slick-slide slick-active" data-slick-index="3" aria-hidden="false"
-                                style="width: 280px; height: auto;" tabindex="0">
-                                <a href="#" class="link-hover__brand" tabindex="0">
-                                    <img class="img-fluid m-auto max-height-50"
-                                        src="{{ asset('template/client') }}/assets/img/200X60/img4.png"
-                                        alt="Image Description">
-                                </a>
-                            </div>
-                            <div class="js-slide slick-slide slick-active" data-slick-index="4" aria-hidden="false"
-                                style="width: 280px; height: auto;" tabindex="0">
-                                <a href="#" class="link-hover__brand" tabindex="0">
-                                    <img class="img-fluid m-auto max-height-50"
-                                        src="{{ asset('template/client') }}/assets/img/200X60/img5.png"
-                                        alt="Image Description">
-                                </a>
-                            </div>
-                            <div class="js-slide slick-slide" data-slick-index="5" aria-hidden="true"
-                                style="width: 280px; height: auto;" tabindex="-1">
-                                <a href="#" class="link-hover__brand" tabindex="-1">
-                                    <img class="img-fluid m-auto max-height-50"
-                                        src="{{ asset('template/client') }}/assets/img/200X60/img6.png"
-                                        alt="Image Description">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-                    <div class="js-next d-none d-lg-inline-block u-slick__arrow-normal u-slick__arrow-centered--y fa fa-angle-right u-slick__arrow-classic-inner--right slick-arrow"
-                        style="" aria-disabled="false"></div>
-                </div>
-            </div>
-        </div>
-        <!-- End Brand Carousel -->
-
         <!-- compare-->
         <div class="stickcompare stickcompare_new cp-desktop spaceInDown" style="display: block;" id="stickcompare">
             <label class="error" style="display: none; opacity: 1;">Bạn đã chọn sản phẩm này rồi, vui lòng chọn

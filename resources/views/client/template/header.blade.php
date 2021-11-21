@@ -17,38 +17,6 @@
                             <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
                                 <a href="#" class="u-header-topbar__nav-link"><i class="ec ec-map-pointer mr-1"></i> <strong id="digital-clock"></strong></a>
                             </li>
-                            {{-- <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border full-bg">
-                                <a href="#" class="u-header-topbar__nav-link"><i class="ec ec-transport mr-1"></i> Track Your Order</a>
-                            </li> --}}
-                            {{-- <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border full-bg u-header-topbar__nav-item-no-border u-header-topbar__nav-item-border-single">
-                                <div class="d-flex align-items-center">
-                                    <!-- Language -->
-                                    <div class="position-relative">
-                                        <a id="languageDropdownInvoker" class="dropdown-nav-link dropdown-toggle d-flex align-items-center u-header-topbar__nav-link font-weight-normal" href="javascript:;" role="button"
-                                            aria-controls="languageDropdown"
-                                            aria-haspopup="true"
-                                            aria-expanded="false"
-                                            data-unfold-event="hover"
-                                            data-unfold-target="#languageDropdown"
-                                            data-unfold-type="css-animation"
-                                            data-unfold-duration="300"
-                                            data-unfold-delay="300"
-                                            data-unfold-hide-on-scroll="true"
-                                            data-unfold-animation-in="slideInUp"
-                                            data-unfold-animation-out="fadeOut">
-                                            <span class="d-inline-block d-sm-none">US</span>
-                                            <span class="d-none d-sm-inline-flex align-items-center"><i class="ec ec-dollar mr-1"></i> Dollar (US)</span>
-                                        </a>
-
-                                        <div id="languageDropdown" class="dropdown-menu dropdown-unfold" aria-labelledby="languageDropdownInvoker">
-                                            <a class="dropdown-item active" href="#">English</a>
-                                            <a class="dropdown-item" href="#">Deutsch</a>
-                                            <a class="dropdown-item" href="#">Español‎</a>
-                                        </div>
-                                    </div>
-                                    <!-- End Language -->
-                                </div>
-                            </li> --}}
                             <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border full-bg">
                                 <!-- Account Sidebar Toggle Button -->
                                 @if (Auth::guard('khachhang')->check())
@@ -490,21 +458,22 @@
                     <!-- Search Bar -->
                     <!-- Search Bar -->
                     <div class="col d-none d-xl-block">
-                        <form class="js-focus-state">
-                            <label class="sr-only" for="searchproduct">Search</label>
+                        <form class="js-focus-state" method="POST" action="{{ route('client.search.product.by.name') }}">
+                            @csrf
+                            <label class="sr-only" for="searchproduct">Tìm kiếm</label>
                             <div class="input-group">
-                                <input type="email" class="form-control py-2 pl-5 font-size-15 border-right-0 height-42 border-width-0 rounded-left-pill border-primary" name="email" id="searchproduct-item" placeholder="Search for Products" aria-label="Search for Products" aria-describedby="searchProduct1" required>
+                                <input type="text" class="form-control py-2 pl-5 font-size-15 border-right-0 height-42 border-width-0 rounded-left-pill border-primary" name="sp_ten" id="searchproduct-item" placeholder="Search for Products" aria-label="Search for Products" aria-describedby="searchProduct1" required>
                                 <div class="input-group-append">
                                     <!-- Select -->
-                                    <select class="js-select selectpicker dropdown-select custom-search-categories-select bg-white"
+                                    <select name="tl_id" class="js-select selectpicker dropdown-select custom-search-categories-select bg-white"
                                         data-style="btn height-42 text-gray-60 font-weight-normal border-top border-bottom border-left-0 rounded-0 border-primary border-width-0 pl-0 pr-5 py-2">
-                                        <option value="one" selected>All Categories</option>
-                                        <option value="two">Two</option>
-                                        <option value="three">Three</option>
-                                        <option value="four">Four</option>
+                                        <option value="" selected>Tất cả</option>
+                                        @foreach ($theLoaiView as $item)
+                                            <option value="{{ $item->tl_id }}">{{ $item->tl_ten }}</option>
+                                        @endforeach
                                     </select>
                                     <!-- End Select -->
-                                    <button class="btn btn-dark height-42 py-2 px-3 rounded-right-pill" type="button" id="searchProduct1">
+                                    <button class="btn btn-dark height-42 py-2 px-3 rounded-right-pill" type="submit" id="searchProduct1">
                                         <span class="ec ec-search font-size-20"></span>
                                     </button>
                                 </div>
@@ -554,7 +523,6 @@
                                     <a href="{{ route('client.gettocart') }}" class="text-gray-90 position-relative d-flex " data-toggle="tooltip" data-placement="top" title="Giỏ hàng">
                                         <i class="font-size-22 ec ec-shopping-bag"></i>
                                         <span class="width-22 height-22 bg-dark position-absolute d-flex align-items-center justify-content-center rounded-circle left-12 top-8 font-weight-bold font-size-12 text-white">{{ Cart::count(); }}</span>
-                                        {{-- <span class="d-none d-xl-block font-weight-bold font-size-16 text-gray-90 ml-3">{{ Cart::subtotal(0,0); }}</span> --}}
                                     </a>
                                 </li>
                             </ul>
@@ -628,7 +596,7 @@
                                     data-animation-in="slideInUp"
                                     data-animation-out="fadeOut"
                                     data-position="left">
-                                    <a id="homeMegaMenu" class="nav-link u-header__nav-link" href="#" aria-haspopup="true" aria-expanded="false">Tin tức</a>
+                                    <a id="homeMegaMenu" class="nav-link u-header__nav-link" href="{{ route('client.listPost') }}" aria-haspopup="true" aria-expanded="false">Tin tức</a>
                                 </li>
                                 <li class="nav-item hs-has-mega-menu u-header__nav-item"
                                     data-event="hover"
@@ -645,14 +613,6 @@
                                     <a id="homeMegaMenu" class="nav-link u-header__nav-link" href="#" aria-haspopup="true" aria-expanded="false">Giới thiệu</a>
                                 </li>
                                 <!-- End Home -->
-                                {{-- @endforeach --}}
-                                <li class="nav-item hs-has-mega-menu u-header__nav-item"
-                                    data-event="hover"
-                                    data-animation-in="slideInUp"
-                                    data-animation-out="fadeOut"
-                                    data-position="left">
-                                    <a id="homeMegaMenu" class="nav-link u-header__nav-link" href="{{ route('client.listPost') }}" aria-haspopup="true" aria-expanded="false">Bài viết</a>
-                                </li>
                             </ul>
                         </div>
                         <!-- End Navigation -->
