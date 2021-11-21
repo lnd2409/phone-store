@@ -2,7 +2,9 @@
 @section('content')
 <!-- Slider Section -->
 <div class="mb-4">
-    <div class="bg-img-hero" style="background-image: url({{ asset('template/client') }}/assets/img/1920X422/img2.jpg);">
+    {{-- style="background-image: url({{ asset('template/client') }}/assets/img/1920X422/img2.jpg);" --}}
+    <br>
+    <div class="bg-img-hero" style="background-color: white;">
         <div class="container overflow-hidden">
             <div class="js-slick-carousel u-slick"
                 data-pagi-classes="text-center position-absolute right-0 bottom-0 left-0 u-slick__pagination u-slick__pagination--long justify-content-center mb-3 mb-md-4">

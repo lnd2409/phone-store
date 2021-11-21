@@ -8,7 +8,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-3 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble">
                         <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="../home/index.html">Trang chủ</a></li>
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">Sản phẩm</li>
+                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">{{ $theLoai->tl_ten }}</li>
                     </ol>
                 </nav>
             </div>
@@ -23,11 +23,6 @@
                 <div class="mb-8 border border-width-2 border-color-3 borders-radius-6">
                     <!-- List -->
                     <ul id="sidebarNav" class="list-unstyled mb-0 sidebar-navbar">
-                        <li>
-                            <a class="dropdown-toggle dropdown-toggle-collapse dropdown-title" href="{{ route('product.index') }}">
-                                Tất cả
-                            </a>
-                        </li>
                         @foreach ($theLoaiView as $item)
                         <li>
                             <a class="dropdown-toggle dropdown-toggle-collapse dropdown-title" href="{{ route('client.get-product-by-cat', ['idCate'=>$item->tl_tenkhongdau]) }}">
@@ -41,7 +36,7 @@
             </div>
             <div class="col-xl-9 col-wd-9gdot5">
                 <div class="d-flex justify-content-between align-items-center border-bottom border-color-1 flex-lg-nowrap flex-wrap mb-4">
-                    <h3 class="section-title section-title__full mb-0 pb-2 font-size-22">Danh sách sản phẩm</h3>
+                    <h3 class="section-title section-title__full mb-0 pb-2 font-size-22">{{ $theLoai->tl_ten }}</h3>
                 </div>
                 <ul class="row list-unstyled products-group no-gutters mb-6">
                     @foreach ($sanPham as $key => $item)
