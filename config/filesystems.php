@@ -41,6 +41,12 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        'tt_hinhanh' => [
+            'driver' => 'local',
+            'root' => public_path('/images/tt_hinhanh'),
+            'url' => '/images/tt_hinhanh',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

@@ -1,0 +1,23 @@
+1/Admin
+2/khachhang
+3/Tintuc
+4/ Binhluan danhgia
+5/ danhmucsp
+6/ sanpham
+7/  donhang
+8/ chitietdonhang
+9/ loaikhuyenmai
+10/ chitietkhuyenmai
+11/ nhasanxuat
+12/ phieubaohanh
+13 chitietphieu
+
+---bỏ không cần thiết
+1/banner
+2/anh slider sp
+3/ kho nha cung cap
+4/ ma khuyen mai
+5/ Bao hanh
+6/ thuoc tinh
+7/ bo loc
+8/ danh muc san pham
