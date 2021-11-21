@@ -30,7 +30,10 @@ class SanPhamController extends Controller
         ->join('khachhang as kh','kh.kh_id','bl.kh_id')
         // ->whereNull('ctbl.ctbl_idrep')
         ->get();
-        return view('client.product-detail', compact('sanPham','binhluan'));
+        Session::push('arrProduct', $sanPham->sp_id);
+        $sanPhamLienQuan = SanPham::where('tl_id',$sanPham->tl_id)->join('hinhanhsanpham','hinhanhsanpham.sp_id','sanpham.sp_id')
+        ->where('hinhanhsanpham.hasp_hinhanhdaidien', 1)->get();
+        return view('client.product-detail', compact('sanPham','binhluan','sanPhamLienQuan'));
     }
 
     public function getInfo(Request $request)
