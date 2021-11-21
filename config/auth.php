@@ -40,6 +40,18 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'khachhang'=>[
+            'driver'=> 'session',
+            'provider'=>'khachhang'
+        ],
+        'quantri'=>[
+            'driver'=> 'session',
+            'provider'=>'quantri'
+        ],
+        'khachhang-api'=>[
+            'driver'=>'token',
+            'provider'=>'khachhang'
+        ]
     ],
 
     /*
@@ -64,7 +76,14 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
+        'khachhang' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\KhachHang::class,
+        ],
+        'quantri' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Quantri::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
