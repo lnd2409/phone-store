@@ -46,7 +46,10 @@
                                     <a href="#" class="text-gray-32 font-size-26" title="Xóa">×</a>
                                 </td>
                                 <td class="d-none d-md-table-cell">
-                                    <a href="#"><img class="img-fluid max-width-100 p-1 border border-color-1" src="../../assets/img/300X300/img6.jpg" alt="Image Description"></a>
+                                    @php
+                                        $imageProduct = DB::table('hinhanhsanpham')->where('sp_id', $item->id)->where('hasp_hinhanhdaidien',1)->first();
+                                    @endphp
+                                    <a href="#"><img class="img-fluid max-width-100 p-1 border border-color-1" src="{{ asset($imageProduct->hasp_duongdan) }}" alt="Image Description"></a>
                                 </td>
 
                                 <td data-title="Product">
@@ -150,7 +153,7 @@
                                     <td data-title="Shipping">
                                          <span class="amount">25,000 vnđ</span>
                                         <div class="mt-1">
-                                        
+
                                         </div>
                                     </td>
                                 </tr> --}}
@@ -194,8 +197,8 @@
                {
                    $('#js-result-'+id).val(0);
                }
-               
+
             });
         });
     </script>
-@endpush 
+@endpush

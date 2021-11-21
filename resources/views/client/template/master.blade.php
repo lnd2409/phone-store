@@ -3,7 +3,7 @@
 
 <head>
     <!-- Title -->
-    <title>Home-v3.1 | Electro - Responsive Website Template</title>
+    <title>Cửa hàng điện thoại Dương Bảo</title>
 
     <!-- Required Meta Tags Always Come First -->
     <meta charset="utf-8">

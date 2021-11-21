@@ -28,7 +28,6 @@ class SanPhamController extends Controller
         $binhluan = DB::table('binhluan as bl')
         ->join('chitietbinhluan as ctbl','ctbl.bl_id','bl.bl_id')
         ->join('khachhang as kh','kh.kh_id','bl.kh_id')
-        // ->whereNull('ctbl.ctbl_idrep')
         ->get();
         Session::push('arrProduct', $sanPham->sp_id);
         $sanPhamLienQuan = SanPham::where('tl_id',$sanPham->tl_id)->join('hinhanhsanpham','hinhanhsanpham.sp_id','sanpham.sp_id')
