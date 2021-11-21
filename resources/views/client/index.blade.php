@@ -2,7 +2,9 @@
 @section('content')
 <!-- Slider Section -->
 <div class="mb-4">
-    <div class="bg-img-hero" style="background-image: url({{ asset('template/client') }}/assets/img/1920X422/img2.jpg);">
+    {{-- style="background-image: url({{ asset('template/client') }}/assets/img/1920X422/img2.jpg);" --}}
+    <br>
+    <div class="bg-img-hero" style="background-color: white;">
         <div class="container overflow-hidden">
             <div class="js-slick-carousel u-slick"
                 data-pagi-classes="text-center position-absolute right-0 bottom-0 left-0 u-slick__pagination u-slick__pagination--long justify-content-center mb-3 mb-md-4">
@@ -201,64 +203,6 @@
     <!-- End Laptops & Computers -->
 </div>
 @endforeach
-<div class="container mb-8">
-    <div class="py-2 border-top border-bottom">
-        <div class="js-slick-carousel u-slick my-1"
-            data-slides-show="5"
-            data-slides-scroll="1"
-            data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-normal u-slick__arrow-centered--y"
-            data-arrow-left-classes="fa fa-angle-left u-slick__arrow-classic-inner--left z-index-9"
-            data-arrow-right-classes="fa fa-angle-right u-slick__arrow-classic-inner--right"
-            data-responsive='[{
-                "breakpoint": 992,
-                "settings": {
-                    "slidesToShow": 2
-                }
-            }, {
-                "breakpoint": 768,
-                "settings": {
-                    "slidesToShow": 1
-                }
-            }, {
-                "breakpoint": 554,
-                "settings": {
-                    "slidesToShow": 1
-                }
-            }]'>
-            <div class="js-slide">
-                <a href="#" class="link-hover__brand">
-                    <img class="img-fluid m-auto max-height-50" src="{{ asset('template/client') }}/assets/img/200X60/img1.png" alt="Image Description">
-                </a>
-            </div>
-            <div class="js-slide">
-                <a href="#" class="link-hover__brand">
-                    <img class="img-fluid m-auto max-height-50" src="{{ asset('template/client') }}/assets/img/200X60/img2.png" alt="Image Description">
-                </a>
-            </div>
-            <div class="js-slide">
-                <a href="#" class="link-hover__brand">
-                    <img class="img-fluid m-auto max-height-50" src="{{ asset('template/client') }}/assets/img/200X60/img3.png" alt="Image Description">
-                </a>
-            </div>
-            <div class="js-slide">
-                <a href="#" class="link-hover__brand">
-                    <img class="img-fluid m-auto max-height-50" src="{{ asset('template/client') }}/assets/img/200X60/img4.png" alt="Image Description">
-                </a>
-            </div>
-            <div class="js-slide">
-                <a href="#" class="link-hover__brand">
-                    <img class="img-fluid m-auto max-height-50" src="{{ asset('template/client') }}/assets/img/200X60/img5.png" alt="Image Description">
-                </a>
-            </div>
-            <div class="js-slide">
-                <a href="#" class="link-hover__brand">
-                    <img class="img-fluid m-auto max-height-50" src="{{ asset('template/client') }}/assets/img/200X60/img6.png" alt="Image Description">
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Brand Carousel -->
 @endsection
 @push('scripts')
 @if(Session::has('payMess'))

@@ -8,7 +8,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-3 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble">
                         <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="../home/index.html">Trang chủ</a></li>
-                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">{{ $theLoai->tl_ten }}</li>
+                        <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">Tìm kiếm</li>
                     </ol>
                 </nav>
             </div>
@@ -54,13 +54,6 @@
                                     </div>
                                     <div class="col">
                                         <h3 class="text-lh-1dot2 font-size-14 mb-0"><a href="../shop/single-product-fullwidth.html">{{ $item->sp_ten }}</a></h3>
-                                        {{-- <div class="text-warning text-ls-n2 font-size-16 mb-1" style="width: 80px;">
-                                            <small class="fas fa-star"></small>
-                                            <small class="fas fa-star"></small>
-                                            <small class="fas fa-star"></small>
-                                            <small class="fas fa-star"></small>
-                                            <small class="far fa-star text-muted"></small>
-                                        </div> --}}
                                         <div class="font-weight-bold">
                                             {{-- <del class="font-size-11 text-gray-9 d-block">{{ $item->sp_gia }}</del> --}}
                                             <ins class="font-size-15 text-red text-decoration-none d-block">{{ number_format($item->sp_gia) }} VND</ins>
@@ -74,7 +67,7 @@
             </div>
             <div class="col-xl-9 col-wd-9gdot5">
                 <div class="d-flex justify-content-between align-items-center border-bottom border-color-1 flex-lg-nowrap flex-wrap mb-4">
-                    <h3 class="section-title section-title__full mb-0 pb-2 font-size-22">{{ $theLoai->tl_ten }}</h3>
+                    <h3 class="section-title section-title__full mb-0 pb-2 font-size-22">Từ khóa: "{{ $keyWord }}"</h3>
                 </div>
                 <ul class="row list-unstyled products-group no-gutters mb-6">
                     @foreach ($sanPham as $key => $item)
@@ -100,7 +93,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </li>
                     @endforeach

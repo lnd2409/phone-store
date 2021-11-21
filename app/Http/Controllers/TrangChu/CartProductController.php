@@ -35,5 +35,5 @@ class CartProductController extends Controller
     }
 
 
-     
+
 }
