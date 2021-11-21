@@ -9,8 +9,6 @@
             <div class="js-slick-carousel u-slick"
                 data-pagi-classes="text-center position-absolute right-0 bottom-0 left-0 u-slick__pagination u-slick__pagination--long justify-content-center mb-3 mb-md-4">
                 @if (count($tinTuc) > 0)
-
-                @endif
                 @foreach ($tinTuc as $item)
                 <div class="js-slide">
                     <div class="row pt-7 py-md-0">
@@ -41,6 +39,7 @@
                     </div>
                 </div>
                 @endforeach
+                @endif
             </div>
         </div>
     </div>
