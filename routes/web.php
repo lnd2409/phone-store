@@ -18,6 +18,7 @@ use App\Http\Controllers\TrangChu\CheckAuthController;
 use App\Http\Controllers\TrangChu\VNPayController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\TrangChu\ProductController;
+use App\Http\Controllers\Admin\StatController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -104,6 +105,12 @@ Route::middleware(['checkAuthQuanTri'])->group(function () {
         Route::post('/kho-hang-cap-nhat-luu',[WarehouseController::class,'submitWarehouses'])->name('luuwarehouses');
         Route::get('/kho-hang-xoa/{id}',[WarehouseController::class,'destroyWarehouses'])->name('destroywarehouses');
 
+
+        //thống kê
+        Route::get('/thong-ke-don-hang',[StatController::class,'order'])->name('stat.order');
+        Route::get('/thong-ke-doanh-thu',[StatController::class,'revenge'])->name('stat.revenge');
+        Route::get('/thong-ke-khach-hang',[StatController::class,'customer'])->name('stat.customer');
+        
     });
 });
 Route::view('/sign-in', 'admin.auth.sign-in')->name('admin.signIn');

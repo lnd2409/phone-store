@@ -175,5 +175,7 @@
 {{-- @jquery --}}
 @include('admin.template.js')
 @stack('ajax.product')
+@stack('script')
+
 </body>
 </html>
