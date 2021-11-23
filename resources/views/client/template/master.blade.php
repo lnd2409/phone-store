@@ -315,6 +315,7 @@
     <!-- End Go to Top -->
     @include('client.template.js')
     @stack('script')
+    @stack('location')
 </body>
 
 </html>
