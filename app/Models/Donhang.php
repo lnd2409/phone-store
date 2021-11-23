@@ -38,7 +38,8 @@ class Donhang extends Model
 
 	protected $fillable = [
 		'sp_id',
-		'kh_id'
+		'kh_id',
+		'dh_tongtien'
 	];
 
 	public function khachhang()
