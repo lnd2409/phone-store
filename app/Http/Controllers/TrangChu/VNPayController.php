@@ -50,6 +50,7 @@ class VNPayController extends Controller
         // 'dh_email'=>$request->kh_email, //nếu cần hãy add thêm col vào data
           'dh_diachinguoinhan'=>$request->kh_diachinhan,
         // 'dh_ghichu'=>$request->kh_ghichu //nếu cần hãy add thêm col vào data
+          'dh_tongtien'=> $vnp_Amount
       ];
        Session::flash("billInfo", $khachhang);
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
+use Cart;
 class BillController extends Controller
 {
     /**
@@ -36,7 +37,6 @@ class BillController extends Controller
         ->join('sanpham as sp','sp.sp_id','ctdh.sp_id')
         ->where('dh.dh_id',$id)
         ->get();
-        // dd( $donhang);
         return view('admin.bill.detail',compact('donhang'));
     }
 
