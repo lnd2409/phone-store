@@ -19,7 +19,7 @@ class CreateLoaikhuyenmaiTable extends Migration
             $table->dateTime('lkm_ngaybd');
             $table->dateTime('lkm_ngaykt');
             $table->integer('lkm_soluong');
-            $table->float('lkm_giatri');
+            $table->integer('lkm_giatri');
             $table->string('lkm_mota')->nullable();
             $table->timestamps();
         });

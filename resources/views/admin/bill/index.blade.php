@@ -38,6 +38,7 @@
                             <tr>
                                 <th>STT</th>
                                 <th>Tên khách hàng</th>
+                                <th>Trạng thái</th>
                                 <th style="width:130px !important">Quyền</th>
                             </tr>
                         </thead>
@@ -47,6 +48,13 @@
                             <tr>
                                 <td>{{$i++}}</td>
                                 <td>{{ $item->kh_ten }}</td>
+                                <td>
+                                    @if ($item->kh_ten == 0)
+                                        <span style="color: green">Đã thanh toán</span>
+                                    @else
+                                        <span style="color: red" >Chưa thanh toán</span>
+                                    @endif
+                                </td>
                                 <td>
                                     <a href="{{ route('admin.billdetail', ['id'=>$item->dh_id]) }}"
                                         class="btn  btn-raised btn-warning waves-effect">xem chi tiết</a>

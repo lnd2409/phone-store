@@ -24,6 +24,54 @@ class VNPayController extends Controller
 
     public function payCart(Request $request)
     {
+
+      $methodpay = $request->methodpay;
+      $tinh = $request->thanhPho;
+      $quan = $request->quanHuyen;
+      $xa = $request->phuongXa;
+      $sonha = $request->kh_diachinhan;
+      $diaChi= $sonha.'-'.$xa.'-'.$quan.'-'.$tinh;
+      $tongTien = $request->billtotal;
+      //Lấy thông tin người nhận
+      $khachhang=[
+      'dh_tenguoinhan'=>$request->kh_ten,
+      'dh_sdtnguoinhan'=>$request->kh_sdt,
+      // 'dh_email'=>$request->kh_email, //nếu cần hãy add thêm col vào data
+      'dh_diachinguoinhan'=>$diaChi,
+      // 'dh_ghichu'=>$request->kh_ghichu //nếu cần hãy add thêm col vào data
+      'dh_tongtien'=>$tongTien
+      ];
+
+      if($methodpay == 0)
+      {
+         // Thêm dữ liệu vào đơn hàng
+            $khachhang['kh_id']=Auth::guard('khachhang')->user()->kh_id;
+            $khachhang['dh_trangthai'] = 1;
+            $donhang_id = DB::table('donhang')->insertGetId($khachhang);
+
+            // Thêm dữ liệu vào chi tiết đơn hàng
+            foreach (Cart::content() as $key => $value) {
+               DB::table('chitietdonhang')->insert([
+                   'ctdh_soluong'=>$value->qty,
+                   'ctdh_giamgia'=>0,
+                   'ctdh_gia'=>$value->price,
+                   'sp_id'=>$value->id,
+                   'dh_id'=>$donhang_id,
+               ]);
+
+              //Cập nhật lại số lượng sản phẩm
+               $soluongsp = DB::table('sanpham')->where('sp_id',$value->id)->first();
+               $soluong = $soluongsp->sp_soluong;
+               DB::table('sanpham')->where('sp_id',$value->id)
+                ->update([
+                  'sp_soluong'=>$soluong-$value->qty
+                ]);
+          }
+           Cart::destroy();
+           Session::flash("payMess","Đặt hàng thành công!");
+           return redirect()->route('client.index');
+      }
+
       $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
       $vnp_Returnurl = route('client.returnvnpay');
       $vnp_TmnCode = "X8MMVM5K";//Mã website tại VNPAY
@@ -32,7 +80,7 @@ class VNPayController extends Controller
       $vnp_TxnRef = rand(1000,9999); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang
       $vnp_OrderInfo = "Thanh Tooan don hang";
       $vnp_OrderType = "billpayment";
-      $vnp_Amount = (int)Cart::priceTotal(0,0,0);
+      $vnp_Amount = $tongTien * 100;
       $vnp_Locale ='vn';
       // dd(request()->ip());
       // $vnp_BankCode = 'NCB';
@@ -43,15 +91,7 @@ class VNPayController extends Controller
       // Ngày phát hành 07/15
       // Mật khẩu OTP 123456
      
-      //Lấy thông tin người nhận
-      $khachhang=[
-          'dh_tenguoinhan'=>$request->kh_ten,
-          'dh_sdtnguoinhan'=>$request->kh_sdt,
-        // 'dh_email'=>$request->kh_email, //nếu cần hãy add thêm col vào data
-          'dh_diachinguoinhan'=>$request->kh_diachinhan,
-        // 'dh_ghichu'=>$request->kh_ghichu //nếu cần hãy add thêm col vào data
-          'dh_tongtien'=> $vnp_Amount
-      ];
+      
        Session::flash("billInfo", $khachhang);
 
 
@@ -133,7 +173,6 @@ class VNPayController extends Controller
                   'sp_soluong'=>$soluong-$value->qty
                 ])
                 ;
-
             }
            
             Session::forget('billInfo');

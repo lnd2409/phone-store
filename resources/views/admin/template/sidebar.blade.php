@@ -44,6 +44,12 @@
             </li>
             <li><a href="{{ route('admin.warehouse') }}"><i class="zmdi zmdi-blogger"></i><span>Kho hàng</span> </a>
             </li>
+             <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Khuyến mãi</span> </a>
+                <ul class="ml-menu">
+                    <li><a href="{{ route('admin.typepromotion') }}">Loại khuyến mãi</a></li>
+                    <li><a href="{{ route('admin.promotion') }}">Khuyến mãi</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
     <!-- #Menu -->

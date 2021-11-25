@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\SanPhamAdminController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\BillController;
 use App\Http\Controllers\Admin\WarehouseController;
+use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\ClientController as AdminClientController;
 use App\Http\Controllers\TrangChu\CartProductController;
 use App\Http\Controllers\TrangChu\CheckAuthController;
@@ -104,6 +105,23 @@ Route::middleware(['checkAuthQuanTri'])->group(function () {
         Route::post('/kho-hang-cap-nhat-luu',[WarehouseController::class,'submitWarehouses'])->name('luuwarehouses');
         Route::get('/kho-hang-xoa/{id}',[WarehouseController::class,'destroyWarehouses'])->name('destroywarehouses');
 
+        // Loại khuyến mãi
+        Route::get('/loai-khuyen-mai',[PromotionController::class,'indexType'])->name('typepromotion');
+        Route::get('/them-loai-khuyen-mai',[PromotionController::class,'getTypePromotion'])->name('gettypepromotion');
+        Route::post('/them-loai-khuyen-mai',[PromotionController::class,'submitTypePromotion'])->name('submittypepromotion');
+        Route::get('/sua-loai-khuyen-mai/{id}',[PromotionController::class,'getUpdateTypePromotion'])->name('getupdatetypepromotion');
+        Route::post('/sua-loai-khuyen-mai/{id}',[PromotionController::class,'updateTypePromotion'])->name('updatetypepromotion');
+        Route::get('/xoa-loai-khuyen-mai/{id}',[PromotionController::class,'destroyTypePromotion'])->name('destroytypepromotion');
+
+        // Khuyến mãi
+        Route::get('/khuyen-mai',[PromotionController::class,'indexPromotion'])->name('promotion');
+        Route::get('/them-khuyen-mai',[PromotionController::class,'getPromotion'])->name('getpromotion');
+        Route::post('/them-khuyen-mai',[PromotionController::class,'submitPromotion'])->name('submitpromotion');
+        Route::get('/sua-khuyen-mai/{id}',[PromotionController::class,'getUpdatePromotion'])->name('getupdatepromotion');
+        Route::post('/sua-khuyen-mai/{id}',[PromotionController::class,'updatePromotion'])->name('updatepromotion');
+        Route::get('/xoa-khuyen-mai/{id}',[PromotionController::class,'destroyPromotion'])->name('destroypromotion');
+
+        // 
     });
 });
 Route::view('/sign-in', 'admin.auth.sign-in')->name('admin.signIn');
@@ -142,6 +160,11 @@ Route::get('/xoa-gio-hang',[CartProductController::class,'destroyProductToCart']
 Route::get('/thanh-toan-don-hang',[VNPayController::class,'index'])->name('client.checkoutcart');
 Route::post('/thanh-toan-don-hang',[VNPayController::class,'payCart'])->name('client.paymentcart');
 Route::get('/ket-qua-thanh-toan',[VNPayController::class,'storePayCart'])->name('client.returnvnpay');
+
+//Kiểm tra khuyến mãi
+Route::post('/kiem-tra-khuyen-mai',[CartProductController::class,'checkPromotion'])->name('client.checkpromotion');
+
+
 
 //Sản phẩm
 Route::prefix('/san-pham')->name('product.')->group(function () {

@@ -3,12 +3,12 @@
 <div class="block-header">
     <div class="row">
         <div class="col-lg-7 col-md-6 col-sm-12">
-            <h2>Loại khuyến mãi</h2>
+            <h2>Khuyến mãi</h2>
         </div>
         <div class="col-lg-5 col-md-6 col-sm-12">
             <ul class="breadcrumb float-md-right">
                 <li class="breadcrumb-item"><a href=""><i class="zmdi zmdi-home"></i> Home</a></li>
-                <li class="breadcrumb-item active">Loại khuyến mãi</li>
+                <li class="breadcrumb-item active">Khuyến mãi</li>
             </ul>
         </div>
     </div>
@@ -19,34 +19,36 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                        <a href="{{ route('admin.gettypepromotion') }}" class="btn btn-raised btn-primary waves-effect">Thêm</a>
+                        <a href="{{ route('admin.getpromotion') }}" class="btn btn-raised btn-primary waves-effect">Thêm</a>
                     </h2>
                 </div>
                 <div class="body">
                     <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                         <thead>
                             <tr>
-                                <th>Tên</th>
-                                <th>Ngày bắt đầu</th>
-                                <th>Ngày kết thúc</th>
-                                <th>Số lượng</th>
-                                <th>Giá trị</th>
+                                <th>Tên loại khuyến mãi</th>
+                                <th>KM Code</th>
+                                <th>Trạng thái</th>
                                 <th>Quyền</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($loaiKM as $item)
+                            @foreach ($KM as $item)
                             <tr>
                                 <td>{{ $item->lkm_ten }}</td>
-                                <td>{{ date('Y-m-d h:i:s',strtotime($item->lkm_ngaybd)) }}</td>
-                                <td>{{date('Y-m-d h:i:s',strtotime($item->lkm_ngaykt)) }}</td>
-                                <td>{{ $item->lkm_soluong }}</td>
-                                <td>{{ number_format($item->lkm_giatri) }}</td>
+                                <td>{{ $item->km_macode }}</td>
+                                <td>
+                                    @if ( $item->km_trangthai ==0)
+                                    <span style="color: red" >chưa áp dụng</span>
+                                    @else
+                                     <span style="color: green" >Đã áp dụng</span>
+                                    @endif
+                                </td>
                                
                                 <td>
-                                    <a href="{{route('admin.getupdatetypepromotion',$item->lkm_id)}}"
+                                    <a href="{{route('admin.getupdatepromotion',$item->km_id)}}"
                                         class="btn  btn-raised btn-warning waves-effect">Sửa</a>
-                                    <a href="{{route('admin.destroypromotion',$item->lkm_id)}}"
+                                    <a href="{{route('admin.destroypromotion',$item->km_id)}}"
                                         class="btn  btn-raised btn-danger waves-effect">Xóa</a>
                                 </td>
                             </tr>

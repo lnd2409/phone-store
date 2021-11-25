@@ -3,77 +3,93 @@
 <div class="block-header">
     <div class="row">
         <div class="col-lg-7 col-md-6 col-sm-12">
-            <h2>Cập nhật Kho hàng</h2>
+            <h2>Thêm loại khuyễn mãi</h2>
         </div>
         <div class="col-lg-5 col-md-6 col-sm-12">
             <ul class="breadcrumb float-md-right">
                 <li class="breadcrumb-item"><a href=""><i class="zmdi zmdi-home"></i> Trang
                         chủ</a>
                 </li>
-                <li class="breadcrumb-item"><a href="">Kho hàng</a></li>
-                <li class="breadcrumb-item active">cập nhật</li>
+                <li class="breadcrumb-item"><a href="">loại khuyến mãi</a></li>
+                <li class="breadcrumb-item active">Thêm</li>
             </ul>
         </div>
     </div>
 </div>
 <div class="container-fluid">
     <!-- Input -->
-  
-    <form action="{{ route('admin.updatetypepromotion') }}" method="POST">
+    <form action="{{ route('admin.submittypepromotion') }}" method="POST">
         @csrf
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="card">
                     <div class="body">
-                        <h2 class="card-inside-title">Tên sản phẩm</h2>
+                        <h2 class="card-inside-title">Tên KM</h2>
                         <div class="row clearfix">
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" name="kh_tensp" value=" {{ $khohang->khohang_tensanpham }} " class="form-control" required />
+                                        <input type="text" name="lkm_ten" class="form-control" required />
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <h2 class="card-inside-title">Số lượng nhập</h2>
+                        <h2 class="card-inside-title">Ngày bắt đầu</h2>
                         <div class="row clearfix">
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="number" value="{{$khohang->khohang_soluongnhap}}" name="kh_sln" class="form-control" />
+                                        <input type="datetime-local" name="lkm_ngaybd" class="form-control" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                       
-                        <h2 class="card-inside-title">Số lượng xuất</h2>
+                        <h2 class="card-inside-title">Ngày kết thúc</h2>
                         <div class="row clearfix">
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="number" value="{{$khohang->khohang_soluongxuat}}" name="kh_slx" class="form-control" />
+                                        <input type="datetime-local" name="lkm_ngaykt" class="form-control" />
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <h2 class="card-inside-title">Nhà cung cấp</h2>
+
+                        <h2 class="card-inside-title">Số lượng KM</h2>
                         <div class="row clearfix">
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <select name="ncc_id" id="" class="form-control">
-                                           @foreach ($ncc as $item)
-                                           @if ($khohang->ncc_id == $item->ncc_id)
-                                                <option value=" {{$item->ncc_id}}" selected>{{$item->ncc_ten}}</option>
-                                           @endif
-                                               <option value=" {{$item->ncc_id}} ">{{$item->ncc_ten}}</option>
-                                           @endforeach
-                                        </select>
+                                        <input type="number" name="lkm_soluong" class="form-control" />
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" value="{{$khohang->khohang_id}}" name="kh_id">
+
+                        <h2 class="card-inside-title">giá trị KM</h2>
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="number" name="lkm_giatri" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="card-inside-title">Mô tả</h2>
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                       <textarea name="lkm_mota" id="" class="form-control" style="border: 1px solid black" cols="20" rows="10"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      
+                     
 
                         <button type="submit" class="btn btn-raised btn-primary m-t-15 waves-effect">Thêm</button>
                         <!-- #END# Select -->

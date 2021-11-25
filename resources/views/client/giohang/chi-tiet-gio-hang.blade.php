@@ -95,19 +95,20 @@
                                 <td colspan="6" class="border-top space-top-2 justify-content-center">
                                     <div class="pt-md-3">
                                         <div class="d-block d-md-flex flex-center-between">
-                                            <div class="mb-3 mb-md-0 w-xl-40">
+                                            {{-- <div class="mb-3 mb-md-0 w-xl-40">
                                                 <!-- Apply coupon Form -->
-                                                <form class="js-focus-state">
+                                                <form class="js-focus-state" action="{{ route('client.checkpromotion') }}" method="post" >
+                                                    @csrf
                                                     <label class="sr-only" for="subscribeSrEmailExample1">Mã khuyến mãi</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" name="text" id="subscribeSrEmailExample1" placeholder="Nhập mã khuyến mãi" aria-label="Coupon code" aria-describedby="subscribeButtonExample2" required>
+                                                        <input type="text" class="form-control" name="km_macode" id="subscribeSrEmailExample1" placeholder="Nhập mã khuyến mãi" aria-label="Coupon code" aria-describedby="subscribeButtonExample2" required>
                                                         <div class="input-group-append">
-                                                            <button class="btn btn-block btn-dark px-4" type="button" id="subscribeButtonExample2"><i class="fas fa-tags d-md-none"></i><span class="d-none d-md-inline">Áp dụng</span></button>
+                                                            <button class="btn btn-block btn-dark px-4" type="submit" id="subscribeButtonExample2"><i class="fas fa-tags d-md-none"></i><span class="d-none d-md-inline">Áp dụng</span></button>
                                                         </div>
                                                     </div>
                                                 </form>
                                                 <!-- End Apply coupon Form -->
-                                            </div>
+                                            </div> --}}
                                             <div class="d-md-flex">
                                                 <a href="{{ route('client.destroytocart') }}" class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Xóa Giỏ Hàng</a>
                                                @if (Auth::guard('khachhang')->check())
@@ -149,9 +150,13 @@
                                     <td data-title="Subtotal"><span class="amount">{{cart::subtotal(0,0)}} vnđ</span></td>
                                 </tr>
                                 {{-- <tr class="shipping">
-                                    <th>Phí ship dự kiến</th>
-                                    <td data-title="Shipping">
-                                         <span class="amount">25,000 vnđ</span>
+                                    <th>Khuyến mãi</th>
+                                    <td data-title="Shipping"> <?php  $data = Session::get('KM') ?>
+                                        @if(Session::has('KM'))
+                                           <span class="amount"> {{number_format($data->lkm_giatri)}}  vnđ</span>
+                                        @else
+                                         <span class="amount">0,0 vnđ</span>
+                                        @endif
                                         <div class="mt-1">
 
                                         </div>
@@ -169,6 +174,7 @@
             </div>
         </div>
     </main>
+   
 <!-- ========== END MAIN CONTENT ========== -->
 @endsection
 @push('scripts')
@@ -200,5 +206,7 @@
 
             });
         });
+
+       
     </script>
 @endpush

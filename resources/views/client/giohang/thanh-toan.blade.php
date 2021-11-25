@@ -23,8 +23,22 @@
                 <div class="mb-5">
                     <h1 class="text-center">Thanh Toán Đơn Hàng</h1>
                 </div>
-
-                <form class="js-validate" novalidate="novalidate" action="{{ route('client.paymentcart') }}" method="POST">
+                
+                <div class="mb-12 mb-md-0 w-xl-40">
+                    <!-- Apply coupon Form -->
+                    <form class="js-focus-state" action="{{ route('client.checkpromotion') }}" method="post" >
+                        @csrf
+                        <label class="sr-only" for="subscribeSrEmailExample1">Mã khuyến mãi</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="km_macode" id="subscribeSrEmailExample1" placeholder="Nhập mã khuyến mãi" aria-label="Coupon code" aria-describedby="subscribeButtonExample2" required>
+                            <div class="input-group-append">
+                                <button class="btn btn-block btn-dark px-4" type="submit" id="subscribeButtonExample2"><i class="fas fa-tags d-md-none"></i><span class="d-none d-md-inline">Áp dụng</span></button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- End Apply coupon Form -->
+                </div>
+                <form class="js-validate" novalidate="novalidate" action="{{ route('client.paymentcart') }}" method="POST" style="margin-top: 20px">
                     @csrf
                     <div class="row">
                         <div class="col-lg-5 order-lg-2 mb-7 mb-lg-0">
@@ -41,6 +55,7 @@
                                         <!-- Product Content -->
                                         <table class="table">
                                             <thead>
+                                               
                                                 <tr>
                                                     <th class="product-name">Sản phẩm</th>
                                                     <th class="product-total">Thành tiền</th>
@@ -60,12 +75,27 @@
                                                     <td>{{Cart::subtotal(0,0)}} vnđ</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Phí vận chuyển</th>
+                                                    <th>Khuyến mãi</th>
+                                                    <?php  $data = Session::get('KM'); ?>
+                                                    @if(Session::has('KM'))
+                                                    <td>{{number_format($data->lkm_giatri)}} vnđ <span><input type="hidden" name="promotion" value=" {{$data->lkm_giatri}} "></span></td>
+                                                    @else
                                                     <td>0 vnđ</td>
+                                                    @endif
+                                                </tr>
+                                                <tr>
+                                                    <th>Phí vận chuyển</th>
+                                                    <td><span id="shipCode">30,000 vnđ </span></td>
                                                 </tr>
                                                 <tr>
                                                     <th>Tạm tính</th>
-                                                    <td><strong>{{Cart::subtotal(0,0)}} vnđ</strong></td>
+                                                    <td>
+                                                        <strong id="pdTotal">
+                                                            {{number_format(Cart::subtotal('2',".","") + 30000) }} 
+                                                            <input type="hidden" name="billtotal" value=" {{Cart::subtotal('2',".","") + 30000}} ">
+                                                        </strong> vnđ
+                                                        
+                                                    </td>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -77,13 +107,13 @@
                                                 <div class="border-bottom border-color-1 border-dotted-bottom">
                                                     <div class="p-3" id="basicsHeadingOne">
                                                         <div class="custom-control custom-radio">
-                                                            <input type="radio" class="custom-control-input" id="stylishRadio1" name="stylishRadio" checked>
+                                                            <input type="radio" class="custom-control-input" id="stylishRadio1" value="0" name="methodpay" checked>
                                                             <label class="custom-control-label form-label" for="stylishRadio1"
                                                                 data-toggle="collapse"
                                                                 data-target="#basicsCollapseOnee"
                                                                 aria-expanded="true"
                                                                 aria-controls="basicsCollapseOnee">
-                                                                Chuyển khoản trực tiếp
+                                                                Thanh toán khi nhận hàng
                                                             </label>
                                                         </div>
                                                     </div>
@@ -101,7 +131,7 @@
                                                 <div class="border-bottom border-color-1 border-dotted-bottom">
                                                     <div class="p-3" id="basicsHeadingTwo">
                                                         <div class="custom-control custom-radio">
-                                                            <input type="radio" class="custom-control-input" id="secondStylishRadio1" name="stylishRadio">
+                                                            <input type="radio" class="custom-control-input" id="secondStylishRadio1" name="methodpay" value="1">
                                                             <label class="custom-control-label form-label" for="secondStylishRadio1"
                                                                 data-toggle="collapse"
                                                                 data-target="#basicsCollapseTwo"
@@ -121,53 +151,8 @@
                                                 </div>
                                                 <!-- End Card -->
 
-                                                <!-- Card -->
-                                                <div class="border-bottom border-color-1 border-dotted-bottom">
-                                                    <div class="p-3" id="basicsHeadingThree">
-                                                        <div class="custom-control custom-radio">
-                                                            <input type="radio" class="custom-control-input" id="thirdstylishRadio1" name="stylishRadio">
-                                                            <label class="custom-control-label form-label" for="thirdstylishRadio1"
-                                                                data-toggle="collapse"
-                                                                data-target="#basicsCollapseThree"
-                                                                aria-expanded="false"
-                                                                aria-controls="basicsCollapseThree">
-                                                               Ví Momo
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div id="basicsCollapseThree" class="collapse border-top border-color-1 border-dotted-top bg-dark-lighter"
-                                                        aria-labelledby="basicsHeadingThree"
-                                                        data-parent="#basicsAccordion1">
-                                                        <div class="p-4">
-                                                            Pay with cash upon delivery.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- End Card -->
+                                            
 
-                                                <!-- Card -->
-                                                <div class="border-bottom border-color-1 border-dotted-bottom">
-                                                    <div class="p-3" id="basicsHeadingFour">
-                                                        <div class="custom-control custom-radio">
-                                                            <input type="radio" class="custom-control-input" id="FourstylishRadio1" name="stylishRadio">
-                                                            <label class="custom-control-label form-label" for="FourstylishRadio1"
-                                                                data-toggle="collapse"
-                                                                data-target="#basicsCollapseFour"
-                                                                aria-expanded="false"
-                                                                aria-controls="basicsCollapseFour">
-                                                               Người nhận trả tiền
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div id="basicsCollapseFour" class="collapse border-top border-color-1 border-dotted-top bg-dark-lighter"
-                                                        aria-labelledby="basicsHeadingFour"
-                                                        data-parent="#basicsAccordion1">
-                                                        <div class="p-4">
-                                                            Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- End Card -->
                                             </div>
                                             <!-- End Basics Accordion -->
                                         </div>
@@ -251,10 +236,10 @@
                                         <!-- Input -->
                                         <div class="js-form-message mb-6">
                                             <label class="form-label">
-                                               Địa chỉ nhận hàng
+                                               Số nhà
                                                 <span class="text-danger">*</span>
                                             </label>
-                                            <input name="kh_diachinhan" type="text" value="Hẽm phố 18, Bùi Thị Xuân, Quận 7, TP.HCM" class="form-control" name="kh_ten" placeholder="Trần" aria-label="Jack" required="" data-msg="Please enter your frist name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off" required>
+                                            <input name="kh_diachinhan" type="text" value="215 khu phố 5" class="form-control" name="kh_ten" placeholder="Trần" aria-label="Jack" required="" data-msg="Please enter your frist name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off" required>
                                         </div>
                                         <!-- End Input -->
                                     </div>
@@ -278,9 +263,17 @@
                 </form>
             </div>
         </main>
+         <?php 
+            $t = Session::has('checkKM');
+            $f = Session::has('checkKMFalse');
+            (Session::has('KM')) ? $data=Session::get('KM') : "";
+        ?>
         <!-- ========== END MAIN CONTENT ========== -->
         @push('location')
         <script>
+            function numberWithCommas(x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
             $(document).ready(function() {
                 var jsonFile = "{{ asset('template') }}/"+"local.json";
                 $.getJSON(jsonFile, function(js) {
@@ -298,6 +291,31 @@
                         $('.value-px').remove();
                         var getIDThanhPho = $(this).children("option:selected").attr("lang");
                         console.log(getIDThanhPho);
+
+                        if(getIDThanhPho == 12)
+                        {
+                            $("#shipCode").html('0 vnđ <input type="hidden" name="shipcode" value="0">');
+                            if({!!  json_encode(Session::has('KM')) !!})
+                            {
+                                var khuyenmai = {!!  (!empty($data->lkm_giatri)) ? $data->lkm_giatri : 0  !!};
+                                var total = {!!  Cart::subtotal(2,'.','') !!}  - khuyenmai; 
+                                var result = numberWithCommas(total);    
+                                $("#pdTotal").html(result + '<input type="hidden" name="billtotal" value="'+total+'"}} ">'); 
+                            }
+                        }
+                        else
+                        {
+                            if({!!  json_encode(Session::has('KM')) !!})
+                            {
+                                var khuyenmai = {!!  (!empty($data->lkm_giatri)) ? $data->lkm_giatri : 0  !!};
+                                var total = {!!  Cart::subtotal(2,'.','') !!}  - khuyenmai + 30000; 
+                                var result = numberWithCommas(total);    
+                                 $("#pdTotal").html(result+ '<input type="hidden" name="billtotal" value="'+total+'"}} ">');
+                            }
+                        }
+                        
+
+
                         $.getJSON(jsonFile,
                             function (data) {
                                 for (let i = 0; i < data.length; i++) {
@@ -332,6 +350,21 @@
                     });
                 });
             });
+
+
+
+             if({!! json_encode($t) !!})
+            {
+                alert('Mã đã được áp dụng'); 
+                  var khuyenmai = {!!  (!empty($data->lkm_giatri)) ? $data->lkm_giatri : 0  !!};
+                    var total = {!!  Cart::subtotal(2,'.','') !!}  - khuyenmai + 30000; 
+                    var result =  numberWithCommas(total); 
+                    $("#pdTotal").html(result+ '<input type="hidden" name="billtotal" value="'+total+'"}} ">');  
+            }
+            if({!! json_encode($f) !!})
+            {
+                alert('Mã không hợp lệ');
+            }
         </script>
         @endpush
 

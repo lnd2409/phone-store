@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SanPham;
 use Cart;
+use DB;
+use Session;
 class CartProductController extends Controller
 {
     //Thêm sản phẩm vào giỏ hàng
@@ -33,6 +35,35 @@ class CartProductController extends Controller
        Cart::destroy();
        return redirect()->route('client.index');
     }
+
+
+    public function checkPromotion(Request $request){
+
+        $km = DB::table('khuyenmai as km')
+        ->join('loaikhuyenmai as lkm','lkm.lkm_id','km.lkm_id')
+        ->where('km.km_macode',$request->km_macode)
+        ->where('km.km_trangthai',0) // Lấy khuyến mãi đang được áp dụng
+        ->get();
+        if(COUNT($km) > 0){
+            Session::forget('checkKMFalse');
+            Session::flash("KM",$km[0]);
+            Session::flash("checkKM");
+            // DB::table('khuyenmai')->where('km_id',$km[0]->km_id)->update(
+            //     [
+            //         'km_trangthai'=>1 // khuyến mãi đã được sử dụng
+            //     ]
+            // );
+            return redirect()->route('client.checkoutcart');
+        }
+        else
+        {
+             Session::forget('checkKM');
+            Session::flash("checkKMFalse");
+            return redirect()->route('client.checkoutcart');
+        }
+    }
+
+
 
 
 
