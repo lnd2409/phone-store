@@ -49,7 +49,7 @@
                                     @php
                                         $imageProduct = DB::table('hinhanhsanpham')->where('sp_id', $item->id)->where('hasp_hinhanhdaidien',1)->first();
                                     @endphp
-                                    <a href="#"><img class="img-fluid max-width-100 p-1 border border-color-1" src="{{ asset($imageProduct->hasp_duongdan) }}" alt="Image Description"></a>
+                                    <a href="#"><img class="img-fluid max-width-100 p-1 border border-color-1" @if($imageProduct != NULL) src="{{ asset(  $imageProduct->hasp_duongdan  ) }}" @endif alt="Image Description"></a>
                                 </td>
 
                                 <td data-title="Product">
