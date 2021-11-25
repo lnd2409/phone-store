@@ -49,6 +49,11 @@
                     <li><a href="{{ route('admin.typepromotion') }}">Loại khuyến mãi</a></li>
                     <li><a href="{{ route('admin.promotion') }}">Khuyến mãi</a></li>
                 </ul>
+            <li><a href="{{ route('admin.stat.customer') }}"><i class="zmdi zmdi-blogger"></i><span>Thống kê khách hàng</span> </a>
+            </li>
+            <li><a href="{{ route('admin.stat.order') }}"><i class="zmdi zmdi-blogger"></i><span>Thống kê đơn hàng</span> </a>
+            </li>
+            <li><a href="{{ route('admin.stat.revenge') }}"><i class="zmdi zmdi-blogger"></i><span>Thống kê doanh thu</span> </a>
             </li>
         </ul>
     </div>

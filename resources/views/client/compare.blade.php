@@ -15,9 +15,9 @@
         <div class="my-md-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-3 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble">
-                    <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="../home/index.html">Home</a>
+                    <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="/">Trang chủ</a>
                     </li>
-                    <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">Compare</li>
+                    <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">So sánh</li>
                 </ol>
             </nav>
         </div>
@@ -36,37 +36,23 @@
                         <a href="#" class="product d-block">
                             <div class="product-compare-image">
                                 <div class="d-flex mb-3">
-                                    <img class="img-fluid mx-auto" src="{{$sanpham1->hinhdaidien->hasp_duongdan??''}}"
+                                    <img class="img-fluid mx-auto" src="{{asset($sanpham1->hinhdaidien->hasp_duongdan??'')}}"
                                         alt="Image Description">
                                 </div>
                             </div>
                             <h3 class="product-item__title text-blue font-weight-bold mb-3">{{$sanpham1->sp_ten}}</h3>
                         </a>
-                        <div class="text-warning mb-2">
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star"></small>
-                        </div>
                     </td>
                     <td>
                         <a href="#" class="product">
                             <div class="product-compare-image">
                                 <div class="d-flex mb-3">
-                                    <img class="img-fluid mx-auto" src="{{$sanpham2->hinhdaidien->hasp_duongdan??''}}"
+                                    <img class="img-fluid mx-auto" src="{{asset($sanpham2->hinhdaidien->hasp_duongdan??'')}}"
                                         alt="Image Description">
                                 </div>
                             </div>
-                            <h3 class="product-item__title text-blue font-weight-bold mb-3">{{$sanpham1->sp_ten}}</h3>
+                            <h3 class="product-item__title text-blue font-weight-bold mb-3">{{$sanpham2->sp_ten}}</h3>
                         </a>
-                        <div class="text-warning mb-2">
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star"></small>
-                            <small class="fas fa-star"></small>
-                        </div>
                     </td>
                 </tr>
 
@@ -91,10 +77,10 @@
                 <tr>
                     <th>Mô tả</th>
                     <td>
-                        <span>{{$sanpham1->sp_mota}}</span>
+                        <span>{!!$sanpham1->sp_mota!!}</span>
                     </td>
                     <td>
-                        <span>{{$sanpham2->sp_mota}}</span>
+                        <span>{!!$sanpham2->sp_mota!!}</span>
                     </td>
                 </tr>
 
@@ -282,8 +268,7 @@
                                 @csrf
                                 <input type="hidden" name="sp_soluong" value="1">
                                 <a href="#" onclick="$(this).closest('form').submit()"
-                                    class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-3 px-xl-5">Add
-                                    to cart</a>
+                                    class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-3 px-xl-5">Thêm vào giỏ</a>
                             </form>
                         </div>
                     </td>
@@ -293,8 +278,7 @@
                                 @csrf
                                 <input type="hidden" name="sp_soluong" value="1">
                                 <a href="#" onclick="$(this).closest('form').submit()"
-                                    class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-3 px-xl-5">Add
-                                    to cart</a>
+                                    class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-3 px-xl-5">Thêm vào giỏ</a>
                             </form>
                         </div>
                     </td>

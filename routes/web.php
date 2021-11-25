@@ -19,6 +19,7 @@ use App\Http\Controllers\TrangChu\CheckAuthController;
 use App\Http\Controllers\TrangChu\VNPayController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\TrangChu\ProductController;
+use App\Http\Controllers\Admin\StatController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -105,6 +106,7 @@ Route::middleware(['checkAuthQuanTri'])->group(function () {
         Route::post('/kho-hang-cap-nhat-luu',[WarehouseController::class,'submitWarehouses'])->name('luuwarehouses');
         Route::get('/kho-hang-xoa/{id}',[WarehouseController::class,'destroyWarehouses'])->name('destroywarehouses');
 
+<<<<<<< HEAD
         // Loại khuyến mãi
         Route::get('/loai-khuyen-mai',[PromotionController::class,'indexType'])->name('typepromotion');
         Route::get('/them-loai-khuyen-mai',[PromotionController::class,'getTypePromotion'])->name('gettypepromotion');
@@ -122,6 +124,14 @@ Route::middleware(['checkAuthQuanTri'])->group(function () {
         Route::get('/xoa-khuyen-mai/{id}',[PromotionController::class,'destroyPromotion'])->name('destroypromotion');
 
         // 
+=======
+
+        //thống kê
+        Route::get('/thong-ke-don-hang',[StatController::class,'order'])->name('stat.order');
+        Route::get('/thong-ke-doanh-thu',[StatController::class,'revenge'])->name('stat.revenge');
+        Route::get('/thong-ke-khach-hang',[StatController::class,'customer'])->name('stat.customer');
+        
+>>>>>>> 49b9c40782117f00fcd845cfe398dd3531e60a70
     });
 });
 Route::view('/sign-in', 'admin.auth.sign-in')->name('admin.signIn');
