@@ -5,6 +5,7 @@ namespace App\Http\Controllers\TrangChu;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
+use Auth;
 use App\Models\TheLoai;
 use App\Models\SanPham;
 use App\Models\Tintuc;
@@ -34,4 +35,20 @@ class ClientController extends Controller
             return view('client.product-search', compact('sanPham','keyWord'));
         }
     }
+
+    public function getBillClient()
+    {
+        $donHang = DB::table('donhang')->where('kh_id',Auth::guard('khachhang')->id())->get();
+        
+        return view('client.giohang.don-hang',compact('donHang'));
+    }
+
+     public function getDetailBill($id)
+     {
+        $ctdonHang = DB::table('chitietdonhang as ctdh')
+        ->join('sanpham as sp','sp.sp_id','ctdh.sp_id')
+        ->where('ctdh.dh_id',$id)
+        ->get();
+        return view('client.giohang.chi-tiet-don-hang',compact('ctdonHang'));
+     }
 }

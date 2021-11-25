@@ -19,6 +19,7 @@ class CreateDonhangTable extends Migration
             $table->string('dh_tenguoinhan');
             $table->string('dh_sdtnguoinhan');
             $table->string('dh_diachinguoinhan');
+            $table->integer('dh_tongtien');
             $table->bigInteger('kh_id')->unsigned();
             $table->foreign('kh_id')->references('kh_id')->on('khachhang')->onDelete('CASCADE');
             

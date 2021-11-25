@@ -183,3 +183,6 @@ Route::get('/bao-cao-vi-pham/{id}',[ReviewController::class,'reportComment'])->n
 
 //search product
 Route::post('/tim-kiem', [ClientController::class, 'searchProduct'])->name('client.search.product.by.name');
+//Đơn hàng của khách hàng
+Route::get('/don-hang',[ClientController::class,'getBillClient'])->name('client.getbill');
+Route::get('/chi-tiet-don-hang/{id}',[ClientController::class,'getDetailBill'])->name('client.getdetailbill');

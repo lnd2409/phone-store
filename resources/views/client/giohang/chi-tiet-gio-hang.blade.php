@@ -149,19 +149,6 @@
                                     <th>Tổng tiền</th>
                                     <td data-title="Subtotal"><span class="amount">{{cart::subtotal(0,0)}} vnđ</span></td>
                                 </tr>
-                                {{-- <tr class="shipping">
-                                    <th>Khuyến mãi</th>
-                                    <td data-title="Shipping"> <?php  $data = Session::get('KM') ?>
-                                        @if(Session::has('KM'))
-                                           <span class="amount"> {{number_format($data->lkm_giatri)}}  vnđ</span>
-                                        @else
-                                         <span class="amount">0,0 vnđ</span>
-                                        @endif
-                                        <div class="mt-1">
-
-                                        </div>
-                                    </td>
-                                </tr> --}}
                                 <tr class="order-total">
                                     <th>Tạm tính</th>
                                     <td data-title="Total"><strong><span class="amount">{{number_format($sum)}} vnđ</span></strong></td>
