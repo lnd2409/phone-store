@@ -46,10 +46,13 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function reportComment($id)
+    public function reportComment(Request $request)
     {
+        $report = implode("-",$request->report);
+        $id = $request->bl_id;
        DB::table('binhluan')->where('bl_id',$id)->update([
-           'bl_baocao'=>1
+           'bl_baocao'=>1,
+           'bl_report'=>$report
        ]);
        return redirect()->back();
     }

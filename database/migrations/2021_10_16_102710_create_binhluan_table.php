@@ -16,6 +16,7 @@ class CreateBinhluanTable extends Migration
         Schema::create('binhluan', function (Blueprint $table) {
             $table->id('bl_id');
             $table->integer('bl_baocao')->default(0);
+            $table->text('bl_report')->nullable();
             $table->bigInteger('sp_id')->unsigned();
             $table->foreign('sp_id')->references('sp_id')->on('sanpham')->onDelete('CASCADE');
 

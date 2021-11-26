@@ -620,8 +620,15 @@
 
                             <!-- Reviewer -->
                             <div class="">
-                                <strong> {{$item->kh_ten}} </strong> &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="{{ route('client.reportcomment', ['id'=>$item->bl_id]) }}" title="Báo cáo vi phạm" class="font-size-13 text-gray-23"><i class="fa fa-flag" aria-hidden="true"></i></a>
+                                <strong> <span @if ($item->bl_baocao==1)
+                                    style="color:red" title="Bình luận này đã bị báo cáo!"
+                                @endif  >{{$item->kh_ten}} </span></strong> &nbsp;&nbsp;&nbsp;&nbsp;
+                                @if ($item->kh_id != Auth::guard('khachhang')->id())
+                                     {{-- <a href="{{ route('client.reportcomment', ['id'=>$item->bl_id]) }}" title="Báo cáo vi phạm" class="font-size-13 text-gray-23"><i class="fa fa-flag" aria-hidden="true"></i></a> --}}
+                                     <a href="#" data-id=" {{$item->bl_id}} " class="showReport" data-toggle="modal" data-target="#exampleModalLong" title="Báo cáo vi phạm" class="font-size-13 text-gray-23"><i class="fa fa-flag" aria-hidden="true"></i></a>
+                                @else
+                                    <a href="{{ route('client.destroycomment', ['id'=>$item->bl_id]) }}" title="Xóa bình luận" class="font-size-13 text-gray-23"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                @endif
                             </div>
                               <p class="text-gray-90">
                                 {{$item->ctbl_noidung}}
@@ -727,6 +734,57 @@
                 <a href="javascript:;" onclick="RemoveAllIdCompare()" class="txtremoveall">Xóa tất cả sản phẩm</a>
             </div>
         </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Báo Cáo bình luận</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form action="{{ route('client.reportcomment') }}" method="post">
+                @csrf
+                   <div class="row">
+                <div class="col-md-6">
+                      <label class="custom-control custom-checkbox">
+                        <input type="checkbox" name="report[]" id="" value="Ngôn từ đã kích" class="">
+                        <span class="custom-control-indicator">Ngôn từ đã kích</span>
+                    </label>
+                </div>
+                <div class="col-md-6">
+                     <label class="custom-control custom-checkbox">
+                        <input type="checkbox" name="report[]" id="" value="Quảng cáo trá hình" class="">
+                        <span class="custom-control-indicator">Quảng cáo trá hình</span>
+                    </label>
+                </div>
+                <div class="col-md-6">
+                      <label class="custom-control custom-checkbox">
+                        <input type="checkbox" name="report[]" id="" value="Nội dung 18+" class="">
+                        <span class="custom-control-indicator">Nội dung 18+</span>
+                    </label>
+                </div>
+                <div class="col-md-6">
+                     <label class="custom-control custom-checkbox">
+                        <input type="checkbox" name="report[]" id="" value="Tài khoản giả mạo" class="">
+                        <span class="custom-control-indicator">Tài khoản giả mạo</span>
+                    </label>
+                </div>
+                <input type="hidden" name="bl_id" id="blID">
+            </div>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="submit" class="btn btn-primary">Báo cáo</button>
+            </div>
+            </form>
+        </div>
+      
+    </div>
+        </div>
+    </div>
     </div>
 @endsection
 @push('script')
@@ -882,6 +940,12 @@
                 }
 
             });
+        });
+
+        $(".showReport").click(function (e) { 
+            e.preventDefault();
+            var id = $(this).attr('data-id');
+            $("#blID").val(id);
         });
     </script>
 @endpush

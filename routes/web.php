@@ -179,7 +179,8 @@ Route::prefix('/san-pham')->name('product.')->group(function () {
 });
 //Bình luận sản phẩm
 Route::post('/san-pham-binh-luan',[ReviewController::class,'store'])->name('client.submitreview');
-Route::get('/bao-cao-vi-pham/{id}',[ReviewController::class,'reportComment'])->name('client.reportcomment');
+Route::get('/xoa-binh-luan/{id}',[ReviewController::class,'destroy'])->name('client.destroycomment');
+Route::post('/bao-cao-vi-pham',[ReviewController::class,'reportComment'])->name('client.reportcomment');
 
 //search product
 Route::post('/tim-kiem', [ClientController::class, 'searchProduct'])->name('client.search.product.by.name');

@@ -54,6 +54,7 @@
                                         -
                                     @else
                                         <span style="color: red">Đã bị báo cáo</span>
+                                        <p> {{ $item->bl_report }} </p>
                                     @endif
                                 </td>
                                 <td>
