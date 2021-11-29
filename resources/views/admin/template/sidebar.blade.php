@@ -22,6 +22,16 @@
     <!-- Menu -->
     <div class="menu">
         <ul class="list">
+            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-assignment"></i><span>Thống kê</span> </a>
+                <ul class="ml-menu">
+                    <li><a href="{{ route('admin.stat.customer') }}"><i class="zmdi zmdi-blogger"></i><span>Khách hàng</span> </a>
+                    </li>
+                    <li><a href="{{ route('admin.stat.order') }}"><i class="zmdi zmdi-blogger"></i><span>Đơn hàng</span> </a>
+                    </li>
+                    <li><a href="{{ route('admin.stat.revenge') }}"><i class="zmdi zmdi-blogger"></i><span>Doanh thu</span> </a>
+                    </li>
+                </ul>
+            </li>
             <li class="header">Quản lý cửa hàng</li>
             <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Sản
                         phẩm</span> </a>
@@ -44,17 +54,7 @@
             </li>
             <li><a href="{{ route('admin.warehouse') }}"><i class="zmdi zmdi-blogger"></i><span>Kho hàng</span> </a>
             </li>
-             <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Khuyến mãi</span> </a>
-                <ul class="ml-menu">
-                    <li><a href="{{ route('admin.typepromotion') }}">Loại khuyến mãi</a></li>
-                    <li><a href="{{ route('admin.promotion') }}">Khuyến mãi</a></li>
-                </ul>
-            <li><a href="{{ route('admin.stat.customer') }}"><i class="zmdi zmdi-blogger"></i><span>Thống kê khách hàng</span> </a>
-            </li>
-            <li><a href="{{ route('admin.stat.order') }}"><i class="zmdi zmdi-blogger"></i><span>Thống kê đơn hàng</span> </a>
-            </li>
-            <li><a href="{{ route('admin.stat.revenge') }}"><i class="zmdi zmdi-blogger"></i><span>Thống kê doanh thu</span> </a>
-            </li>
+            
         </ul>
     </div>
     <!-- #Menu -->
