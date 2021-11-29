@@ -331,7 +331,7 @@
                         </div>
                         <div class="flex-horizontal-center flex-wrap mb-4">
                             <a href="#" class="text-gray-6 font-size-13 ml-2 btn-compare" data-id="{{ $sanPham->sp_id }}"
-                                data-img="{{ asset('template/client') }}/assets/img/212X200/img1.jpg"
+                                data-img="{{asset($sanPham->hinhdaidien->hasp_duongdan??'')}}"
                                 data-name="{{ $sanPham->sp_ten }}" data-tl="{{ $sanPham->tl_id }}"><i
                                     class="ec ec-compare mr-1 font-size-15"></i>
                                 <span id="span-compare">
@@ -682,7 +682,7 @@
                             {{-- <div class="product-item__footer">
                                 <div class="border-top pt-2 flex-center-between flex-wrap">
                                     <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
-                                            class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
+                                            class="ec ec-compare mr-1 font-size-15"></i> So sánh</a>
                                     <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
                                             class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
                                 </div>
@@ -736,7 +736,7 @@
 
             function reloadCompare() {
                 let id = $(".btn-compare").attr('data-id');
-                document.getElementById("span-compare").textContent = "Compare";
+                document.getElementById("span-compare").textContent = "So sánh";
                 checkCompare();
                 for (let index = 1; index < 3; index++) {
                     $("#compare_img" + index).attr("src", sessionStorage.getItem('compare_img' + index));
@@ -744,7 +744,7 @@
                     if (id === sessionStorage.getItem("compare_id" + index)) {
                         $(".btn-compare").addClass("btn-remove-compare");
                         $(".btn-compare").removeClass("btn-compare");
-                        document.getElementById("span-compare").textContent = "Remove";
+                        document.getElementById("span-compare").textContent = "Xoá";
                     }
                 }
             }
@@ -756,15 +756,19 @@
                 let num = 1;
                 let exist = 0; //kiểm tra tồn tại id trong session chưa
                 // không có thì lưu số 1
-
+                console.log(id);
+                console.log(img);
+                console.log(name);
+                console.log(tl);
                 for (let index = 1; index < 3; index++) {
                     // kiểm tra đã có chưa
                     if (sessionStorage.getItem("compare_tl" + index) !== null && sessionStorage.getItem(
-                            "tl" +
+                            "compare_tl" +
                             index) != tl) {
                         alert("Không thể so sánh hai sản phẩm khác loại");
                         return;
                     }
+                    //cùng id thì xoá ra
                     if (sessionStorage.getItem("compare_id" + index) == id) {
                         sessionStorage.removeItem("compare_id" + index);
                         sessionStorage.removeItem("compare_img" + index);
@@ -773,6 +777,7 @@
                         exist = 1;
                     }
                 }
+                //reload lại form compare sau khi xoá
                 if (exist == 1) {
                     reloadCompare();
                     return;
