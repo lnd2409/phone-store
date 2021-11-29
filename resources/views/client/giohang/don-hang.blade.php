@@ -31,7 +31,8 @@
                             <tr>
                                 <th class="product-name">Tên người nhận</th>
                                 <th class="product-price">Tổng tiền đơn hàng</th>
-                                <th>Trạng thái</th>
+                                <th>Thanh toán</th>
+                                <th>Tình trạng</th>
                                 <th class="product-subtotal"></th>
                             </tr>
                         </thead>
@@ -43,8 +44,21 @@
                                  <td>@if ($item->dh_trangthai == 0)
                                      <span style="color: green"> Đã thanh toán </span>
                                  @else
-                                      <span style="color: red"> Thanh toán khi nhận hàng </span>
+                                      <span style="color: red"> Chưa thanh toán </span>
                                 @endif
+                                </td>
+                                <td>
+                                    @if ($item->dh_tinhtrang ==0)
+                                      Đã xác nhận
+                                    @elseif($item->dh_tinhtrang == 1)
+                                       Đã nhận đơn
+                                    @elseif($item->dh_tinhtrang == 2)
+                                        Đang giao hàng
+                                    @elseif($item->dh_tinhtrang == 3)
+                                       Giao hàng thành công
+                                    @elseif($item->dh_tinhtrang == 4)
+                                        Hủy đơn
+                                    @endif
                                 </td>
                                 <td> <a href="{{ route('client.getdetailbill', ['id'=>$item->dh_id]) }}" class="btn btn-warning"> Xem chi tiết</a> </td>
                               </tr>

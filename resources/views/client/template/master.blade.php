@@ -139,7 +139,8 @@
 
                                     <!-- Signup -->
 
-                                    <form action="" method="post">
+                                    <form action="{{ route('handleRegister') }}" method="post" enctype="multipart/form-data">
+                                        @csrf
                                         <div id="signup" style="display: none; opacity: 0;" data-target-group="idForm">
                                             <!-- Title -->
                                             <header class="text-center mb-7">
@@ -148,6 +149,63 @@
                                             </header>
                                             <!-- End Title -->
 
+                                            <!-- Form Group -->
+                                            <div class="form-group">
+                                                <div class="js-form-message js-focus-state">
+                                                    <label class="sr-only" for="kh_hoten">Họ tên</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="kh_hotenlable">
+                                                                <span class="fas fa-user"></span>
+                                                            </span>
+                                                        </div>
+                                                        <input type="text" class="form-control" name="kh_ten" id="kh_hoten" placeholder="Tài khoản" aria-label="Email" aria-describedby="kh_hotenlable" required
+                                                        data-msg="Please enter a valid email address."
+                                                        data-error-class="u-has-error"
+                                                        data-success-class="u-has-success">
+                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Input -->
+                                            <!-- Form Group -->
+                                            <div class="form-group">
+                                                <div class="js-form-message js-focus-state">
+                                                    <label class="sr-only" for="kh_diachi">Địa chỉ</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="kh_diachiLabel">
+                                                                <span class="fas fa-user"></span>
+                                                            </span>
+                                                        </div>
+                                                        <input type="text" class="form-control" name="kh_diachi" id="kh_diachi" placeholder="Địa chỉ" aria-label="Email" aria-describedby="kh_diachiLabel" required
+                                                        data-msg="Please enter a valid email address."
+                                                        data-error-class="u-has-error"
+                                                        data-success-class="u-has-success">
+                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Input -->                                   
+                                            <!-- Form Group -->
+                                            <div class="form-group">
+                                                <div class="js-form-message js-focus-state">
+                                                    <label class="sr-only" for="kh_email">Email</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="kh_emailLabel">
+                                                                <span class="fas fa-user"></span>
+                                                            </span>
+                                                        </div>
+                                                        <input type="email" class="form-control" name="kh_email" id="kh_email" placeholder="Email" aria-label="kh_email" aria-describedby="kh_emailLabel" required
+                                                        data-msg="Please enter a valid email address."
+                                                        data-error-class="u-has-error"
+                                                        data-success-class="u-has-success">
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Input -->
                                             <!-- Form Group -->
                                             <div class="form-group">
                                                 <div class="js-form-message js-focus-state">
@@ -162,17 +220,11 @@
                                                         data-msg="Please enter a valid email address."
                                                         data-error-class="u-has-error"
                                                         data-success-class="u-has-success">
-                                                        <input type="hidden" name="typeLogin" value="register">
+                                                       
                                                     </div>
                                                 </div>
-                                                <input type="email" class="form-control" name="email" id="signupEmail"
-                                                    placeholder="Email" aria-label="Email"
-                                                    aria-describedby="signupEmailLabel" required
-                                                    data-msg="Please enter a valid email address."
-                                                    data-error-class="u-has-error" data-success-class="u-has-success">
                                             </div>
                                             <!-- End Input -->
-
                                             <!-- Form Group -->
                                             <div class="form-group">
                                                 <div class="js-form-message js-focus-state">
@@ -208,16 +260,12 @@
                                                     data-success-class="u-has-success">
                                                     </div>
                                                 </div>
-                                                <input type="password" class="form-control" name="password"
-                                                    id="signupPassword" placeholder="Password" aria-label="Password"
-                                                    aria-describedby="signupPasswordLabel" required
-                                                    data-msg="Your password is invalid. Please try again."
-                                                    data-error-class="u-has-error" data-success-class="u-has-success">
+                                            
                                             </div>
                                             <!-- End Input -->
 
                                             <div class="mb-2">
-                                                <button type="submit" class="btn btn-block btn-sm btn-primary transition-3d-hover">Đăng ký</button>
+                                                <button type="submit" id="registerKH" class="btn btn-block btn-sm btn-primary transition-3d-hover" disabled >Đăng ký</button>
                                             </div>
 
                                             <div class="text-center mb-4">
@@ -248,53 +296,7 @@
                                         </div>
                                         <!-- End Signup -->
 
-                                        <!-- Forgot Password -->
-                                        <div id="forgotPassword" style="display: none; opacity: 0;" data-target-group="idForm">
-                                            <!-- Title -->
-                                            <header class="text-center mb-7">
-                                                <h2 class="h4 mb-0">Recover Password.</h2>
-                                                <p>Enter your email address and an email with instructions will be sent to you.</p>
-                                            </header>
-                                            <!-- End Title -->
-
-                                            <!-- Form Group -->
-                                            <div class="form-group">
-                                                <div class="js-form-message js-focus-state">
-                                                    <label class="sr-only" for="recoverEmail">Your email</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text" id="recoverEmailLabel">
-                                                                <span class="fas fa-user"></span>
-                                                            </span>
-                                                        </div>
-                                                        <input type="email" class="form-control" name="email" id="recoverEmail" placeholder="Your email" aria-label="Your email" aria-describedby="recoverEmailLabel" required
-                                                        data-msg="Please enter a valid email address."
-                                                        data-error-class="u-has-error"
-                                                        data-success-class="u-has-success">
-                                                    </div>
-                                                </div>
-                                                <input type="email" class="form-control" name="email" id="recoverEmail"
-                                                    placeholder="Your email" aria-label="Your email"
-                                                    aria-describedby="recoverEmailLabel" required
-                                                    data-msg="Please enter a valid email address."
-                                                    data-error-class="u-has-error" data-success-class="u-has-success">
-                                            </div>
-                                            <!-- End Form Group -->
-
-                                            <div class="mb-2">
-                                                <button type="submit" class="btn btn-block btn-sm btn-primary transition-3d-hover">Recover Password</button>
-                                            </div>
-
-                                            <div class="text-center mb-4">
-                                                <span class="small text-muted">Remember your password?</span>
-                                                <a class="js-animation-link small" href="javascript:;"
-                                                data-target="#login"
-                                                data-link-group="idForm"
-                                                data-animation-in="slideInUp">Login
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <!-- End Forgot Password -->
+                                     
                                     </form>
                             </div>
                         </div>
@@ -316,6 +318,25 @@
     @include('client.template.js')
     @stack('script')
     @stack('location')
+    <script>
+      $(document).ready(function () {
+          
+          $("#signupConfirmPassword").keyup(function (e) { 
+            e.preventDefault();
+            var pass1 = $("#signupPassword").val();
+            var pass2 = $(this).val();
+            if(pass1 == pass2)
+            {
+                $("#registerKH").attr("disabled", false);
+            }
+            else
+            {
+                $("#registerKH").attr("disabled", true);
+            }
+
+        });
+      });
+    </script>
 </body>
 
 </html>

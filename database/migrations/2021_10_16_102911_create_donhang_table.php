@@ -16,6 +16,7 @@ class CreateDonhangTable extends Migration
         Schema::create('donhang', function (Blueprint $table) {
             $table->id('dh_id');
             $table->integer('dh_trangthai')->default(0);
+            $table->integer('dh_tinhtrang')->default(0);
             $table->string('dh_tenguoinhan');
             $table->string('dh_sdtnguoinhan');
             $table->string('dh_diachinguoinhan');

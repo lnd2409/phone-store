@@ -38,6 +38,7 @@
                             <tr>
                                 <th>STT</th>
                                 <th>Tên khách hàng</th>
+                                <th>Tình trạng</th>
                                 <th>Trạng thái</th>
                                 <th style="width:130px !important">Quyền</th>
                             </tr>
@@ -49,11 +50,35 @@
                                 <td>{{$i++}}</td>
                                 <td>{{ $item->kh_ten }}</td>
                                 <td>
-                                    @if ($item->kh_ten == 0)
+                                    @if ($item->kh_ten == 1)
                                         <span style="color: green">Đã thanh toán</span>
                                     @else
                                         <span style="color: red" >Chưa thanh toán</span>
                                     @endif
+                                </td>
+                                <td>
+                                    <form action="{{ route('admin.updatestatusbill') }}" method="post" class="submitUpdteStatus" >
+                                        @csrf
+                                        <input type="hidden" name="dh_id" value=" {{$item->dh_id}} ">
+                                        <div class="form-group">
+                                          <select class="form-control" name="dh_tinhtrang" id="">
+                                              @if ($item->dh_tinhtrang == 1)
+                                                <option value="1" selected>Đã nhận đơn</option>
+                                              @elseif($item->dh_tinhtrang == 2)
+                                                <option value="2" selected>Đang giao hàng</option>
+                                              @elseif($item->dh_tinhtrang == 3)
+                                                <option value="3" selected>Giao hàng thành công</option>
+                                              @elseif($item->dh_tinhtrang == 4)
+                                               <option value="4" selected>Hủy đơn</option>
+                                              @endif
+                                                <option value="0" disabled  @if ($item->dh_tinhtrang == 0)selected  @endif>--cập nhật trạng thái--</option>
+                                                <option value="1">Đã nhận đơn</option>
+                                                <option value="2">Đang giao hàng</option>
+                                                <option value="3">Giao hàng thành công</option>
+                                                <option value="4">Hủy đơn</option>
+                                          </select>
+                                        </div>
+                                    </form>
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.billdetail', ['id'=>$item->dh_id]) }}"
@@ -70,4 +95,16 @@
         </div>
     </div>
 </div>
+
 @endsection
+@push('scripts')
+   <script>
+       $(document).ready(function () {
+           $(".submitUpdteStatus").change(function (e) { 
+               e.preventDefault();
+               $(this).submit();
+           });
+       });
+   </script>
+@endpush
+

@@ -95,6 +95,7 @@ Route::middleware(['checkAuthQuanTri'])->group(function () {
 
         //Hóa đơn
         Route::get('/hoa-don',[BillController::class,'index'])->name('getbill');
+        Route::post('/hoa-don',[BillController::class,'updateStatus'])->name('updatestatusbill');
         Route::get('/chi-tiet-hoa-don/{id}',[BillController::class,'detail'])->name('billdetail');
         Route::get('/xoa-hoa-don/{id}',[BillController::class,'destroy'])->name('deletedetail');
 
@@ -133,6 +134,9 @@ Route::middleware(['checkAuthQuanTri'])->group(function () {
 });
 Route::view('/sign-in', 'admin.auth.sign-in')->name('admin.signIn');
 Route::post('/handleLogin', [AuthController::class,'handleLogin'])->name('admin.handleLogin');
+
+//Khách hàng đăng ký
+Route::post('/register', [AuthController::class,'handleRegister'])->name('handleRegister');
 
 
 //client

@@ -58,9 +58,18 @@ class BillController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateStatus(Request $request)
     {
-        //
+        $id = $request->dh_id;
+        $dh_tinhtrang = (int) $request->dh_tinhtrang;
+        // dd($dh_tinhtrang);
+        DB::table('donhang')->where('dh_id',$id)->update(
+            [
+                'dh_tinhtrang'=>$dh_tinhtrang
+            ]
+        );
+
+        return redirect()->back();
     }
 
     /**
