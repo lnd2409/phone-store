@@ -54,7 +54,8 @@
             </li>
             <li><a href="{{ route('admin.warehouse') }}"><i class="zmdi zmdi-blogger"></i><span>Kho hàng</span> </a>
             </li>
-            
+            <li><a href="https://dashboard.tawk.to/login"><i class="zmdi zmdi-blogger"></i><span>Chăm sóc khách hàng</span> </a>
+            </li>
         </ul>
     </div>
     <!-- #Menu -->

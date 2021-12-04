@@ -14,12 +14,12 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call(NhaCungCap::class);
-        $this->call(TheLoai::class);
+        // $this->call(TheLoai::class);
         $this->call(ThuocTinh::class);
-        $this->call(TheLoai_ThuocTinh::class);
+        // $this->call(TheLoai_ThuocTinh::class);
         $this->call(LoaiBaoHanh::class);
         $this->call(BaoHanh::class);
-        $this->call(SanPham::class);
+        // $this->call(SanPham::class);
         $this->call(KhachHang::class);
         $this->call(QuanTri::class);
     }
