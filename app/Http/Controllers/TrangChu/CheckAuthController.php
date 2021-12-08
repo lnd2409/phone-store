@@ -81,8 +81,22 @@ class CheckAuthController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function customerInfo()
     {
-        //
+        $khachhang = DB::table('khachhang')->where('kh_id',Auth::guard('khachhang')->id())->first();
+        return view('client.thongtincanhan.index',compact('khachhang'));
     }
+
+    public function customerUpdateInfo(Request $request)
+    {
+        $data = $request->except('_token','kh_id');
+        DB::table('khachhang')->where('kh_id',$request->kh_id)->update($data);
+        Session::flash('message', 'Cập nhật thông tin thành công!!');
+        return redirect()->back();
+    }
+
+   
+
+    
+     
 }

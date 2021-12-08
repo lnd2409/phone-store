@@ -773,6 +773,10 @@
                         <span class="custom-control-indicator">Tài khoản giả mạo</span>
                     </label>
                 </div>
+                <div class="col-md-12">
+                       <textarea class="form-control" name="report_des" id="" cols="10" rows="5">Khác:</textarea>
+                    </label>
+                </div>
                 <input type="hidden" name="bl_id" id="blID">
             </div>
              <div class="modal-footer">

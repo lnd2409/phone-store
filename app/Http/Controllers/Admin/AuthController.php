@@ -27,12 +27,17 @@ class AuthController extends Controller
         Auth::guard('quantri')->logout();
         return redirect()->route('admin.signIn');
     }
+    public function handleCustomLogout() {
+        Auth::guard('khachhang')->logout();
+        return redirect()->route('client.index');
+    }
 
     public function handleRegister(Request $request)
     {
         $data= $request->except('_token','confirmpassword', 'password');
         $data['password'] = Hash::make($request->password);
         DB::table('khachhang')->insert($data);
+         Session::flash('taotaikhoan', 'Tạo tài khoản thành công!!');
        return redirect()->back();
     }
 }
