@@ -110,4 +110,11 @@ class SanPhamAdminController extends Controller
 
         return response()->json($thuocTinh,200);
     }
+
+    public function suaSanPhamODayNeNha($id) {
+        $sanPham = SanPham::find($id);
+        $theLoai = TheLoai::all();
+        $nhaCungCap = NhaCungCap::all();
+        return view('admin.product.edit', compact('nhaCungCap','theLoai','sanPham'));
+    }
 }

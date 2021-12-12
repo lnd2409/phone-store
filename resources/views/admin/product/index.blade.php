@@ -52,7 +52,7 @@
                                 <td>{{ $item->sp_tinhtrang }}</td>
                                 <td>{{ $item->theloai->tl_ten }}</td>
                                 <td>
-                                    <button type="button" class="btn  btn-raised btn-warning waves-effect">Sửa</button>
+                                    <a href="{{ route('admin.product.edit', ['id'=>$item->sp_id]) }}" class="btn  btn-raised btn-warning waves-effect">Sửa</a>
                                     <button type="button" class="btn  btn-raised btn-danger waves-effect">Xóa</button>
                                 </td>
                             </tr>

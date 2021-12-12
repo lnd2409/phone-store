@@ -79,6 +79,37 @@
                         @endforeach
                     </ul>
                 </div>
+                <div class="mb-8">
+                    <div class="border-bottom border-color-1 mb-5">
+                        <h3 class="section-title section-title__sm mb-0 pb-2 font-size-18">Lọc theo giá</h3>
+                    </div>
+                    <div class="range-slider">
+                        <form action="{{ route('product.index') }}" method="get">
+                            <select name="fromPrice" class="form-control" id="">
+                                <option value="null">Từ</option>
+                                <option value="0">0VND</option>
+                                @php
+                                    $temp = 100000;
+                                @endphp
+                                @for ($i = 0; $i < 10; $i++)
+                                    <option value="{{ $temp+=100000}}">{{ number_format($temp+=100000)}}VND</option>
+                                @endfor
+                            </select>
+                            <select name="toPrice" class="form-control" id="">
+                                <option value="null">Đến</option>
+                                <option value="0">100.000VND</option>
+                                @php
+                                    $temp = 100000;
+                                @endphp
+                                @for ($i = 0; $i < 10; $i++)
+                                    <option value="{{ $temp+=100000}}">{{ number_format($temp+=100000)}}VND</option>
+                                @endfor
+                            </select>
+                            <br>
+                            <button type="submit" class="btn px-4 btn-primary-dark-w py-2 rounded-lg">Sắp xếp</button>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="col-xl-9 col-wd-9gdot5">
                 <div class="d-flex justify-content-between align-items-center border-bottom border-color-1 flex-lg-nowrap flex-wrap mb-4">

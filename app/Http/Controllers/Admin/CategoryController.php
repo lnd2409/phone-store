@@ -66,11 +66,14 @@ class CategoryController extends Controller
         if ($id == 0 && $action == 'add') {
             # code...
             $data = null;
-            return view('admin.category.add', compact('data'));
+            $thuocTinhSelected = null;
+            return view('admin.category.add', compact('data','thuocTinhSelected'));
         }else if($action == 'edit'){
-            $thuocTinh = DB::table('thuoctinh')->get();
+
+            $thuocTinhSelected = DB::table('theloai_thuoctinh')->join('thuoctinh','thuoctinh.tt_id','theloai_thuoctinh.tt_id')->where('tl_id',$id)->get();
+            // dd($thuocTinh);
             $data = TheLoai::find($id);
-            return view('admin.category.add', compact('data'));
+            return view('admin.category.add', compact('data','thuocTinhSelected'));
         }
         else if($action == 'del'){
             $checkUsed = SanPham::where('tl_id', $id)->count();
@@ -96,6 +99,15 @@ class CategoryController extends Controller
             //code...
             if($request->has('tl_id')) {
                 $data = TheLoai::find($request->tl_id)->update($request->all());
+                foreach ($request->thuocTinh as $key => $value) {
+                    # code...
+                    DB::table('theloai_thuoctinh')->insert(
+                        [
+                            'tl_id' => $request->tl_id,
+                            'tt_id' => $value
+                        ]
+                    );
+                }
                 $request->session()->flash('success', $this->success(2));
                 return redirect()->back();
             }else {
@@ -122,9 +134,22 @@ class CategoryController extends Controller
         }
     }
 
-    public function getAttrAjax() {
-        $thuocTinh = DB::table('thuoctinh')->get();
-        return response()->json($thuocTinh, 200);
+    public function getAttrAjax($idTheLoai) {
+        // $thuocTinh = DB::table('thuoctinh')->get();
+        if ($idTheLoai == 'add-new') {
+            # code...
+            $thuocTinh = DB::table('thuoctinh')->get();
+            return response()->json($thuocTinh, 200);
+        }else {
+            $thuocTinhNotSelected = DB::table('theloai_thuoctinh')->where('tl_id',$idTheLoai)->pluck('tt_id')->toArray();
+            $thuocTinh = DB::table('thuoctinh')->whereNotIn('tt_id',$thuocTinhNotSelected)->get();
+            return response()->json($thuocTinh, 200);
+        }
+    }
+
+    public function xoaThuocTinh($idTT, $idTL) {
+        DB::table('theloai_thuoctinh')->where('tl_id',$idTL)->where('tt_id', $idTT)->delete();
+        return redirect()->back();
     }
 
     function convert_name($str) {

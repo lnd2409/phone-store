@@ -424,7 +424,7 @@
                             @csrf
                             <label class="sr-only" for="searchproduct">Tìm kiếm</label>
                             <div class="input-group">
-                                <input type="text" class="form-control py-2 pl-5 font-size-15 border-right-0 height-42 border-width-0 rounded-left-pill border-primary" name="sp_ten" id="searchproduct-item" placeholder="Search for Products" aria-label="Search for Products" aria-describedby="searchProduct1" required>
+                                <input type="text" class="form-control py-2 pl-5 font-size-15 border-right-0 height-42 border-width-0 rounded-left-pill border-primary" name="sp_ten" id="searchproduct-item" placeholder="Tìm kiếm sản phẩm theo tên" aria-label="Tìm kiếm sản phẩm theo tên" aria-describedby="searchProduct1" required>
                                 <div class="input-group-append">
                                     <!-- Select -->
                                     <select name="tl_id" class="js-select selectpicker dropdown-select custom-search-categories-select bg-white"
@@ -532,11 +532,9 @@
                                                     <div class="col-md-6">
                                                         <span class="u-header__sub-menu-title">Nhà cung cấp</span>
                                                         <ul class="u-header__sub-menu-nav-group mb-3">
-                                                            <li><a href="#" class="nav-link u-header__sub-menu-nav-link">Headsets</a></li>
-                                                            <li><a href="#" class="nav-link u-header__sub-menu-nav-link">Cables &amp; Chargers</a></li>
-                                                            <li><a href="#" class="nav-link u-header__sub-menu-nav-link">Electronic Accessories</a></li>
-                                                            <li><a href="#" class="nav-link u-header__sub-menu-nav-link">Selfie Sticks</a></li>
-                                                            <li><a href="#" class="nav-link u-header__sub-menu-nav-link">Internal Batteries</a></li>
+                                                            @foreach ($nhaCungCapView as $item)
+                                                            <li><a href="#" class="nav-link u-header__sub-menu-nav-link">{{ $item->ncc_ten }}</a></li>
+                                                            @endforeach
                                                         </ul>
                                                     </div>
                                                 </div>

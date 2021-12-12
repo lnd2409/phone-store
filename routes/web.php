@@ -42,6 +42,7 @@ Route::middleware(['checkAuthQuanTri'])->group(function () {
         Route::get('them-san-pham', [SanPhamAdminController::class, 'add'])->name('product.add');
         Route::post('xu-ly-them-san-pham', [SanPhamAdminController::class, 'store'])->name('product.store');
         Route::get('{idTheLoai}/thuoc-tinh', [SanPhamAdminController::class, 'ajaxThuocTinh'])->name('product.ajax.cate');
+        Route::get('/{id}/sua-san-pham', [SanPhamAdminController::class, 'suaSanPhamODayNeNha'])->name('product.edit');
         Route::prefix('nhan-vien')->name('staffs.')->group(function () {
             Route::get('/', [StaffController::class,'index'])->name('index');
             Route::get('/them', [StaffController::class,'create'])->name('create');
@@ -84,7 +85,8 @@ Route::middleware(['checkAuthQuanTri'])->group(function () {
             Route::get('/', [CategoryController::class,'index'])->name('index');
             Route::get('/them-danh-muc/{id}/{action}', [CategoryController::class,'create'])->name('create');
             Route::post('/xu-ly-them', [CategoryController::class,'store'])->name('store');
-            Route::get('/show-thuoc-tinh', [CategoryController::class,'getAttrAjax'])->name('getAttr');
+            Route::get('/show-thuoc-tinh/{idTheLoai}', [CategoryController::class,'getAttrAjax'])->name('getAttr');
+            Route::get('/xoa-thuoc-tinh/{idTT}/{idTL}', [CategoryController::class,'xoaThuocTinh'])->name('xoaThuocTinh');
         });
 
         //Review
@@ -123,13 +125,13 @@ Route::middleware(['checkAuthQuanTri'])->group(function () {
         Route::post('/sua-khuyen-mai/{id}',[PromotionController::class,'updatePromotion'])->name('updatepromotion');
         Route::get('/xoa-khuyen-mai/{id}',[PromotionController::class,'destroyPromotion'])->name('destroypromotion');
 
-        // 
+        //
 
         //thống kê
         Route::get('/thong-ke-don-hang',[StatController::class,'order'])->name('stat.order');
         Route::get('/thong-ke-doanh-thu',[StatController::class,'revenge'])->name('stat.revenge');
         Route::get('/thong-ke-khach-hang',[StatController::class,'customer'])->name('stat.customer');
-        
+
     });
 });
 Route::view('/sign-in', 'admin.auth.sign-in')->name('admin.signIn');

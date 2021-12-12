@@ -42,7 +42,20 @@
                             </div>
                             <h2 class="card-inside-title">Thuộc tính</h2>
                             <h2 class="card-inside-title">
-                                <a href="#" class="addAttr">+ thêm thuộc tính</a>
+                                <ul>
+                                    @if ($thuocTinhSelected != null)
+                                        @foreach ($thuocTinhSelected as $item)
+                                        <li>{{ $item->tt_ten }} <a href="{{ route('admin.cat.xoaThuocTinh', ['idTT'=>$item->tt_id, 'idTL' => $data->tl_id]) }}" class="btn btn-danger">X</a></li>
+                                        @endforeach
+                                    @endif
+                                </ul>
+                            </h2>
+                            <h2 class="card-inside-title">
+                                @if ($data != null)
+                                    <a href="#" class="addAttr" data-id-cat="{{ $data->tl_id }}">+ thêm thuộc tính</a>
+                                @else
+                                    <a href="#" class="addAttr" data-id-cat="add-new">+ thêm thuộc tính</a>
+                                @endif
                             </h2>
                             <div class="row clearfix thuocTinh">
 
@@ -72,9 +85,11 @@
                     e.preventDefault();
                     stt++;
                     console.log("clicked");
+                    var idCat = $(this).data('id-cat');
+                    console.log($(this).data('id-cat'));
                     $.ajax({
                         type: "get",
-                        url: base_url + "/admin/danh-muc/show-thuoc-tinh",
+                        url: base_url + "/admin/danh-muc/show-thuoc-tinh/"+idCat,
                         // data: "data",
                         dataType: "json",
                         success: function (response) {

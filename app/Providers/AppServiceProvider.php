@@ -17,6 +17,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $theLoaiView = DB::table('theloai')->get();
         View::share('theLoaiView',$theLoaiView);
+        $nhaCungCapView = DB::table('nhacungcap')->get();
+        View::share('nhaCungCapView',$nhaCungCapView);
     }
 
     /**
