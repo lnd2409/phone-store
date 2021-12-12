@@ -48,7 +48,7 @@ class ReviewController extends Controller
      */
     public function reportComment(Request $request)
     {
-        $report = implode("-",$request->report);
+        $report = implode("-",$request->report).'-'.$request->report_des;
         $id = $request->bl_id;
        DB::table('binhluan')->where('bl_id',$id)->update([
            'bl_baocao'=>1,

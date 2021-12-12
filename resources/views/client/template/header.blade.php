@@ -3,6 +3,9 @@
     <div class="u-header__section">
         <!-- Topbar -->
         <div class="u-header-topbar py-2 d-none d-xl-block bg-primary border-bottom-0">
+             @if(Session::has('taotaikhoan'))
+                                    <p class="alert alert-success " style="width:90%; margin:auto;">{{ Session::get('taotaikhoan') }}</p>
+                                    @endif
             <div class="container">
                 <div class="d-flex align-items-center">
                     <div class="topbar-left">
@@ -20,8 +23,11 @@
                             <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border full-bg">
                                 <!-- Account Sidebar Toggle Button -->
                                 @if (Auth::guard('khachhang')->check())
+                                 <a id="sidebarNavToggler" href="{{ route('client.infor') }}" role="button" class="u-header-topbar__nav-link">
+                                        <i class="ec ec-user mr-1"></i> Thông tin cá nhân &nbsp;&nbsp;&nbsp;
                                     <a id="sidebarNavToggler" href="{{ route('client.logout') }}" role="button" class="u-header-topbar__nav-link">
                                         <i class="ec ec-user mr-1"></i> Đăng xuất
+                                        
                                 @else
                                     <a id="sidebarNavToggler" href="javascript:;" role="button" class="u-header-topbar__nav-link"
                                         aria-controls="sidebarContent"
@@ -61,7 +67,7 @@
                             <!-- End Logo -->
 
                             <!-- Fullscreen Toggle Button -->
-                            <button id="sidebarHeaderInvokerMenu" type="button" class="navbar-toggler d-block btn u-hamburger mr-3 mr-xl-0"
+                            <button id="sidebarHeaderInvokerMenu" type="button" class="navbar-toggler d-block btn u-hamburger mr-3 mr-xl-0" 
                                 aria-controls="sidebarHeader"
                                 aria-haspopup="true"
                                 aria-expanded="false"

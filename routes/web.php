@@ -139,7 +139,7 @@ Route::post('/handleLogin', [AuthController::class,'handleLogin'])->name('admin.
 
 //Khách hàng đăng ký
 Route::post('/register', [AuthController::class,'handleRegister'])->name('handleRegister');
-
+Route::post('/dang-xuat', [AuthController::class,'handleCustomLogout'])->name('handleCustomLogout');
 
 //client
 // Route::get('/', function () {
@@ -193,3 +193,8 @@ Route::post('/tim-kiem', [ClientController::class, 'searchProduct'])->name('clie
 //Đơn hàng của khách hàng
 Route::get('/don-hang',[ClientController::class,'getBillClient'])->name('client.getbill');
 Route::get('/chi-tiet-don-hang/{id}',[ClientController::class,'getDetailBill'])->name('client.getdetailbill');
+
+//Thông tin cá nhân
+Route::get('/thong-tin-khach-hang',[CheckAuthController::class,'customerInfo'])->name('client.infor');
+// Cập nhật Thông tin cá nhân
+Route::post('/thong-tin-khach-hang',[CheckAuthController::class,'customerUpdateInfo'])->name('client.updateinfor');
