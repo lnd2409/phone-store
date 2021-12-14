@@ -55,7 +55,7 @@
                             <h2 class="card-inside-title">Loại sản phẩm</h2>
                             <div class="row clearfix">
                                 <div class="col-sm-12">
-                                    <select class="theLoai form-control show-tick " name="theLoai">
+                                    <select class="theLoai form-control show-tick" disabled name="theLoai">
                                         <option value="">-- Chọn loại --</option>
                                         @foreach ($theLoai as $item)
                                             <option value="{{ $item->tl_id }}" @if ($sanPham->tl_id == $item->tl_id)
@@ -67,6 +67,19 @@
                             </div>
                             <h2 class="card-inside-title">Thuộc tính</h2>
                             <div class="row clearfix thuocTinh">
+                                @foreach ($thuocTinh as $item)
+                                <div class='col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label item'>
+                                    <label>{{ $item->tt_ten }}</label>
+                                </div>
+                                <div class='col-lg-10 col-md-10 col-sm-8 col-xs-7 item'>
+                                    <div class='form-group'>
+                                        <div class='form-line'>
+                                        <input type='text' name='idThuocTinh[]' value="{{ $item->tt_id }}" hidden>
+                                        <input type='text' name='thuocTinh[]' value="{{ $item->sptt_giatri }}" class='form-control'>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
                             </div>
                             <h2 class="card-inside-title">Nhà cung cấp</h2>
                             <div class="row clearfix">
@@ -99,9 +112,11 @@
                             <div class="row clearfix">
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <img id="avatar" alt="Ảnh đại diện sản phẩm" src="{{ asset($sanPham->sp_anhdaidien) }}" width="250px" height="250px"/>
+                                        <img id="avatar" alt="Ảnh đại diện sản phẩm" src="{{ asset($anhDaiDien->hasp_duongdan) }}" width="250px" height="250px"/>
                                     </div>
                                     <div class="form-group">
+                                        <label for=""><b>Thay đổi ảnh đại diện</b></label>
+                                        <br>
                                         <input type="file" name="productImage" value="" id="filePhoto" class="required borrowerImageFile" data-errormsg="PhotoUploadErrorMsg">
                                         <br/><br/>
                                         <img id="previewHolder" alt="Ảnh đại diện sản phẩm" width="250px" height="250px"/>
@@ -111,6 +126,12 @@
                             <h2 class="card-inside-title">Hình ảnh slider</h2>
                             <div class="row clearfix">
                                 <div class="col-sm-12">
+                                    <div class="form-group">
+                                        @foreach ($hinhAnhSanPham as $item)
+                                            <img id="listImageProduct" alt="Ảnh đại diện sản phẩm" src="{{ asset($item->hasp_duongdan) }}" width="250px" height="250px"/>
+                                            <a href="#" class="btn btn-sm btn-danger">X</a>
+                                        @endforeach
+                                    </div>
                                     <div class="form-group">
                                         <input type="file" id="upload_file" name="productSlider[]" onchange="preview_image();" multiple/>
                                         {{-- <input type="file" name="anhdaidien" value="" id="filePhoto" class="required borrowerImageFile" data-errormsg="PhotoUploadErrorMsg">
@@ -130,7 +151,7 @@
     </div>
     @push('ajax.product')
         {{-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> --}}
-        {{-- <script>
+        <script>
             $(document).ready(function () {
                 const base_url = window.location.origin;
                 console.log("abc");
@@ -194,6 +215,6 @@
             $("#filePhoto").change(function() {
                 readURL(this);
             });
-        </script> --}}
+        </script>
     @endpush
 @endsection

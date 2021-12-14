@@ -115,6 +115,16 @@ class SanPhamAdminController extends Controller
         $sanPham = SanPham::find($id);
         $theLoai = TheLoai::all();
         $nhaCungCap = NhaCungCap::all();
-        return view('admin.product.edit', compact('nhaCungCap','theLoai','sanPham'));
+        $thuocTinh = DB::table('sanpham_thuoctinh')->join('sanpham','sanpham.sp_id','sanpham_thuoctinh.sp_id')
+        ->join('thuoctinh','thuoctinh.tt_id','sanpham_thuoctinh.tt_id')->get();
+        $hinhAnhSanPham = DB::table('hinhanhsanpham')->where('sp_id',$id)->where('hasp_hinhanhdaidien',NULL)->get();
+        // dd($hinhAnhSanPham);
+        $anhDaiDien = DB::table('hinhanhsanpham')->where('sp_id',$id)->where('hasp_hinhanhdaidien',1)->first();
+        return view('admin.product.edit', compact('nhaCungCap','theLoai','sanPham','thuocTinh','hinhAnhSanPham','anhDaiDien'));
+    }
+
+    public function removeImageSlider($idImg) {
+        $hinhAnhSanPham = DB::table('hinhanhsanpham')->where('hasp_id', $idImg)->delele();
+        return redirect()->back();
     }
 }
