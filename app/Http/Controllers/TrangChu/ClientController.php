@@ -26,11 +26,14 @@ class ClientController extends Controller
         $keyWord = $request->sp_ten;
         if ($request->tl_id != null) {
             # code...
-            $sanPham = SanPham::where('sp_ten','like','%'.$request->sp_ten.'%')->where('tl_id', $request->tl_id)->join('hinhanhsanpham','hinhanhsanpham.sp_id','sanpham.sp_id')
+            $sanPham = SanPham::where('sp_ten','like','%'.$request->sp_ten.'%')->where('tl_id', $request->tl_id)
+            ->join('hinhanhsanpham','hinhanhsanpham.sp_id','sanpham.sp_id')
             ->where('hinhanhsanpham.hasp_hinhanhdaidien', 1)->get();
             return view('client.product-search', compact('sanPham','keyWord'));
         }else {
-            $sanPham = SanPham::where('sp_ten','like','%'.$request->sp_ten.'%')->join('hinhanhsanpham','hinhanhsanpham.sp_id','sanpham.sp_id')
+            $sanPham = SanPham::where('sp_ten','like','%'.$request->sp_ten.'%')
+            ->orWhere('sp_mota','like','%'.$request->sp_ten.'%')
+            ->join('hinhanhsanpham','hinhanhsanpham.sp_id','sanpham.sp_id')
             ->where('hinhanhsanpham.hasp_hinhanhdaidien', 1)->get();
             return view('client.product-search', compact('sanPham','keyWord'));
         }
@@ -39,7 +42,7 @@ class ClientController extends Controller
     public function getBillClient()
     {
         $donHang = DB::table('donhang')->where('kh_id',Auth::guard('khachhang')->id())->get();
-        
+
         return view('client.giohang.don-hang',compact('donHang'));
     }
 
