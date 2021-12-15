@@ -56,12 +56,12 @@
                             <li class="mb-4">
                                 <div class="row">
                                     <div class="col-auto">
-                                        <a href="../shop/single-product-fullwidth.html" class="d-block width-75">
+                                        <a href="{{ route('client.product-detail', ['id'=>$item->sp_id]) }}" class="d-block width-75">
                                             <img class="img-fluid" src="{{ asset($item->hasp_duongdan) }}" alt="Image Description">
                                         </a>
                                     </div>
                                     <div class="col">
-                                        <h3 class="text-lh-1dot2 font-size-14 mb-0"><a href="../shop/single-product-fullwidth.html">{{ $item->sp_ten }}</a></h3>
+                                        <h3 class="text-lh-1dot2 font-size-14 mb-0"><a href="{{ route('client.product-detail', ['id'=>$item->sp_id]) }}">{{ $item->sp_ten }}</a></h3>
                                         {{-- <div class="text-warning text-ls-n2 font-size-16 mb-1" style="width: 80px;">
                                             <small class="fas fa-star"></small>
                                             <small class="fas fa-star"></small>

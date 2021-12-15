@@ -665,12 +665,12 @@
                     <div class="product-item__outer h-100">
                         <div class="product-item__inner px-xl-4 p-3">
                             <div class="product-item__body pb-xl-2">
-                                <div class="mb-2"><a href="../shop/product-categories-7-column-full-width.html"
+                                <div class="mb-2"><a href="{{ route('client.product-detail', ['id'=>$item->sp_id]) }}"
                                         class="font-size-12 text-gray-5">{{ $item->theloai->tl_ten }}</a></div>
-                                <h5 class="mb-1 product-item__title"><a href="../shop/single-product-fullwidth.html"
+                                <h5 class="mb-1 product-item__title"><a href="{{ route('client.product-detail', ['id'=>$item->sp_id]) }}"
                                         class="text-blue font-weight-bold">{{ $item->sp_ten }}</a></h5>
                                 <div class="mb-2">
-                                    <a href="../shop/single-product-fullwidth.html" class="d-block text-center"><img
+                                    <a href="{{ route('client.product-detail', ['id'=>$item->sp_id]) }}" class="d-block text-center"><img
                                             class="img-fluid"
                                             src="{{ asset($item->hasp_duongdan) }}"
                                             alt="Image Description"></a>
@@ -680,20 +680,12 @@
                                         <div class="text-gray-100">{{ number_format($item->sp_gia) }}</div>
                                     </div>
                                     <div class="d-none d-xl-block prodcut-add-cart">
-                                        <a href="../shop/single-product-fullwidth.html"
+                                        <a href="{{ route('client.product-detail', ['id'=>$item->sp_id]) }}"
                                             class="btn-add-cart btn-primary transition-3d-hover"><i
                                                 class="ec ec-add-to-cart"></i></a>
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="product-item__footer">
-                                <div class="border-top pt-2 flex-center-between flex-wrap">
-                                    <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i
-                                            class="ec ec-compare mr-1 font-size-15"></i> So sánh</a>
-                                    <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i
-                                            class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
-                                </div>
-                            </div> --}}
                         </div>
                     </div>
                 </li>
@@ -785,7 +777,7 @@
             </div>
             </form>
         </div>
-      
+
     </div>
         </div>
     </div>
@@ -946,7 +938,7 @@
             });
         });
 
-        $(".showReport").click(function (e) { 
+        $(".showReport").click(function (e) {
             e.preventDefault();
             var id = $(this).attr('data-id');
             $("#blID").val(id);
