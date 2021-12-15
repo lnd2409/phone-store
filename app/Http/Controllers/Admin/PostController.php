@@ -46,7 +46,7 @@ class PostController extends Controller
         $tintuc=Tintuc::create($request->all());
         $this->uploadImage($tintuc,$request);
 
-        toastr()->success('Đã thêm thành công tin tức');
+        // toastr()->success('Đã thêm thành công tin tức');
 
         return redirect()->route('admin.posts.index');
     }
