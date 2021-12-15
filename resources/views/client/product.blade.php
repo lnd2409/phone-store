@@ -62,13 +62,6 @@
                                     </div>
                                     <div class="col">
                                         <h3 class="text-lh-1dot2 font-size-14 mb-0"><a href="{{ route('client.product-detail', ['id'=>$item->sp_id]) }}">{{ $item->sp_ten }}</a></h3>
-                                        {{-- <div class="text-warning text-ls-n2 font-size-16 mb-1" style="width: 80px;">
-                                            <small class="fas fa-star"></small>
-                                            <small class="fas fa-star"></small>
-                                            <small class="fas fa-star"></small>
-                                            <small class="fas fa-star"></small>
-                                            <small class="far fa-star text-muted"></small>
-                                        </div> --}}
                                         <div class="font-weight-bold">
                                             {{-- <del class="font-size-11 text-gray-9 d-block">{{ $item->sp_gia }}</del> --}}
                                             <ins class="font-size-15 text-red text-decoration-none d-block">{{ number_format($item->sp_gia) }} VND</ins>
@@ -85,25 +78,12 @@
                     </div>
                     <div class="range-slider">
                         <form action="{{ route('product.index') }}" method="get">
-                            <select name="fromPrice" class="form-control" id="">
+                            <select name="price" class="form-control" id="">
                                 <option value="null">Từ</option>
-                                <option value="0">0VND</option>
-                                @php
-                                    $temp = 100000;
-                                @endphp
-                                @for ($i = 0; $i < 10; $i++)
-                                    <option value="{{ $temp+=100000}}">{{ number_format($temp+=100000)}}VND</option>
-                                @endfor
-                            </select>
-                            <select name="toPrice" class="form-control" id="">
-                                <option value="null">Đến</option>
-                                <option value="0">100.000VND</option>
-                                @php
-                                    $temp = 100000;
-                                @endphp
-                                @for ($i = 0; $i < 10; $i++)
-                                    <option value="{{ $temp+=100000}}">{{ number_format($temp+=100000)}}VND</option>
-                                @endfor
+                                <option value="1">Dưới 3 triệu</option>
+                                <option value="2">Từ 3 - 8 triệu</option>
+                                <option value="3">Từ 8 - 15 triệu</option>
+                                <option value="4">Trên 15 triệu</option>
                             </select>
                             <br>
                             <button type="submit" class="btn px-4 btn-primary-dark-w py-2 rounded-lg">Sắp xếp</button>
