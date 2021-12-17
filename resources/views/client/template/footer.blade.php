@@ -7,7 +7,7 @@
                 <div class="col-lg-5">
                     <div class="mb-6">
                         <a href="#" class="d-inline-block">
-                            <svg version="1.1" x="0px" y="0px" width="156px" height="37px" viewBox="0 0 175.748 42.52" enable-background="new 0 0 175.748 42.52">
+                            {{-- <svg version="1.1" x="0px" y="0px" width="156px" height="37px" viewBox="0 0 175.748 42.52" enable-background="new 0 0 175.748 42.52">
                                 <ellipse fill-rule="evenodd" clip-rule="evenodd" fill="#FDD700" cx="170.05" cy="36.341" rx="5.32" ry="5.367"></ellipse>
                                 <path fill-rule="evenodd" clip-rule="evenodd" fill="#333E48" d="M30.514,0.71c-0.034,0.003-0.066,0.008-0.056,0.056
                                     C30.263,0.995,29.876,1.181,29.79,1.5c-0.148,0.548,0,1.568,0,2.427v36.459c0.265,0.221,0.506,0.465,0.725,0.734h6.187
@@ -45,7 +45,7 @@
                                     c-1.293,2.365-1.951,5.158-1.729,8.408c0.209,3.053,1.191,5.496,2.619,7.508c2.842,4.004,7.385,6.973,13.656,6.377
                                     c5.976-0.568,9.574-3.936,11.816-8.354c-0.141-0.271-0.221-0.604-0.336-0.902C92.929,31.364,90.843,30.485,88.812,29.55z">
                                 </path>
-                            </svg>
+                            </svg> --}}
                         </a>
                     </div>
                     <div class="mb-4">
@@ -54,16 +54,18 @@
                                 <i class="ec ec-support text-primary font-size-56"></i>
                             </div>
                             <div class="col pl-3">
-                                <a href="tel:+80080018588" class="font-size-20 text-gray-90">1234567890</a>
+                                <a href="tel:+80080018588" class="font-size-20 text-gray-90">Dương Thiều Gia Bảo</a>
+                                <br>
+                                <a href="tel:+80080018588" class="font-size-20 text-gray-90">B1704597</a>
                             </div>
                         </div>
                     </div>
-                    <div class="mb-4">
+                    {{-- <div class="mb-4">
                         <h6 class="mb-1 font-weight-bold">Thông tin liên hệ</h6>
                         <address class="">
                             Cần Thơ
                         </address>
-                    </div>
+                    </div> --}}
                     <div class="my-4 my-md-4">
                         <ul class="list-inline mb-0 opacity-7">
                             <li class="list-inline-item mr-0">

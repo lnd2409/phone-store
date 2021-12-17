@@ -27,7 +27,7 @@
                                         <i class="ec ec-user mr-1"></i> Thông tin cá nhân &nbsp;&nbsp;&nbsp;
                                     <a id="sidebarNavToggler" href="{{ route('client.logout') }}" role="button" class="u-header-topbar__nav-link">
                                         <i class="ec ec-user mr-1"></i> Đăng xuất
-                                        
+
                                 @else
                                     <a id="sidebarNavToggler" href="javascript:;" role="button" class="u-header-topbar__nav-link"
                                         aria-controls="sidebarContent"
@@ -67,7 +67,7 @@
                             <!-- End Logo -->
 
                             <!-- Fullscreen Toggle Button -->
-                            <button id="sidebarHeaderInvokerMenu" type="button" class="navbar-toggler d-block btn u-hamburger mr-3 mr-xl-0" 
+                            <button id="sidebarHeaderInvokerMenu" type="button" class="navbar-toggler d-block btn u-hamburger mr-3 mr-xl-0"
                                 aria-controls="sidebarHeader"
                                 aria-haspopup="true"
                                 aria-expanded="false"
