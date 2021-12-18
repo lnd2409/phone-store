@@ -47,7 +47,7 @@ class StaffController extends Controller
         }
         $request->merge(['password'=>Hash::make($request->password)]);
         Quantri::create($request->all());
-        toastr()->success('Đã thêm thành công nhân viên');
+        // toastr()->success('Đã thêm thành công nhân viên');
 
         return redirect()->route('admin.staffs.index');
     }
@@ -86,9 +86,9 @@ class StaffController extends Controller
     {
         $request->password?$request->merge(['password'=>Hash::make($request->password)]):$request->request->remove('password');
         $quantri->update($request->all());
-        toastr()->success('Đã cập nhật thành công nhân viên');
+        // toastr()->success('Đã cập nhật thành công nhân viên');
         return redirect()->route('admin.staffs.index');
-        
+
     }
 
     /**

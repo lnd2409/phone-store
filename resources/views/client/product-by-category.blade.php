@@ -41,8 +41,13 @@
                         @php
                             $arrProduct = Session::get('arrProduct');
                             // dd($arrProduct)
-                            $getLastestProduct = DB::table('sanpham')->join('hinhanhsanpham','hinhanhsanpham.sp_id','sanpham.sp_id')
-                            ->where('hinhanhsanpham.hasp_hinhanhdaidien', 1)->whereIn('sanpham.sp_id', $arrProduct)->get();
+                            if ($arrProduct != null) {
+                                # code...
+                                $getLastestProduct = DB::table('sanpham')->join('hinhanhsanpham','hinhanhsanpham.sp_id','sanpham.sp_id')
+                                ->where('hinhanhsanpham.hasp_hinhanhdaidien', 1)->whereIn('sanpham.sp_id', $arrProduct)->get();
+                            }else{
+                                $getLastestProduct = [];
+                            }
                         @endphp
                         @foreach ($getLastestProduct as $item)
                             <li class="mb-4">

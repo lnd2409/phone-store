@@ -67,9 +67,10 @@ class VNPayController extends Controller
                   'sp_soluong'=>$soluong-$value->qty
                 ]);
           }
-           Cart::destroy();
-           Session::flash("payMess","Đặt hàng thành công!");
-           return redirect()->route('client.index');
+            DB::table('donhang')->where('dh_id',$donhang_id)->update(['dh_trangthai',1]);
+            Cart::destroy();
+            Session::flash("payMess","Đặt hàng thành công!");
+            return redirect()->route('client.index');
       }
 
       $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
@@ -90,8 +91,8 @@ class VNPayController extends Controller
       // Tên chủ thẻ NGUYEN VAN A
       // Ngày phát hành 07/15
       // Mật khẩu OTP 123456
-     
-      
+
+
        Session::flash("billInfo", $khachhang);
 
 
@@ -148,7 +149,7 @@ class VNPayController extends Controller
     public function storePayCart(Request $request)
     {
         $nguoinhan = Session::get('billInfo');
-        
+
         if ($request->vnp_ResponseCode == '00') {
 
             // Thêm dữ liệu vào đơn hàng
@@ -174,7 +175,7 @@ class VNPayController extends Controller
                 ])
                 ;
             }
-           
+
             Session::forget('billInfo');
             Cart::destroy();
             Session::flash("payMess","Thanh toán thành công!");

@@ -18,7 +18,7 @@ class AuthController extends Controller
         if (Auth::guard('quantri')->attempt($arrLogin)) {
             return redirect()->route('admin.index');
         }else{
-            toastr()->error('Không đúng tài khoản hoặc mật khẩu');
+            // toastr()->error('Không đúng tài khoản hoặc mật khẩu');
             return redirect()->back();
         }
     }

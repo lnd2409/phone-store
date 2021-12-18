@@ -11,7 +11,6 @@
                 <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
                     role="button"> keyboard_arrow_down </i>
                 <ul class="dropdown-menu slideUp">
-                    <li><a href="profile.html"><i class="material-icons">person</i>Thông tin</a></li>
                     <li><a href="{{ route('admin.logout') }}"><i class="material-icons">input</i>Đăng xuất</a></li>
                 </ul>
             </div>
@@ -52,7 +51,7 @@
             </li>
             <li><a href="{{ route('admin.getbill') }}"><i class="zmdi zmdi-blogger"></i><span>Đơn hàng</span> </a>
             </li>
-            <li><a href="{{ route('admin.warehouse') }}"><i class="zmdi zmdi-blogger"></i><span>Kho hàng</span> </a>
+            {{-- <li><a href="{{ route('admin.warehouse') }}"><i class="zmdi zmdi-blogger"></i><span>Kho hàng</span> </a> --}}
             </li>
             <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Khuyến mãi</span> </a>
                 <ul class="ml-menu">

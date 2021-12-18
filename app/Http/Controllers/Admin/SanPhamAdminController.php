@@ -116,15 +116,78 @@ class SanPhamAdminController extends Controller
         $theLoai = TheLoai::all();
         $nhaCungCap = NhaCungCap::all();
         $thuocTinh = DB::table('sanpham_thuoctinh')->join('sanpham','sanpham.sp_id','sanpham_thuoctinh.sp_id')
-        ->join('thuoctinh','thuoctinh.tt_id','sanpham_thuoctinh.tt_id')->get();
+        ->join('thuoctinh','thuoctinh.tt_id','sanpham_thuoctinh.tt_id')
+        ->where('sanpham_thuoctinh.sp_id',$id)
+        ->get();
         $hinhAnhSanPham = DB::table('hinhanhsanpham')->where('sp_id',$id)->where('hasp_hinhanhdaidien',NULL)->get();
         // dd($hinhAnhSanPham);
         $anhDaiDien = DB::table('hinhanhsanpham')->where('sp_id',$id)->where('hasp_hinhanhdaidien',1)->first();
         return view('admin.product.edit', compact('nhaCungCap','theLoai','sanPham','thuocTinh','hinhAnhSanPham','anhDaiDien'));
     }
 
+    public function handleEditProductForML($id, Request $request) {
+        $data = [
+            'sp_ten' => $request->tenSanPham,
+            'sp_gia' => $request->giaBan,
+            'sp_soluong' => $request->soLuong,
+            'sp_moTa' => $request->moTa,
+            'sp_trangthai' => 1,
+            'sp_tinhtrang' => 'Còn hàng',
+            'ncc_id' => $request->nhaCungCap,
+            // 'tl_id' => $request->theLoai,
+            'bh_id' => 1
+        ];
+        // dd($request->idThuocTinh);
+        foreach ($request->idThuocTinh as $key => $value) {
+            DB::table('sanpham_thuoctinh')
+                ->where('sp_id',$id)
+                ->where('tt_id', $value)
+                ->update(
+                [
+                    'sptt_giatri' => $request->thuocTinh[$key]
+                ]
+            );
+        }
+
+        if($request->hasFile('productImage'))
+        {
+            $file = $request->file('productImage');
+            $nameFile = $file->getClientOriginalName('productImage');
+            $file->move('upload/images/product',$nameFile);
+            DB::table('hinhanhsanpham')->where('sp_id', $id)->where('hasp_hinhanhdaidien',1)->update(
+                [
+                    'hasp_duongdan' => 'upload/images/product/'.$nameFile,
+                ]
+            );
+        }
+        // dd($request->productSlider);
+        if ($request->productSlider != null) {
+            # code...
+            // foreach ($request->productSlider as $key => $value) {
+                # code...
+                $file = $request->file('productSlider');
+                    foreach ($file as $key => $value) {
+                    // dd($file);
+                    $nameFile = $value->getClientOriginalName('productSlider');
+                    $value->move('upload/images/product',$nameFile);
+                    DB::table('hinhanhsanpham')->insert(
+                        [
+                            'hasp_duongdan' => 'upload/images/product/'.$nameFile,
+                            'sp_id' => $id
+                        ]
+                    );
+                }
+        }
+        // dd($data);
+
+        $update = SanPham::find($id)->update(
+           $data
+        );
+        return redirect()->back();
+    }
+
     public function removeImageSlider($idImg) {
-        $hinhAnhSanPham = DB::table('hinhanhsanpham')->where('hasp_id', $idImg)->delele();
+        $hinhAnhSanPham = DB::table('hinhanhsanpham')->where('hasp_id', $idImg)->delete();
         return redirect()->back();
     }
 }

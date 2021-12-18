@@ -83,4 +83,12 @@ class BillController extends Controller
         DB::table('donhang')->where('dh_id',$id)->delete();
         return redirect()->back();
     }
+
+
+    public function updateStatusBill($id) {
+        DB::table('donhang')->where('dh_id', $id)->update([
+            'dh_trangthai' => 1
+        ]);
+        return redirect()->back();
+    }
 }

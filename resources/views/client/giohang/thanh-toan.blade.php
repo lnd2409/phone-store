@@ -23,7 +23,7 @@
                 <div class="mb-5">
                     <h1 class="text-center">Thanh Toán Đơn Hàng</h1>
                 </div>
-                
+
                 <div class="mb-12 mb-md-0 w-xl-40">
                     <!-- Apply coupon Form -->
                     <form class="js-focus-state" action="{{ route('client.checkpromotion') }}" method="post" >
@@ -55,7 +55,7 @@
                                         <!-- Product Content -->
                                         <table class="table">
                                             <thead>
-                                               
+
                                                 <tr>
                                                     <th class="product-name">Sản phẩm</th>
                                                     <th class="product-total">Thành tiền</th>
@@ -91,10 +91,10 @@
                                                     <th>Tạm tính</th>
                                                     <td>
                                                         <strong id="pdTotal">
-                                                            {{number_format(Cart::subtotal('2',".","") + 30000) }} 
+                                                            {{number_format(Cart::subtotal('2',".","") + 30000) }}
                                                             <input type="hidden" name="billtotal" value=" {{Cart::subtotal('2',".","") + 30000}} ">
                                                         </strong> vnđ
-                                                        
+
                                                     </td>
                                                 </tr>
                                             </tfoot>
@@ -151,7 +151,7 @@
                                                 </div>
                                                 <!-- End Card -->
 
-                                            
+
 
                                             </div>
                                             <!-- End Basics Accordion -->
@@ -263,7 +263,7 @@
                 </form>
             </div>
         </main>
-         <?php 
+         <?php
             $t = Session::has('checkKM');
             $f = Session::has('checkKMFalse');
             (Session::has('KM')) ? $data=Session::get('KM') : "";
@@ -292,15 +292,26 @@
                         var getIDThanhPho = $(this).children("option:selected").attr("lang");
                         console.log(getIDThanhPho);
 
+                        if (getIDThanhPho != 12) {
+                            $("#shipCode").html('30,000 vnđ <input type="hidden" name="shipcode" value="0">');
+                            if({!!  json_encode(Session::has('KM')) !!})
+                            {
+                                var khuyenmai = {!!  (!empty($data->lkm_giatri)) ? $data->lkm_giatri : 0  !!};
+                                var total = {!!  Cart::subtotal(2,'.','') !!}  - khuyenmai;
+                                var result = numberWithCommas(total);
+                                $("#pdTotal").html(result + '<input type="hidden" name="billtotal" value="'+total+'"}} ">');
+                            }
+                        }
+
                         if(getIDThanhPho == 12)
                         {
                             $("#shipCode").html('0 vnđ <input type="hidden" name="shipcode" value="0">');
                             if({!!  json_encode(Session::has('KM')) !!})
                             {
                                 var khuyenmai = {!!  (!empty($data->lkm_giatri)) ? $data->lkm_giatri : 0  !!};
-                                var total = {!!  Cart::subtotal(2,'.','') !!}  - khuyenmai; 
-                                var result = numberWithCommas(total);    
-                                $("#pdTotal").html(result + '<input type="hidden" name="billtotal" value="'+total+'"}} ">'); 
+                                var total = {!!  Cart::subtotal(2,'.','') !!}  - khuyenmai;
+                                var result = numberWithCommas(total);
+                                $("#pdTotal").html(result + '<input type="hidden" name="billtotal" value="'+total+'"}} ">');
                             }
                         }
                         else
@@ -308,12 +319,12 @@
                             if({!!  json_encode(Session::has('KM')) !!})
                             {
                                 var khuyenmai = {!!  (!empty($data->lkm_giatri)) ? $data->lkm_giatri : 0  !!};
-                                var total = {!!  Cart::subtotal(2,'.','') !!}  - khuyenmai + 30000; 
-                                var result = numberWithCommas(total);    
+                                var total = {!!  Cart::subtotal(2,'.','') !!}  - khuyenmai + 30000;
+                                var result = numberWithCommas(total);
                                  $("#pdTotal").html(result+ '<input type="hidden" name="billtotal" value="'+total+'"}} ">');
                             }
                         }
-                        
+
 
 
                         $.getJSON(jsonFile,
@@ -355,11 +366,11 @@
 
              if({!! json_encode($t) !!})
             {
-                alert('Mã đã được áp dụng'); 
+                alert('Mã đã được áp dụng');
                   var khuyenmai = {!!  (!empty($data->lkm_giatri)) ? $data->lkm_giatri : 0  !!};
-                    var total = {!!  Cart::subtotal(2,'.','') !!}  - khuyenmai + 30000; 
-                    var result =  numberWithCommas(total); 
-                    $("#pdTotal").html(result+ '<input type="hidden" name="billtotal" value="'+total+'"}} ">');  
+                    var total = {!!  Cart::subtotal(2,'.','') !!}  - khuyenmai + 30000;
+                    var result =  numberWithCommas(total);
+                    $("#pdTotal").html(result+ '<input type="hidden" name="billtotal" value="'+total+'"}} ">');
             }
             if({!! json_encode($f) !!})
             {

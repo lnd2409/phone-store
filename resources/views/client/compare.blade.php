@@ -74,7 +74,7 @@
                     </td>
                 </tr>
 
-                <tr>
+                {{-- <tr>
                     <th>Mô tả</th>
                     <td>
                         <span>{!!$sanpham1->sp_mota!!}</span>
@@ -82,7 +82,7 @@
                     <td>
                         <span>{!!$sanpham2->sp_mota!!}</span>
                     </td>
-                </tr>
+                </tr> --}}
 
                 <tr>
                     <th>Nhà cung cấp</th>

@@ -16,33 +16,33 @@ class KhachHang extends Seeder
     {
         $khachhang =[
             [
-                'kh_ten'=>'Trần Thanh Phụng',
+                'kh_ten'=>'Trần Văn A',
                 'kh_sdt'=>'0123456789',
-                'kh_email'=>'tthanhphung@gmail.com',
+                'kh_email'=>'test1@gmail.com',
                 'kh_diachi'=>'Hẽm 21, đường 3/2, Ninh Kiều, Cần Thơ',
                 'kh_gioitinh'=>'Nam',
                 'kh_trangthai'=>0,
-                'username'=>'ttphung',
+                'username'=>'test1',
                 'password'=>Hash::make(123)
             ],
             [
-                'kh_ten'=>'Lê Ngọc Đức',
+                'kh_ten'=>'Lê Văn B',
                 'kh_sdt'=>'0123456789',
-                'kh_email'=>'tthanhphung@gmail.com',
+                'kh_email'=>'test2@gmail.com',
                 'kh_diachi'=>'Hẽm 21, đường 3/2, Ninh Kiều, Cần Thơ',
                 'kh_gioitinh'=>'Nam',
                 'kh_trangthai'=>0,
-                'username'=>'lnduc',
+                'username'=>'test2',
                 'password'=>Hash::make(123)
             ],
             [
-            'kh_ten'=>'Lê Minh Nghĩa',
+            'kh_ten'=>'Lê Quốc C',
             'kh_sdt'=>'0123456789',
-            'kh_email'=>'tthanhphung@gmail.com',
+            'kh_email'=>'test3@gmail.com',
             'kh_diachi'=>'Hẽm 21, đường 3/2, Ninh Kiều, Cần Thơ',
             'kh_gioitinh'=>'Nam',
             'kh_trangthai'=>0,
-            'username'=>'lmnghia',
+            'username'=>'test3',
             'password'=>Hash::make(123)
             ]
         ];

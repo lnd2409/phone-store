@@ -50,10 +50,10 @@
                                 <td>{{$i++}}</td>
                                 <td>{{ $item->kh_ten }}</td>
                                 <td>
-                                    @if ($item->kh_ten == 1)
+                                    @if ($item->dh_trangthai == 1)
                                         <span style="color: green">Đã thanh toán</span>
                                     @else
-                                        <span style="color: red" >Chưa thanh toán</span>
+                                        <a href="{{ route('update.bill.status', ['id'=>$item->dh_id]) }}"><span style="color: red" >Chưa thanh toán</span></a>
                                     @endif
                                 </td>
                                 <td>
@@ -100,7 +100,7 @@
 @push('scripts')
    <script>
        $(document).ready(function () {
-           $(".submitUpdteStatus").change(function (e) { 
+           $(".submitUpdteStatus").change(function (e) {
                e.preventDefault();
                $(this).submit();
            });

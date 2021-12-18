@@ -43,6 +43,8 @@ Route::middleware(['checkAuthQuanTri'])->group(function () {
         Route::post('xu-ly-them-san-pham', [SanPhamAdminController::class, 'store'])->name('product.store');
         Route::get('{idTheLoai}/thuoc-tinh', [SanPhamAdminController::class, 'ajaxThuocTinh'])->name('product.ajax.cate');
         Route::get('/{id}/sua-san-pham', [SanPhamAdminController::class, 'suaSanPhamODayNeNha'])->name('product.edit');
+        Route::get('/{idImg}/xoa-hinh-anh',[SanPhamAdminController::class, 'removeImageSlider'])->name('remove.image.product');
+        Route::post('/{id}/xu-ly-sua-san-pham',[SanPhamAdminController::class, 'handleEditProductForML'])->name('handle.edit.product');
         Route::prefix('nhan-vien')->name('staffs.')->group(function () {
             Route::get('/', [StaffController::class,'index'])->name('index');
             Route::get('/them', [StaffController::class,'create'])->name('create');
@@ -100,6 +102,7 @@ Route::middleware(['checkAuthQuanTri'])->group(function () {
         Route::post('/hoa-don',[BillController::class,'updateStatus'])->name('updatestatusbill');
         Route::get('/chi-tiet-hoa-don/{id}',[BillController::class,'detail'])->name('billdetail');
         Route::get('/xoa-hoa-don/{id}',[BillController::class,'destroy'])->name('deletedetail');
+        Route::get('/cap-nhat-hoa-don/{id}',[BillController::class,'updateStatusBill'])->name('update.bill.status');
 
         // Kho hàng
         Route::get('/kho-hang',[WarehouseController::class,'index'])->name('warehouse');

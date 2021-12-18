@@ -3,21 +3,22 @@
     <div class="block-header">
         <div class="row">
             <div class="col-lg-7 col-md-6 col-sm-12">
-                <h2>Thêm sản phẩm</h2>
+                <h2>Sửa sản phẩm</h2>
             </div>
             <div class="col-lg-5 col-md-6 col-sm-12">
                 <ul class="breadcrumb float-md-right">
                     <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> Trang chủ</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('admin.product.list') }}">Sản phẩm</a></li>
-                    <li class="breadcrumb-item active">Thêm sản phẩm</li>
+                    <li class="breadcrumb-item active">Sửa sản phẩm</li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="container-fluid">
         <!-- Input -->
-        <form action="{{ route('admin.product.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.handle.edit.product', ['id'=>$sanPham->sp_id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            {{-- <input type="text" name="sp_id" value="{{ $sanPham->sp_id }}" id=""> --}}
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="card">
@@ -129,7 +130,7 @@
                                     <div class="form-group">
                                         @foreach ($hinhAnhSanPham as $item)
                                             <img id="listImageProduct" alt="Ảnh đại diện sản phẩm" src="{{ asset($item->hasp_duongdan) }}" width="250px" height="250px"/>
-                                            <a href="#" class="btn btn-sm btn-danger">X</a>
+                                            <a href="{{ route('admin.remove.image.product', ['idImg'=>$item->hasp_id]) }}" class="btn btn-sm btn-danger">X</a>
                                         @endforeach
                                     </div>
                                     <div class="form-group">
@@ -141,7 +142,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-raised btn-primary m-t-15 waves-effect">Thêm sản phẩm</button>
+                            <button type="submit" class="btn btn-raised btn-primary m-t-15 waves-effect">Sửa sản phẩm</button>
                             <!-- #END# Select -->
                         </div>
                     </div>
